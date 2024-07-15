@@ -19,6 +19,10 @@
 		40C0BE452C45013800AE66AC /* Constants+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE442C45013800AE66AC /* Constants+Utils.swift */; };
 		40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE472C45058A00AE66AC /* UIViewController+Ext.swift */; };
 		40C0BE4A2C4506C900AE66AC /* UIResponder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE492C4506C900AE66AC /* UIResponder+Utils.swift */; };
+		40C0BE512C4563E200AE66AC /* SNDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE502C4563E200AE66AC /* SNDataLoadingVC.swift */; };
+		40C0BE532C45648C00AE66AC /* SNTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE522C45648C00AE66AC /* SNTitleLabel.swift */; };
+		40C0BE552C45656F00AE66AC /* SNEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE542C45656F00AE66AC /* SNEmptyStateView.swift */; };
+		40C0BE572C4565E300AE66AC /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE562C4565E300AE66AC /* UIView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		40C0BE442C45013800AE66AC /* Constants+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Utils.swift"; sourceTree = "<group>"; };
 		40C0BE472C45058A00AE66AC /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		40C0BE492C4506C900AE66AC /* UIResponder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Utils.swift"; sourceTree = "<group>"; };
+		40C0BE502C4563E200AE66AC /* SNDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNDataLoadingVC.swift; sourceTree = "<group>"; };
+		40C0BE522C45648C00AE66AC /* SNTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNTitleLabel.swift; sourceTree = "<group>"; };
+		40C0BE542C45656F00AE66AC /* SNEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNEmptyStateView.swift; sourceTree = "<group>"; };
+		40C0BE562C4565E300AE66AC /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,11 @@
 			isa = PBXGroup;
 			children = (
 				40C0BE372C44FBED00AE66AC /* TabBarControllers */,
+				40C0BE4F2C4563A300AE66AC /* ChildViewControllers */,
+				40C0BE4E2C45639300AE66AC /* Labels */,
+				40C0BE4B2C45635500AE66AC /* TextFields */,
+				40C0BE4C2C45636700AE66AC /* Buttons */,
+				40C0BE4D2C45638000AE66AC /* Views */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -129,8 +142,47 @@
 			isa = PBXGroup;
 			children = (
 				40C0BE472C45058A00AE66AC /* UIViewController+Ext.swift */,
+				40C0BE562C4565E300AE66AC /* UIView+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		40C0BE4B2C45635500AE66AC /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		40C0BE4C2C45636700AE66AC /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		40C0BE4D2C45638000AE66AC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				40C0BE542C45656F00AE66AC /* SNEmptyStateView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40C0BE4E2C45639300AE66AC /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				40C0BE522C45648C00AE66AC /* SNTitleLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		40C0BE4F2C4563A300AE66AC /* ChildViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				40C0BE502C4563E200AE66AC /* SNDataLoadingVC.swift */,
+			);
+			path = ChildViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,13 +257,17 @@
 			files = (
 				40C0BE392C44FC3100AE66AC /* SNTabBarController.swift in Sources */,
 				40C0BE412C44FD7200AE66AC /* InboxVC.swift in Sources */,
+				40C0BE552C45656F00AE66AC /* SNEmptyStateView.swift in Sources */,
 				40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */,
+				40C0BE572C4565E300AE66AC /* UIView+Ext.swift in Sources */,
 				40C0BE2A2C43CA2200AE66AC /* SwiftNovice.xcdatamodeld in Sources */,
 				40C0BE452C45013800AE66AC /* Constants+Utils.swift in Sources */,
 				40C0BE3D2C44FD2C00AE66AC /* PrereqsVC.swift in Sources */,
 				40C0BE202C43CA2200AE66AC /* AppDelegate.swift in Sources */,
 				40C0BE4A2C4506C900AE66AC /* UIResponder+Utils.swift in Sources */,
+				40C0BE532C45648C00AE66AC /* SNTitleLabel.swift in Sources */,
 				40C0BE222C43CA2200AE66AC /* SceneDelegate.swift in Sources */,
+				40C0BE512C4563E200AE66AC /* SNDataLoadingVC.swift in Sources */,
 				40C0BE3F2C44FD5500AE66AC /* ProjectsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
