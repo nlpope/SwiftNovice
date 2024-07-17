@@ -1,6 +1,6 @@
 # Project Title
 
-SwiftNovice - A bootcamp in your pocket. SwiftNovice guides the user through 5 prerequisite courses before enrolling them into a final team-based production level project.
+SwiftNovice - A bootcamp in your pocket. SwiftNovice guides the user through 5 prerequisite courses before providing them a final, mentor assisted production level project.
 
 ## Getting Started (Requires a Mac & iOS device)
 
