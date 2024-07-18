@@ -42,6 +42,6 @@ SwiftNovice - A bootcamp in your pocket. SwiftNovice guides the user through 5 p
 
 Copyright (c) 2024 by Noah Pope (https://github.com/nlpope/SwiftNovice)
 
-“All rights reserved. No part of this repository or corresponding materials (such as text, images, or source code) may be reproduced or distributed by any means without prior written permission of the copyright owner.”
+All rights reserved. No part of this source code or corresponding materials (such as text or images) may be reproduced or distributed by any means without prior written permission of the copyright owner.
 
 The above copyright notice and any permission notices shall be included in all copies or substantial portions of the Software.
