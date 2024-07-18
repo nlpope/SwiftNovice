@@ -9,14 +9,15 @@ import UIKit
 
 enum SFSymbols {
     
-    static let prereqs      = UIImage(systemName: "books.vertical")
-    static let projects     = UIImage(systemName: "pencil.slash")
-    static let inbox        = UIImage(systemName: "message")
-    static let mentor       = UIImage(systemName: "eyeglasses")
+    static let prereqs          = UIImage(systemName: "books.vertical")
+    static let projects         = UIImage(systemName: "pencil.slash")
+    static let inbox            = UIImage(systemName: "message")
+    static let mentor           = UIImage(systemName: "eyeglasses")
 }
 
 
 enum Images {
     
-    static let
+    static let snLogo           = UIImage(named: "sn-logo")
+    static let emptyStateLogo   = UIImage(named: "empty-state-logo")
 }

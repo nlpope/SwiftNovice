@@ -50,7 +50,14 @@ class SNEmptyStateView: UIView {
     
     
     private func configureLogoImageView() {
-        logoImageView.image         = 
+        logoImageView.image         = Images.emptyStateLogo
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
+            logoImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
+            logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 270),
+            logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 40)
+        ])
     }
-    
 }

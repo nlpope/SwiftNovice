@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  WHAT I LEARNED
- * How to create my own 'GET' API through server side Swift using Vapor'
+ * How to create my own 'GET' API through server side Swift using Vapor
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -109,7 +109,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  PROJECT NOTES:
  
  * FileName
- 1.
+ 1. Replacing UILabel method with UITextView for its built in link formatting
+ > https://stackoverflow.com/questions/70119562/how-do-i-add-a-link-to-a-uilabel-in-swift
  
  
  */
