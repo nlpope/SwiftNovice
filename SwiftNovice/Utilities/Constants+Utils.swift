@@ -14,3 +14,9 @@ enum SFSymbols {
     static let inbox        = UIImage(systemName: "message")
     static let mentor       = UIImage(systemName: "eyeglasses")
 }
+
+
+enum Images {
+    
+    static let
+}

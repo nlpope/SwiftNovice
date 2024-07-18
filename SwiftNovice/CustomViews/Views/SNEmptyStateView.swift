@@ -29,4 +29,28 @@ class SNEmptyStateView: UIView {
         messageLabel.text = message
     }
     
+    
+    private func configure() {
+        configureMessageLabel()
+        configureLogoImageView()
+    }
+    
+    
+    private func configureMessageLabel() {
+        messageLabel.numberOfLines  = 3
+        messageLabel.textColor      = .secondaryLabel
+        
+        NSLayoutConstraint.activate([
+            messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -150),
+            messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
+            messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
+            messageLabel.heightAnchor.constraint(equalToConstant: 200)
+        ])
+    }
+    
+    
+    private func configureLogoImageView() {
+        logoImageView.image         = 
+    }
+    
 }

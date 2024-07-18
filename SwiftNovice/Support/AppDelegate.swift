@@ -124,8 +124,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  HELPFUL TIPS:
  
  *  App Icons & Image sets:
- >  https://www.appicon.co/#app-icon
- >  https://www.appicon.co/#image-sets
+ >  icons = use app bakery
+ >  image sets (transp. in app logo & empty states) = https://www.appicon.co/#image-sets
+ > > dark mode = https://onlinejpgtools.com/replace-jpg-colors
+ >> check 'blend colors at the edges' thicknes = 3
+ 
  
  *  Code formatting:
  > order = vars/lets, init methods, view lifecycle methods (VDL), funcs
