@@ -94,7 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  --------------------------
  WHAT I LEARNED
  * How to create my own 'GET' API through server side Swift using Vapor
- > deeper understanding of generics and variadic parameters in action
+ >  deeper understanding of generics and variadic parameters in action
+ >  deeper understanding of inout (&) parameters in action - allows mutation of a let const. via a pointer
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
