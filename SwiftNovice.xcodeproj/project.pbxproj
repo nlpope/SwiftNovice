@@ -23,6 +23,8 @@
 		40C0BE532C45648C00AE66AC /* SNTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE522C45648C00AE66AC /* SNTitleLabel.swift */; };
 		40C0BE552C45656F00AE66AC /* SNEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE542C45656F00AE66AC /* SNEmptyStateView.swift */; };
 		40C0BE572C4565E300AE66AC /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE562C4565E300AE66AC /* UIView+Ext.swift */; };
+		40D27E312C49890F0091FE3E /* SNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D27E302C49890F0091FE3E /* SNButton.swift */; };
+		40D27E332C498BFB0091FE3E /* SNTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D27E322C498BFB0091FE3E /* SNTextField.swift */; };
 		40D47A792C48EDF4008B52CC /* SNError+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A782C48EDF4008B52CC /* SNError+Utils.swift */; };
 		40D47A7B2C48EE60008B52CC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7A2C48EE60008B52CC /* NetworkManager.swift */; };
 		40D47A7D2C48EF7B008B52CC /* Prerequisite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7C2C48EF7B008B52CC /* Prerequisite.swift */; };
@@ -50,6 +52,8 @@
 		40C0BE522C45648C00AE66AC /* SNTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNTitleLabel.swift; sourceTree = "<group>"; };
 		40C0BE542C45656F00AE66AC /* SNEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNEmptyStateView.swift; sourceTree = "<group>"; };
 		40C0BE562C4565E300AE66AC /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		40D27E302C49890F0091FE3E /* SNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNButton.swift; sourceTree = "<group>"; };
+		40D27E322C498BFB0091FE3E /* SNTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNTextField.swift; sourceTree = "<group>"; };
 		40D47A782C48EDF4008B52CC /* SNError+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNError+Utils.swift"; sourceTree = "<group>"; };
 		40D47A7A2C48EE60008B52CC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		40D47A7C2C48EF7B008B52CC /* Prerequisite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prerequisite.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 		40C0BE4B2C45635500AE66AC /* TextFields */ = {
 			isa = PBXGroup;
 			children = (
+				40D27E322C498BFB0091FE3E /* SNTextField.swift */,
 			);
 			path = TextFields;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 		40C0BE4C2C45636700AE66AC /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				40D27E302C49890F0091FE3E /* SNButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -295,12 +301,14 @@
 				40C0BE552C45656F00AE66AC /* SNEmptyStateView.swift in Sources */,
 				40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */,
 				40D47A832C48F9B3008B52CC /* SNLink.swift in Sources */,
+				40D27E332C498BFB0091FE3E /* SNTextField.swift in Sources */,
 				40D47A7B2C48EE60008B52CC /* NetworkManager.swift in Sources */,
 				40C0BE572C4565E300AE66AC /* UIView+Ext.swift in Sources */,
 				40D47A812C48F28C008B52CC /* SNSecondaryLabel.swift in Sources */,
 				40C0BE2A2C43CA2200AE66AC /* SwiftNovice.xcdatamodeld in Sources */,
 				40C0BE452C45013800AE66AC /* Constants+Utils.swift in Sources */,
 				40C0BE3D2C44FD2C00AE66AC /* PrereqsVC.swift in Sources */,
+				40D27E312C49890F0091FE3E /* SNButton.swift in Sources */,
 				40C0BE202C43CA2200AE66AC /* AppDelegate.swift in Sources */,
 				40C0BE4A2C4506C900AE66AC /* UIResponder+Utils.swift in Sources */,
 				40D47A7D2C48EF7B008B52CC /* Prerequisite.swift in Sources */,

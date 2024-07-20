@@ -58,13 +58,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>18</string>
+					<string>22</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>17</string>
+					<string>21</string>
 					<key>Timestamp</key>
-					<string>742979648.506323</string>
+					<string>743018188.760974</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -80,16 +80,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>        view.backgroundColor = .systemBackground
 </string>
 				<key>leading</key>
 				<string>    override func viewDidLoad() {
         super.viewDidLoad()
 </string>
 				<key>trailing</key>
-				<string>    }
-    
-
+				<string>        view.addSubViews(logoImageView, usernameTexField, passwordTextField, callToActionButton, signUpLabel)
+    }
+}
 </string>
 			</dict>
 			<key>title</key>
