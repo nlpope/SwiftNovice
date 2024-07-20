@@ -9,6 +9,17 @@ import UIKit
 
 extension UIViewController {
     
+    func presentSNAlertOnMainThread(alertTitle: String, message: String, buttonTitle: String) {
+        DispatchQueue.main.async {
+            let alertVC = SNAlertChildVC(alertTitle: alertTitle, message: message, buttonTitle: buttonTitle)
+            alertVC.modalPresentationStyle  = .overFullScreen
+            alertVC.modalTransitionStyle    = .crossDissolve
+            
+            self.present(alertVC, animated: true)
+        }
+    }
+    
+    
     // MARK: SOLVE FOR KEYBOARD BLOCKING FIELD
     func setupKeyboardHiding() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

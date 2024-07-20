@@ -86,8 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  xcode @ version: 15.4
  --------------------------
  SHORTCUTS & HELPFUL TIPS (XCODE & SWIFT):
- * https://docs.google.com/document/d/1yunA83JZ4FxS_WuIQMRwm6gkUDJC1jnkJ2Vtll8kid8/edit?usp=sharing
- 
+ https://docs.google.com/document/d/1yunA83JZ4FxS_WuIQMRwm6gkUDJC1jnkJ2Vtll8kid8/edit?usp=sharing
+
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -101,7 +101,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  WHAT I STRUGGLED WITH
- *
+ * in the Vapor server I was having issues using my 'multiAppend' extension for the Array type
+ >  it kept returning an empty array
+ >  turns out I wrote the extension's for loop wrong, it read 'for item in array { array.append(item)}' when the array was empty to begin with
+ >  twas fixed when I said 'for course in courses...' - I was referencing the wrong parameter in the for loop. worked fine after that
+ >  Here i was thinking it was a concurrency issue
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -110,10 +114,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
  PROJECT NOTES:
  
- * FileName
+ * Vapor Server
+ > How to open it in swift:
+ > from terminal navigate to Developer/ios & swift/Servers/SwiftNoviceServer/prerequisites/Sources/App the enter 'open Package.Swift'
+ > If you're getting a binding error when trying to run the server, just hit the drop down arrow on the 'stop' button in Xcode, there may be more than one running - I don't know why, but it works when I shut down both and reran it
+ 
+ * SNLink
  1. Replacing UILabel method with UITextView for its built in link formatting
  > https://stackoverflow.com/questions/70119562/how-do-i-add-a-link-to-a-uilabel-in-swift
- 
  
  */
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		401000E52C4BAD6200AE8F14 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401000E42C4BAD6200AE8F14 /* PersistenceManager.swift */; };
+		401000E72C4BB15A00AE8F14 /* SNAlertChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401000E62C4BB15A00AE8F14 /* SNAlertChildVC.swift */; };
+		401000E92C4BB1E300AE8F14 /* SNAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401000E82C4BB1E300AE8F14 /* SNAlertContainerView.swift */; };
+		401000EB2C4BB23B00AE8F14 /* SNBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401000EA2C4BB23B00AE8F14 /* SNBodyLabel.swift */; };
 		40C0BE202C43CA2200AE66AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE1F2C43CA2200AE66AC /* AppDelegate.swift */; };
 		40C0BE222C43CA2200AE66AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE212C43CA2200AE66AC /* SceneDelegate.swift */; };
 		40C0BE2A2C43CA2200AE66AC /* SwiftNovice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE282C43CA2200AE66AC /* SwiftNovice.xcdatamodeld */; };
@@ -34,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		401000E42C4BAD6200AE8F14 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		401000E62C4BB15A00AE8F14 /* SNAlertChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAlertChildVC.swift; sourceTree = "<group>"; };
+		401000E82C4BB1E300AE8F14 /* SNAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAlertContainerView.swift; sourceTree = "<group>"; };
+		401000EA2C4BB23B00AE8F14 /* SNBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNBodyLabel.swift; sourceTree = "<group>"; };
 		40C0BE1C2C43CA2200AE66AC /* SwiftNovice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftNovice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40C0BE1F2C43CA2200AE66AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40C0BE212C43CA2200AE66AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				40C0BE542C45656F00AE66AC /* SNEmptyStateView.swift */,
+				401000E82C4BB1E300AE8F14 /* SNAlertContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +206,7 @@
 				40C0BE522C45648C00AE66AC /* SNTitleLabel.swift */,
 				40D47A802C48F28C008B52CC /* SNSecondaryLabel.swift */,
 				40D47A822C48F9B2008B52CC /* SNLink.swift */,
+				401000EA2C4BB23B00AE8F14 /* SNBodyLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -205,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				40C0BE502C4563E200AE66AC /* SNDataLoadingVC.swift */,
+				401000E62C4BB15A00AE8F14 /* SNAlertChildVC.swift */,
 			);
 			path = ChildViewControllers;
 			sourceTree = "<group>";
@@ -221,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				40D47A7A2C48EE60008B52CC /* NetworkManager.swift */,
+				401000E42C4BAD6200AE8F14 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -302,11 +314,14 @@
 				40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */,
 				40D47A832C48F9B3008B52CC /* SNLink.swift in Sources */,
 				40D27E332C498BFB0091FE3E /* SNTextField.swift in Sources */,
+				401000EB2C4BB23B00AE8F14 /* SNBodyLabel.swift in Sources */,
 				40D47A7B2C48EE60008B52CC /* NetworkManager.swift in Sources */,
 				40C0BE572C4565E300AE66AC /* UIView+Ext.swift in Sources */,
 				40D47A812C48F28C008B52CC /* SNSecondaryLabel.swift in Sources */,
 				40C0BE2A2C43CA2200AE66AC /* SwiftNovice.xcdatamodeld in Sources */,
+				401000E52C4BAD6200AE8F14 /* PersistenceManager.swift in Sources */,
 				40C0BE452C45013800AE66AC /* Constants+Utils.swift in Sources */,
+				401000E72C4BB15A00AE8F14 /* SNAlertChildVC.swift in Sources */,
 				40C0BE3D2C44FD2C00AE66AC /* PrereqsVC.swift in Sources */,
 				40D27E312C49890F0091FE3E /* SNButton.swift in Sources */,
 				40C0BE202C43CA2200AE66AC /* AppDelegate.swift in Sources */,
@@ -315,6 +330,7 @@
 				40D47A792C48EDF4008B52CC /* SNError+Utils.swift in Sources */,
 				40C0BE532C45648C00AE66AC /* SNTitleLabel.swift in Sources */,
 				40C0BE222C43CA2200AE66AC /* SceneDelegate.swift in Sources */,
+				401000E92C4BB1E300AE8F14 /* SNAlertContainerView.swift in Sources */,
 				40C0BE512C4563E200AE66AC /* SNDataLoadingVC.swift in Sources */,
 				40C0BE3F2C44FD5500AE66AC /* ProjectsVC.swift in Sources */,
 			);
