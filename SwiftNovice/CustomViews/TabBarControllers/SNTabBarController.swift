@@ -16,6 +16,11 @@ class SNTabBarController: UITabBarController {
     }
     
     
+//    override func viewWillDisappear(_ animated: Bool) {
+//        print("bouts to dissappear")
+//        PersistenceManager.updateLoggedInStatus(loggedIn: false)
+//    }
+    
     func setUpVCs() { viewControllers = [createPrerequisitesNC(), createProjectsNC(), createInboxNC()] }
     
     

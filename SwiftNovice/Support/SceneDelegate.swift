@@ -16,23 +16,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // replace below w 'didSet' prop observer so else block can fire
         #warning("don't forget to DISMISS the signInVC or memory will leak")
-        let userLoggedIn            = false
+//        var userLoggedIn: Bool      = PersistenceManager.retrieveLoggedInStatus() {
+//            didSet {
+//                determineRootVC()
+//            }
+//        }
         guard let windowScene       = (scene as? UIWindowScene) else { return }
             
         window                      = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene         = windowScene
+        window?.rootViewController  = determineRootVC()
+        window?.makeKeyAndVisible()
         
-        if !userLoggedIn {
-            window?.rootViewController  = SignInVC()
-            window?.makeKeyAndVisible()
-            
-            configureNavigationBar()
-        } else {
-            window?.rootViewController  = SNTabBarController()
-            window?.makeKeyAndVisible()
-            
-            configureNavigationBar()
-        }
+        configureNavigationBar()
+    }
+    
+    
+    func determineRootVC() -> UIViewController {
+        let userIsLoggedIn = PersistenceManager.retrieveLoggedInStatus()
+        guard userIsLoggedIn else { return SignInVC() }
+        return SNTabBarController()
+    }
+    
+    
+    func changeRootVC(_ vc: UIViewController, animated: Bool = true) {
+        guard let window = self.window else { return }
+        
+        window.rootViewController = vc
+        // add logic for sign out button later
     }
     
     
@@ -46,6 +57,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        print("sceneDidDisconnect")
+        PersistenceManager.updateLoggedInStatus(loggedIn: false)
+
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {

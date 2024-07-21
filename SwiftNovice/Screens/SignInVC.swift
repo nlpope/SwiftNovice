@@ -108,23 +108,28 @@ class SignInVC: UIViewController {
     }
     
     
+    func updateLoggedinStatus(withStatus status: Bool) {
+        PersistenceManager.updateLoggedInStatus(loggedIn: status)
+    }
+    
+    
     @objc func resetRootVC() {
         print("it works!")
-//        guard isUsernameEntered, isPasswordEntered else {
-//            presentSNAlertOnMainThread(alertTitle: "Empty username or password", message: "The username or password field has been left blank. Please enter a value or sign up if you do not have an account.", buttonTitle: "Ok")
-//            return
-//        }
-//        
-//        guard userExists, passwordIsCorrect else {
-//            presentSNAlertOnMainThread(alertTitle: "Wrong username or password", message: "The username or password is incorrect. Please try again or sign up if you do not have an account", buttonTitle: "Ok")
-//            return
-//        }
-//        
-//        usernameTexField.resignFirstResponder()
-//        passwordTextField.resignFirstResponder()
-//        
-//        let prereqsVC = PrereqsVC(username: usernameTexField.text!)
-//        navigationController?.pushViewController(prereqsVC, animated: true)
+        guard isUsernameEntered, isPasswordEntered else {
+            presentSNAlertOnMainThread(alertTitle: "Empty username or password", message: "The username or password field has been left blank. Please enter a value or sign up if you do not have an account.", buttonTitle: "Ok")
+            return
+        }
+        
+        guard userExists, passwordIsCorrect else {
+            presentSNAlertOnMainThread(alertTitle: "Wrong username or password", message: "The username or password is incorrect. Please try again or sign up if you do not have an account", buttonTitle: "Ok")
+            return
+        }
+        updateLoggedinStatus(withStatus: true)
+        usernameTexField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        
+        let tabBarController = SNTabBarController()
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(tabBarController)
     }
     
     

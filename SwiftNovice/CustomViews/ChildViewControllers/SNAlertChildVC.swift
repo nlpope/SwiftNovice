@@ -9,7 +9,7 @@ import UIKit
 
 class SNAlertChildVC: UIViewController {
 
-    let containerView = UIView()
+    let containerView = SNAlertContainerView()
     let titleLabel    = SNTitleLabel(textAlignment: .center, fontSize: 20)
     let messageLabel  = SNBodyLabel(textAlignment: .center)
     let actionButton  = SNButton(backgroundColor: .systemPink, title: "ok")
@@ -39,6 +39,7 @@ class SNAlertChildVC: UIViewController {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         view.addSubview(containerView)
         containerView.addSubviews(titleLabel, messageLabel, actionButton)
+        
         configureContainerView()
         configureTitleLabel()
         configureActionButton()
