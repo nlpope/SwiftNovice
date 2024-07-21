@@ -96,6 +96,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  * How to create my own 'GET' API through server side Swift using Vapor
  >  deeper understanding of generics and variadic parameters in action
  >  deeper understanding of inout (&) parameters in action - allows mutation of a let const. via a pointer
+ 
+ * Unit testing
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -106,6 +108,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  >  turns out I wrote the extension's for loop wrong, it read 'for item in array { array.append(item)}' when the array was empty to begin with
  >  twas fixed when I said 'for course in courses...' - I was referencing the wrong parameter in the for loop. worked fine after that
  >  Here i was thinking it was a concurrency issue
+ 
+ * Unit testing
+ > The network manager's fetch operation kept failing when I XCAsserted true for !self.prerequisites.isempty.
+ > But I originally had that asssertion outside of the network call which was asynchronous so of course the empty array would remain empty after the network call func was fired
+ > it wasn't until I put the XCAssertion inside the completion handler's braces that I could assert the value just after the returned array was appended to the emty top level array.
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX

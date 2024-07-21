@@ -14,5 +14,6 @@ struct Prerequisite: Codable, Hashable, Comparable {
     
     let courseName: String
     let courseLink: String
-    let courseID: Int
+    let price: Double
+    let instructor: String
 }
