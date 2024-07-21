@@ -19,7 +19,6 @@
 		40C0BE392C44FC3100AE66AC /* SNTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE382C44FC3100AE66AC /* SNTabBarController.swift */; };
 		40C0BE3D2C44FD2C00AE66AC /* PrereqsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE3C2C44FD2C00AE66AC /* PrereqsVC.swift */; };
 		40C0BE3F2C44FD5500AE66AC /* ProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE3E2C44FD5500AE66AC /* ProjectsVC.swift */; };
-		40C0BE412C44FD7200AE66AC /* InboxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE402C44FD7200AE66AC /* InboxVC.swift */; };
 		40C0BE452C45013800AE66AC /* Constants+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE442C45013800AE66AC /* Constants+Utils.swift */; };
 		40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE472C45058A00AE66AC /* UIViewController+Ext.swift */; };
 		40C0BE4A2C4506C900AE66AC /* UIResponder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE492C4506C900AE66AC /* UIResponder+Utils.swift */; };
@@ -34,8 +33,10 @@
 		40D47A7D2C48EF7B008B52CC /* Prerequisite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7C2C48EF7B008B52CC /* Prerequisite.swift */; };
 		40D47A7F2C48F168008B52CC /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7E2C48F168008B52CC /* SignInVC.swift */; };
 		40D47A812C48F28C008B52CC /* SNSecondaryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A802C48F28C008B52CC /* SNSecondaryLabel.swift */; };
-		40D47A832C48F9B3008B52CC /* SNLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A822C48F9B2008B52CC /* SNLink.swift */; };
 		40EC48F02C4C8C5B00F1EEA1 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48EF2C4C8C5B00F1EEA1 /* NetworkManagerTests.swift */; };
+		40EC48F92C4CD05700F1EEA1 /* PrerequsiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48F82C4CD05700F1EEA1 /* PrerequsiteCell.swift */; };
+		40EC48FB2C4D00D700F1EEA1 /* SNAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48FA2C4D00D700F1EEA1 /* SNAvatarImageView.swift */; };
+		40EC48FD2C4D079800F1EEA1 /* CourseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48FC2C4D079800F1EEA1 /* CourseDetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +64,6 @@
 		40C0BE382C44FC3100AE66AC /* SNTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNTabBarController.swift; sourceTree = "<group>"; };
 		40C0BE3C2C44FD2C00AE66AC /* PrereqsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrereqsVC.swift; sourceTree = "<group>"; };
 		40C0BE3E2C44FD5500AE66AC /* ProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsVC.swift; sourceTree = "<group>"; };
-		40C0BE402C44FD7200AE66AC /* InboxVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxVC.swift; sourceTree = "<group>"; };
 		40C0BE442C45013800AE66AC /* Constants+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Utils.swift"; sourceTree = "<group>"; };
 		40C0BE472C45058A00AE66AC /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		40C0BE492C4506C900AE66AC /* UIResponder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Utils.swift"; sourceTree = "<group>"; };
@@ -78,9 +78,11 @@
 		40D47A7C2C48EF7B008B52CC /* Prerequisite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prerequisite.swift; sourceTree = "<group>"; };
 		40D47A7E2C48F168008B52CC /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		40D47A802C48F28C008B52CC /* SNSecondaryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSecondaryLabel.swift; sourceTree = "<group>"; };
-		40D47A822C48F9B2008B52CC /* SNLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLink.swift; sourceTree = "<group>"; };
 		40EC48ED2C4C8C5B00F1EEA1 /* NetworkManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40EC48EF2C4C8C5B00F1EEA1 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		40EC48F82C4CD05700F1EEA1 /* PrerequsiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrerequsiteCell.swift; sourceTree = "<group>"; };
+		40EC48FA2C4D00D700F1EEA1 /* SNAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAvatarImageView.swift; sourceTree = "<group>"; };
+		40EC48FC2C4D079800F1EEA1 /* CourseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				40C0BE372C44FBED00AE66AC /* TabBarControllers */,
 				40C0BE4F2C4563A300AE66AC /* ChildViewControllers */,
+				40EC48F72C4CCFF600F1EEA1 /* Cells */,
 				40C0BE4E2C45639300AE66AC /* Labels */,
 				40C0BE4B2C45635500AE66AC /* TextFields */,
 				40C0BE4C2C45636700AE66AC /* Buttons */,
@@ -172,8 +175,8 @@
 			children = (
 				40D47A7E2C48F168008B52CC /* SignInVC.swift */,
 				40C0BE3C2C44FD2C00AE66AC /* PrereqsVC.swift */,
+				40EC48FC2C4D079800F1EEA1 /* CourseDetailsVC.swift */,
 				40C0BE3E2C44FD5500AE66AC /* ProjectsVC.swift */,
-				40C0BE402C44FD7200AE66AC /* InboxVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			children = (
 				40C0BE542C45656F00AE66AC /* SNEmptyStateView.swift */,
 				401000E82C4BB1E300AE8F14 /* SNAlertContainerView.swift */,
+				40EC48FA2C4D00D700F1EEA1 /* SNAvatarImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -227,7 +231,6 @@
 			children = (
 				40C0BE522C45648C00AE66AC /* SNTitleLabel.swift */,
 				40D47A802C48F28C008B52CC /* SNSecondaryLabel.swift */,
-				40D47A822C48F9B2008B52CC /* SNLink.swift */,
 				401000EA2C4BB23B00AE8F14 /* SNBodyLabel.swift */,
 			);
 			path = Labels;
@@ -265,6 +268,14 @@
 				40EC48EF2C4C8C5B00F1EEA1 /* NetworkManagerTests.swift */,
 			);
 			path = NetworkManagerTests;
+			sourceTree = "<group>";
+		};
+		40EC48F72C4CCFF600F1EEA1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				40EC48F82C4CD05700F1EEA1 /* PrerequsiteCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,11 +379,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				40C0BE392C44FC3100AE66AC /* SNTabBarController.swift in Sources */,
-				40C0BE412C44FD7200AE66AC /* InboxVC.swift in Sources */,
 				40D47A7F2C48F168008B52CC /* SignInVC.swift in Sources */,
 				40C0BE552C45656F00AE66AC /* SNEmptyStateView.swift in Sources */,
 				40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */,
-				40D47A832C48F9B3008B52CC /* SNLink.swift in Sources */,
 				40D27E332C498BFB0091FE3E /* SNTextField.swift in Sources */,
 				401000EB2C4BB23B00AE8F14 /* SNBodyLabel.swift in Sources */,
 				40D47A7B2C48EE60008B52CC /* NetworkManager.swift in Sources */,
@@ -382,15 +391,18 @@
 				401000E52C4BAD6200AE8F14 /* PersistenceManager.swift in Sources */,
 				40C0BE452C45013800AE66AC /* Constants+Utils.swift in Sources */,
 				401000E72C4BB15A00AE8F14 /* SNAlertChildVC.swift in Sources */,
+				40EC48FB2C4D00D700F1EEA1 /* SNAvatarImageView.swift in Sources */,
 				40C0BE3D2C44FD2C00AE66AC /* PrereqsVC.swift in Sources */,
 				40D27E312C49890F0091FE3E /* SNButton.swift in Sources */,
 				40C0BE202C43CA2200AE66AC /* AppDelegate.swift in Sources */,
 				40C0BE4A2C4506C900AE66AC /* UIResponder+Utils.swift in Sources */,
 				40D47A7D2C48EF7B008B52CC /* Prerequisite.swift in Sources */,
+				40EC48FD2C4D079800F1EEA1 /* CourseDetailsVC.swift in Sources */,
 				40D47A792C48EDF4008B52CC /* SNError+Utils.swift in Sources */,
 				40C0BE532C45648C00AE66AC /* SNTitleLabel.swift in Sources */,
 				40C0BE222C43CA2200AE66AC /* SceneDelegate.swift in Sources */,
 				401000E92C4BB1E300AE8F14 /* SNAlertContainerView.swift in Sources */,
+				40EC48F92C4CD05700F1EEA1 /* PrerequsiteCell.swift in Sources */,
 				40C0BE512C4563E200AE66AC /* SNDataLoadingVC.swift in Sources */,
 				40C0BE3F2C44FD5500AE66AC /* ProjectsVC.swift in Sources */,
 			);

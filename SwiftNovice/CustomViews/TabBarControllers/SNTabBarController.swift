@@ -21,7 +21,7 @@ class SNTabBarController: UITabBarController {
 //        PersistenceManager.updateLoggedInStatus(loggedIn: false)
 //    }
     
-    func setUpVCs() { viewControllers = [createPrerequisitesNC(), createProjectsNC(), createInboxNC()] }
+    func setUpVCs() { viewControllers = [createPrerequisitesNC(), createProjectsNC()] }
     
     
     func createPrerequisitesNC() -> UINavigationController {

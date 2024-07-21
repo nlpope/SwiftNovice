@@ -7,10 +7,12 @@
 
 import UIKit
 
-class PrereqsVC: UIViewController {
-    // set 'honor system' alert before unlocking next screen
-    // once user hits 'ok' they'll be asked to provide their github link & their public repos will be scanned for the presence of a GHFollowers repo, if not detected - the projects & inbox tabs will not be unlocked
+class PrereqsVC: SNDataLoadingVC {
+    // set mini tutorial as alert for instr. on how to unlock next tab
+    
     var username: String!
+    let tableView       = UITableView()
+    var prerequisites   = [Prerequisite]()
     
     
     init(username: String!) {
@@ -26,7 +28,72 @@ class PrereqsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        configureNavigationVC()
+        
+    }
+    
+    
+    func configureNavigationVC() {
+        view.backgroundColor    = .systemBackground
+        title                   = "Favorites"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    
+    func configureTableView() {
+        view.addSubview(tableView)
+        
+        tableView.frame         = view.bounds
+        // see note 10 in app delegate
+        tableView.rowHeight     = 80
+        tableView.delegate      = self
+        tableView.dataSource    = self
+        tableView.removeExcessCells()
+        
+        tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
+    }
+}
+
+
+extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return prerequisites.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell            = tableView.dequeueReusableCell(withIdentifier: PrerequisiteCell.reuseID) as! PrerequisiteCell
+        let prerequisite    = prerequisites[indexPath.row]
+        
+        cell.set(prerequisite: prerequisite)
+        
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let prerequisite    = prerequisites[indexPath.row]
+        let destVC          = PrereqsVC(username: favorite.login)
+        
+        navigationController?.pushViewController(destVC, animated: true)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+                
+        PersistenceManager.updateWith(favorite: favorites[indexPath.row], actionType: .remove) { [weak self] error in
+            guard let self = self else { return }
+            // see note 11 in app delegate
+            guard let error = error else {
+                self.favorites.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .left)
+                return
+            }
+            
+            self.presentGFAlertOnMainThread(alertTitle: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
+        }
     }
 }
 

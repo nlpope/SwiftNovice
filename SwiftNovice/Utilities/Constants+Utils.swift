@@ -21,4 +21,5 @@ enum Images {
     
     static let snLogo           = UIImage(named: "sn-logo")
     static let emptyStateLogo   = UIImage(named: "empty-state-logo")
+    static let placeholder      = UIImage(named: "avatar-placeholder")
 }

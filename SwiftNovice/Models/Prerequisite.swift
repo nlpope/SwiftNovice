@@ -16,4 +16,5 @@ struct Prerequisite: Codable, Hashable, Comparable {
     let courseLink: String
     let price: Double
     let instructor: String
+    let avatarUrl: String
 }
