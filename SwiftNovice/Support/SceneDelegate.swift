@@ -14,14 +14,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        // replace below w 'didSet' prop observer so else block can fire
+        #warning("don't forget to DISMISS the signInVC or memory will leak")
+        let userLoggedIn            = false
         guard let windowScene       = (scene as? UIWindowScene) else { return }
             
         window                      = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene         = windowScene
-        window?.rootViewController  = SNTabBarController()
-        window?.makeKeyAndVisible()
         
-        configureNavigationBar()
+        if !userLoggedIn {
+            window?.rootViewController  = SignInVC()
+            window?.makeKeyAndVisible()
+            
+            configureNavigationBar()
+        } else {
+            window?.rootViewController  = SNTabBarController()
+            window?.makeKeyAndVisible()
+            
+            configureNavigationBar()
+        }
     }
     
     

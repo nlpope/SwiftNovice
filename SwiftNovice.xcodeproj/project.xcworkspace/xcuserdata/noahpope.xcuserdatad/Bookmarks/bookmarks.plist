@@ -64,7 +64,7 @@
 					<key>StartingLineNumber</key>
 					<string>23</string>
 					<key>Timestamp</key>
-					<string>743157836.842702</string>
+					<string>743219515.640923</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -87,9 +87,9 @@
         super.viewDidLoad()
 </string>
 				<key>trailing</key>
-				<string>        view.addSubviews(logoImageView, usernameTexField, passwordTextField, callToActionButton, signUpLabel)
-    }
-    
+				<string>        view.addSubviews(logoImageView, usernameTexField, passwordTextField, signInLabel, signUpLabel)
+        
+        configureLogoImageView()
 </string>
 			</dict>
 			<key>title</key>

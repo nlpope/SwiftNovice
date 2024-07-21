@@ -15,11 +15,16 @@ class SNLink: UITextView {
         self.isUserInteractionEnabled   = true
         self.isSelectable               = true
         self.dataDetectorTypes          = .link
-        self.text                       = ""
     }
     
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    convenience init(text: String) {
+        self.init(frame: .zero)
+        self.text = text
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 enum SFSymbols {
     
+    static let account          = UIImage(systemName: "person.circle")
     static let prereqs          = UIImage(systemName: "books.vertical")
     static let projects         = UIImage(systemName: "pencil.slash")
     static let inbox            = UIImage(systemName: "message")

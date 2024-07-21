@@ -11,6 +11,7 @@ class SNSecondaryLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configure()
     }
     
     
@@ -19,15 +20,10 @@ class SNSecondaryLabel: UILabel {
     }
     
     
-    convenience init(fontSize: CGFloat) {
+    convenience init(textToDisplay: String, fontSize: CGFloat) {
         self.init(frame: .zero)
         font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
-    }
-    
-    
-    convenience init(link: String) {
-        self.init(frame: .zero)
-        
+        text = textToDisplay
     }
     
     
@@ -37,5 +33,6 @@ class SNSecondaryLabel: UILabel {
         minimumScaleFactor                          = 0.75
         lineBreakMode                               = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints   = false
+        isUserInteractionEnabled                    = true
     }
 }
