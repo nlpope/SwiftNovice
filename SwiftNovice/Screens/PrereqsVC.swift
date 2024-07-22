@@ -9,27 +9,23 @@ import UIKit
 
 class PrereqsVC: SNDataLoadingVC {
     // set mini tutorial as alert for instr. on how to unlock next tab
+    // see anki - UserDefaults for tracking if users 1st time on screen
     
     var username: String!
-    let tableView       = UITableView()
-    var prerequisites   = [Prerequisite]()
-    
-    
-    init(username: String!) {
-        super.init(nibName: nil, bundle: nil)
-        self.username = username
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    let tableView               = UITableView()
+    var prerequisites           = [Prerequisite]()
+    var completedPrerequisites  = [Prerequisite]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationVC()
         
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getProgress()
     }
     
     
@@ -44,13 +40,49 @@ class PrereqsVC: SNDataLoadingVC {
         view.addSubview(tableView)
         
         tableView.frame         = view.bounds
-        // see note 10 in app delegate
         tableView.rowHeight     = 80
         tableView.delegate      = self
         tableView.dataSource    = self
         tableView.removeExcessCells()
         
-        tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
+        tableView.register(PrerequisiteCell.self, forCellReuseIdentifier: PrerequisiteCell.reuseID)
+    }
+    
+    
+    func getProgress() {
+        // go to user defaults
+        // send results of completes to updateUI
+    }
+    
+    
+    func updateCompletedCourses(withCourse course: Prerequisite, toggleType: Bool) {
+        showLoadingView()
+        let actionType: CoursePersistenceActionType = toggleType ? .complete : .incomplete
+        
+        PersistenceManager.updateWith(course: course, actionType: actionType) { [weak self] error in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
+            guard let error else {
+                switch actionType {
+                case .complete:
+                    // PRESENT CONFETTI ANIMATION ON MAIN THREAD - CREATE IN UIVC+EXT
+                    self.presentSNAlertOnMainThread(alertTitle: "Congratulations!", message: "Good work on completing this prerequisite. Keep going, you've got this 🥳.", buttonTitle: "Ok")
+                case .incomplete:
+                    self.presentSNAlertOnMainThread(alertTitle: "Course marked incomplete", message: "We have successfully removed this course from your completed lsit.", buttonTitle: "Ok")
+                }
+                
+                return
+            }
+            
+            self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
+    }
+    
+    
+    // DO I NEED THIS IF I RELOAD THE DATA IN GETPROGRESS()?
+    func updateUI(with progress: [Prerequisite]) {
+        // if in list of completes returned from 'getProgress()' shade it pale green
     }
 }
 
@@ -74,26 +106,29 @@ extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let prerequisite    = prerequisites[indexPath.row]
-        let destVC          = PrereqsVC(username: favorite.login)
+        let destVC          = CourseDetailsVC()
         
-        navigationController?.pushViewController(destVC, animated: true)
+        let navController   = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
+    }
+}
+
+
+extension PrereqsVC: CourseDetailsVCDelegate {
+    
+    func followCourseLink() {
+       // open safari and go to course link
     }
     
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-                
-        PersistenceManager.updateWith(favorite: favorites[indexPath.row], actionType: .remove) { [weak self] error in
-            guard let self = self else { return }
-            // see note 11 in app delegate
-            guard let error = error else {
-                self.favorites.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .left)
-                return
-            }
-            
-            self.presentGFAlertOnMainThread(alertTitle: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
-        }
+    func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool) {
+        // reload data
+        // play confetti animation
+        // followed by congrats/keep going alert
+        
+        navigationController?.dismiss(animated: true)
+        updateCompletedCourses(withCourse: course, toggleType: toggleType)
+        getProgress()
     }
 }
 

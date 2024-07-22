@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 extension UIViewController {
     
@@ -20,6 +21,14 @@ extension UIViewController {
     }
     
     
+    func presentSafariVC(with url: URL) {
+        let safariVC                        = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor  = .systemGreen
+        present(safariVC, animated: true)
+    }
+    
+    
+    #warning("keyboard not triggering UI lift for some reason - fix later")
     // MARK: SOLVE FOR KEYBOARD BLOCKING FIELD
     func setupKeyboardHiding() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

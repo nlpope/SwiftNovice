@@ -16,16 +16,11 @@ class SNTabBarController: UITabBarController {
     }
     
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        print("bouts to dissappear")
-//        PersistenceManager.updateLoggedInStatus(loggedIn: false)
-//    }
-    
     func setUpVCs() { viewControllers = [createPrerequisitesNC(), createProjectsNC()] }
     
     
     func createPrerequisitesNC() -> UINavigationController {
-        let prereqsVC               = PrereqsVC(username: "John Doe")
+        let prereqsVC               = PrereqsVC()
         prereqsVC.title             = "Prerequisites"
         prereqsVC.tabBarItem.image  = SFSymbols.prereqs
         
@@ -42,13 +37,13 @@ class SNTabBarController: UITabBarController {
     }
     
     
-    func createInboxNC() -> UINavigationController {
-        let inboxVC                 = InboxVC()
-        inboxVC.title               = "Inbox"
-        inboxVC.tabBarItem.image    = SFSymbols.inbox
-        
-        return UINavigationController(rootViewController: inboxVC)
-    }
+//    func createInboxNC() -> UINavigationController {
+//        let inboxVC                 = InboxVC()
+//        inboxVC.title               = "Inbox"
+//        inboxVC.tabBarItem.image    = SFSymbols.inbox
+//        
+//        return UINavigationController(rootViewController: inboxVC)
+//    }
     
     
     

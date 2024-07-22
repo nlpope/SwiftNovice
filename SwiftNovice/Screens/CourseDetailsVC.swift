@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol CourseDetailsVCDelegate {
+    func followCourseLink()
+    func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool)
+}
+
 class CourseDetailsVC: SNDataLoadingVC {
 
     var courseName: String!
+    var delegate: CourseDetailsVCDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()

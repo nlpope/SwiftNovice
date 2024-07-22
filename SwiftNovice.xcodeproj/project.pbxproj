@@ -37,6 +37,7 @@
 		40EC48F92C4CD05700F1EEA1 /* PrerequsiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48F82C4CD05700F1EEA1 /* PrerequsiteCell.swift */; };
 		40EC48FB2C4D00D700F1EEA1 /* SNAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48FA2C4D00D700F1EEA1 /* SNAvatarImageView.swift */; };
 		40EC48FD2C4D079800F1EEA1 /* CourseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48FC2C4D079800F1EEA1 /* CourseDetailsVC.swift */; };
+		40EC49222C4E04AA00F1EEA1 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC49212C4E04AA00F1EEA1 /* UITableView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		40EC48F82C4CD05700F1EEA1 /* PrerequsiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrerequsiteCell.swift; sourceTree = "<group>"; };
 		40EC48FA2C4D00D700F1EEA1 /* SNAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAvatarImageView.swift; sourceTree = "<group>"; };
 		40EC48FC2C4D079800F1EEA1 /* CourseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsVC.swift; sourceTree = "<group>"; };
+		40EC49212C4E04AA00F1EEA1 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 			children = (
 				40C0BE472C45058A00AE66AC /* UIViewController+Ext.swift */,
 				40C0BE562C4565E300AE66AC /* UIView+Ext.swift */,
+				40EC49212C4E04AA00F1EEA1 /* UITableView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				40C0BE222C43CA2200AE66AC /* SceneDelegate.swift in Sources */,
 				401000E92C4BB1E300AE8F14 /* SNAlertContainerView.swift in Sources */,
 				40EC48F92C4CD05700F1EEA1 /* PrerequsiteCell.swift in Sources */,
+				40EC49222C4E04AA00F1EEA1 /* UITableView+Ext.swift in Sources */,
 				40C0BE512C4563E200AE66AC /* SNDataLoadingVC.swift in Sources */,
 				40C0BE3F2C44FD5500AE66AC /* ProjectsVC.swift in Sources */,
 			);

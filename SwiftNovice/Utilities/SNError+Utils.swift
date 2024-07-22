@@ -7,10 +7,12 @@
 
 import Foundation
 
-enum SNError: Error {
+enum SNError: String, Error {
     
-    case invalidURL
-    case invalidResponse
-    case invalidData
-    case unableToComplete
+    case invalidURL             = "The URL provided was invalid. Please try again."
+    case invalidResponse        = "The response received from the server was invalid. Please try again."
+    case invalidData            = "The data retrieved was invalid."
+    
+    case failedToSaveProgress   = "We failed to save your progress. Please try toggling the completion slider again."
+    case failedToLoadProgress   = "We failed to retrieve your progress. Please try signing out and signing in again."
 }

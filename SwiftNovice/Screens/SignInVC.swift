@@ -98,7 +98,7 @@ class SignInVC: UIViewController {
     
     
     func configureSignUpLabel() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(pushSignUpVC))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(presentSignUpVC))
         signUpLabel.addGestureRecognizer(tap)
         
         NSLayoutConstraint.activate([
@@ -124,6 +124,7 @@ class SignInVC: UIViewController {
             presentSNAlertOnMainThread(alertTitle: "Wrong username or password", message: "The username or password is incorrect. Please try again or sign up if you do not have an account", buttonTitle: "Ok")
             return
         }
+        
         updateLoggedinStatus(withStatus: true)
         usernameTexField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
@@ -133,7 +134,7 @@ class SignInVC: UIViewController {
     }
     
     
-    @objc func pushSignUpVC() {
+    @objc func presentSignUpVC() {
         print("it works!")
 //        usernameTexField.resignFirstResponder()
 //        passwordTextField.resignFirstResponder()
