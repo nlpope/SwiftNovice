@@ -38,5 +38,4 @@ class SNAvatarImageView: UIImageView {
             DispatchQueue.main.async { self.image = image }
         }
     }
-
 }

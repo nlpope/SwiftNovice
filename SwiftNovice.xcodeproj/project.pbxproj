@@ -147,6 +147,7 @@
 				40C0BE4E2C45639300AE66AC /* Labels */,
 				40C0BE4B2C45635500AE66AC /* TextFields */,
 				40C0BE4C2C45636700AE66AC /* Buttons */,
+				40EC49232C4E5B4B00F1EEA1 /* ImageViews */,
 				40C0BE4D2C45638000AE66AC /* Views */,
 			);
 			path = CustomViews;
@@ -224,7 +225,6 @@
 			children = (
 				40C0BE542C45656F00AE66AC /* SNEmptyStateView.swift */,
 				401000E82C4BB1E300AE8F14 /* SNAlertContainerView.swift */,
-				40EC48FA2C4D00D700F1EEA1 /* SNAvatarImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,6 +279,14 @@
 				40EC48F82C4CD05700F1EEA1 /* PrerequsiteCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		40EC49232C4E5B4B00F1EEA1 /* ImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				40EC48FA2C4D00D700F1EEA1 /* SNAvatarImageView.swift */,
+			);
+			path = ImageViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

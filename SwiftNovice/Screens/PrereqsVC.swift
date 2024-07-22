@@ -11,7 +11,6 @@ class PrereqsVC: SNDataLoadingVC {
     // set mini tutorial as alert for instr. on how to unlock next tab
     // see anki - UserDefaults for tracking if users 1st time on screen
     
-    var username: String!
     let tableView               = UITableView()
     var prerequisites           = [Prerequisite]()
     var completedPrerequisites  = [Prerequisite]()
@@ -20,18 +19,20 @@ class PrereqsVC: SNDataLoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationVC()
-        
+        configureTableView()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        getProgress()
+        getPrerequisitesFromServer()
+//        loadProgressFromPersistence()
+        print(self.prerequisites)
     }
     
     
     func configureNavigationVC() {
         view.backgroundColor    = .systemBackground
-        title                   = "Favorites"
+        title                   = "Prerequisites"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -49,19 +50,13 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func getProgress() {
-        // go to user defaults
-        // send results of completes to updateUI
-    }
-    
-    
-    func updateCompletedCourses(withCourse course: Prerequisite, toggleType: Bool) {
-        showLoadingView()
+    func saveProgressInPersistence(withCourse course: Prerequisite, toggleType: Bool) {
+//        showLoadingView()
         let actionType: CoursePersistenceActionType = toggleType ? .complete : .incomplete
         
         PersistenceManager.updateWith(course: course, actionType: actionType) { [weak self] error in
             guard let self = self else { return }
-            self.dismissLoadingView()
+//            self.dismissLoadingView()
             
             guard let error else {
                 switch actionType {
@@ -72,6 +67,7 @@ class PrereqsVC: SNDataLoadingVC {
                     self.presentSNAlertOnMainThread(alertTitle: "Course marked incomplete", message: "We have successfully removed this course from your completed lsit.", buttonTitle: "Ok")
                 }
                 
+//                loadProgressFromPersistence()
                 return
             }
             
@@ -80,9 +76,46 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    // DO I NEED THIS IF I RELOAD THE DATA IN GETPROGRESS()?
-    func updateUI(with progress: [Prerequisite]) {
-        // if in list of completes returned from 'getProgress()' shade it pale green
+    func getPrerequisitesFromServer() {
+        showLoadingView()
+        NetworkManager.shared.getPrerequisites { [weak self] result in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
+            switch result {
+            case .success(let prerequisites):
+                self.prerequisites = prerequisites
+                updateUI()
+            case .failure(let error):
+                self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
+    }
+    
+    
+    func loadProgressFromPersistence() {
+        showLoadingView()
+        PersistenceManager.retrieveCompletedCourses { [weak self] result in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
+            switch result {
+            case .success(let prerequisites):
+                self.completedPrerequisites = prerequisites
+                updateUI()
+                
+            case .failure(let error):
+                self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
+    }
+    
+    
+    func updateUI() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.view.bringSubviewToFront(self.tableView)
+        }
     }
 }
 
@@ -99,16 +132,19 @@ extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
         let prerequisite    = prerequisites[indexPath.row]
         
         cell.set(prerequisite: prerequisite)
+        cell.backgroundColor = completedPrerequisites.contains(prerequisite) ? .systemGreen : .systemBackground
         
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let prerequisite    = prerequisites[indexPath.row]
-        let destVC          = CourseDetailsVC()
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        let prerequisite    = prerequisites[indexPath.row]
+        let destVC          = CourseDetailsVC(courseName: prerequisite.courseName, delegate: self)
         let navController   = UINavigationController(rootViewController: destVC)
+        
         present(navController, animated: true)
     }
 }
@@ -127,8 +163,9 @@ extension PrereqsVC: CourseDetailsVCDelegate {
         // followed by congrats/keep going alert
         
         navigationController?.dismiss(animated: true)
-        updateCompletedCourses(withCourse: course, toggleType: toggleType)
-        getProgress()
+        saveProgressInPersistence(withCourse: course, toggleType: toggleType)
+        loadProgressFromPersistence()
+        
     }
 }
 
