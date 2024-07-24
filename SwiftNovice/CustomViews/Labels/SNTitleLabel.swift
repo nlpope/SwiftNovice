@@ -15,15 +15,17 @@ class SNTitleLabel: UILabel {
     }
     
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
-    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat, lineBreakMode: NSLineBreakMode) {
         self.init(frame: .zero)
         self.textAlignment  = textAlignment
         self.font           = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        self.lineBreakMode  = lineBreakMode
     }
     
     

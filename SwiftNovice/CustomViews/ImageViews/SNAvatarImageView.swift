@@ -27,10 +27,8 @@ class SNAvatarImageView: UIImageView {
         layer.cornerRadius                        = 10
         clipsToBounds                             = true
         image                                     = placeholderImage
-//        contentMode                               = .scaleAspectFill
-
+        contentMode                               = .scaleAspectFill
         translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
     

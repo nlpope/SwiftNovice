@@ -11,7 +11,7 @@ class PrerequisiteCell: UITableViewCell {
 
     static let reuseID  = "PrerequisiteCell"
     let avatarImageView = SNAvatarImageView(frame: .zero)
-    let courseNameLabel = SNTitleLabel(textAlignment: .left, fontSize: 26)
+    let courseNameLabel = SNTitleLabel(textAlignment: .left, fontSize: 26, lineBreakMode: .byTruncatingTail)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

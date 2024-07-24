@@ -10,7 +10,7 @@ import UIKit
 class SNAlertChildVC: UIViewController {
 
     let containerView = SNAlertContainerView()
-    let titleLabel    = SNTitleLabel(textAlignment: .center, fontSize: 20)
+    let titleLabel    = SNTitleLabel(textAlignment: .center, fontSize: 20, lineBreakMode: .byWordWrapping)
     let messageLabel  = SNBodyLabel(textAlignment: .center)
     let actionButton  = SNButton(backgroundColor: .systemPink, title: "ok")
     

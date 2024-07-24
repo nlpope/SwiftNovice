@@ -9,7 +9,7 @@ import UIKit
 
 class SNEmptyStateView: UIView {
     
-    let messageLabel        = SNTitleLabel(textAlignment: .center, fontSize: 30)
+    let messageLabel        = SNTitleLabel(textAlignment: .center, fontSize: 30, lineBreakMode: .byWordWrapping)
     let logoImageView       = UIImageView()
     
     

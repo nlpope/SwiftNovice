@@ -51,8 +51,8 @@ class SNDetailItemView: UIView {
         NSLayoutConstraint.activate([
             iconImageView.topAnchor.constraint(equalTo: self.topAnchor),
             iconImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            iconImageView.heightAnchor.constraint(equalToConstant: 20),
-            iconImageView.widthAnchor.constraint(equalToConstant: 20),
+            iconImageView.heightAnchor.constraint(equalToConstant: 30),
+            iconImageView.widthAnchor.constraint(equalToConstant: 30),
             
             bodyLabel.topAnchor.constraint(equalTo: self.topAnchor),
             bodyLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: imageToLabelPadding),
