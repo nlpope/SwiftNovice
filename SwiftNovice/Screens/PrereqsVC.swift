@@ -18,22 +18,23 @@ class PrereqsVC: SNDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationVC()
+        configureNavigation()
         configureTableView()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         getPrerequisitesFromServer()
-//        loadProgressFromPersistence()
-        print(self.prerequisites)
+        loadProgressFromPersistence()
     }
     
     
-    func configureNavigationVC() {
-        view.backgroundColor    = .systemBackground
-        title                   = "Prerequisites"
-        navigationController?.navigationBar.prefersLargeTitles = true
+    func configureNavigation() {
+        let signOutButton       = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(signOut))
+        view.backgroundColor                                    = .systemBackground
+        title                                                   = "Prerequisites"
+        navigationItem.rightBarButtonItem                       = signOutButton
+        navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
     
@@ -50,13 +51,32 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
+    func getPrerequisitesFromServer() {
+        showLoadingView()
+        NetworkManager.shared.getPrerequisites { [weak self] result in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
+            switch result {
+            case .success(let prerequisites):
+                self.prerequisites = prerequisites
+                print("inside closure: prereqs = \(self.prerequisites)")
+                updateUI()
+            case .failure(let error):
+                self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
+        print("outside of closure: prereqs = \(self.prerequisites)")
+    }
+    
+    
     func saveProgressInPersistence(withCourse course: Prerequisite, toggleType: Bool) {
-//        showLoadingView()
+        showLoadingView()
         let actionType: CoursePersistenceActionType = toggleType ? .complete : .incomplete
         
         PersistenceManager.updateWith(course: course, actionType: actionType) { [weak self] error in
             guard let self = self else { return }
-//            self.dismissLoadingView()
+            self.dismissLoadingView()
             
             guard let error else {
                 switch actionType {
@@ -67,7 +87,6 @@ class PrereqsVC: SNDataLoadingVC {
                     self.presentSNAlertOnMainThread(alertTitle: "Course marked incomplete", message: "We have successfully removed this course from your completed lsit.", buttonTitle: "Ok")
                 }
                 
-//                loadProgressFromPersistence()
                 return
             }
             
@@ -76,28 +95,9 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func getPrerequisitesFromServer() {
-        showLoadingView()
-        NetworkManager.shared.getPrerequisites { [weak self] result in
-            guard let self = self else { return }
-            self.dismissLoadingView()
-            
-            switch result {
-            case .success(let prerequisites):
-                self.prerequisites = prerequisites
-                updateUI()
-            case .failure(let error):
-                self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-            }
-        }
-    }
-    
-    
     func loadProgressFromPersistence() {
-        showLoadingView()
         PersistenceManager.retrieveCompletedCourses { [weak self] result in
             guard let self = self else { return }
-            self.dismissLoadingView()
             
             switch result {
             case .success(let prerequisites):
@@ -116,6 +116,14 @@ class PrereqsVC: SNDataLoadingVC {
             self.tableView.reloadData()
             self.view.bringSubviewToFront(self.tableView)
         }
+    }
+    
+    
+    @objc func signOut() {
+        PersistenceManager.updateLoggedInStatus(loggedIn: false)
+        
+        let signInVC = SignInVC()
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(signInVC, animated: true)
     }
 }
 
@@ -142,7 +150,7 @@ extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let prerequisite    = prerequisites[indexPath.row]
-        let destVC          = CourseDetailsVC(courseName: prerequisite.courseName, delegate: self)
+        let destVC          = CourseDetailsVC(course: prerequisite, delegate: self)
         let navController   = UINavigationController(rootViewController: destVC)
         
         present(navController, animated: true)
@@ -166,6 +174,13 @@ extension PrereqsVC: CourseDetailsVCDelegate {
         saveProgressInPersistence(withCourse: course, toggleType: toggleType)
         loadProgressFromPersistence()
         
+    }
+}
+
+
+extension PrereqsVC: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        print("about to dismiss")
     }
 }
 

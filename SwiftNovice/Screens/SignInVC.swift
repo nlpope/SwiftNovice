@@ -12,8 +12,8 @@ class SignInVC: UIViewController {
     let logoImageView       = UIImageView()
     let usernameTexField    = SNTextField(placeholder: "username")
     let passwordTextField   = SNTextField(placeholder: "password")
-    let signInLabel         = SNSecondaryLabel(textToDisplay: "Sign in", fontSize: 18)
-    let signUpLabel         = SNSecondaryLabel(textToDisplay: "Don't have an account?", fontSize: 18)
+    let signInLabel         = SNInteractiveLabel(textToDisplay: "Sign in", fontSize: 18)
+    let signUpLabel         = SNInteractiveLabel(textToDisplay: "Don't have an account?", fontSize: 18)
     var userExists          = true
     var passwordIsCorrect   = true
     var isUsernameEntered: Bool { return !usernameTexField.text!.isEmpty }
@@ -75,6 +75,7 @@ class SignInVC: UIViewController {
     
     func configurePasswordTextField() {
         passwordTextField.delegate = self
+        passwordTextField.isSecureTextEntry = true
         
         NSLayoutConstraint.activate([
             passwordTextField.topAnchor.constraint(equalTo: usernameTexField.bottomAnchor, constant: 50),

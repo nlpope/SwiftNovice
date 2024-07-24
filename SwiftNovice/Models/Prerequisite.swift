@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Prerequisite: Codable, Hashable, Comparable {
+struct Prerequisite: Codable, Comparable {
     static func < (lhs: Prerequisite, rhs: Prerequisite) -> Bool {
         return lhs.courseName < rhs.courseName
     }
@@ -17,4 +17,6 @@ struct Prerequisite: Codable, Hashable, Comparable {
     let price: Double
     let instructor: String
     let avatarUrl: String
+    let courseBio: String
+    let orderId: Int
 }

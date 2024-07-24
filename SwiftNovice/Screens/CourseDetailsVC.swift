@@ -7,6 +7,7 @@
 
 import UIKit
 
+#warning("this window's drag down dismissal doesn't dealloc. memory - how to do that?")
 protocol CourseDetailsVCDelegate {
     func followCourseLink()
     func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool)
@@ -14,13 +15,17 @@ protocol CourseDetailsVCDelegate {
 
 class CourseDetailsVC: SNDataLoadingVC {
 
-    var courseName: String!
+    let courseAvatarBioStackView        = UIView()
+    let linkAndCompletionContainerView  = UIView()
+    var itemViews                       = [UIView]()
+    
+    var course: Prerequisite!
     var delegate: CourseDetailsVCDelegate!
     
     
-    init(courseName: String!, delegate: CourseDetailsVCDelegate!) {
+    init(course: Prerequisite, delegate: CourseDetailsVCDelegate!) {
         super.init(nibName: nil, bundle: nil)
-        self.courseName = courseName
+        self.course = course
         self.delegate = delegate
     }
     
@@ -33,18 +38,60 @@ class CourseDetailsVC: SNDataLoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemYellow
-        // Do any additional setup after loading the view.
+        configureNavigation()
+        layoutUI()
+        configureUIElements(with: course)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func configureNavigation() {
+        view.backgroundColor = .systemBackground
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
+        navigationItem.rightBarButtonItem = doneButton
     }
-    */
-
+    
+    
+    func configureUIElements(with course: Prerequisite) {
+        self.add(childVC: SNAvatarAndBioItemStackChildVC(course: course), toContainer: self.courseAvatarBioStackView)
+    }
+    
+    
+    func add(childVC: UIViewController, toContainer containerView: UIView) {
+        addChild(childVC)
+        containerView.addSubview(childVC.view)
+        childVC.view.frame = containerView.bounds
+        childVC.didMove(toParent: self)
+    }
+    
+    
+    func layoutUI() {
+        let padding: CGFloat = 20
+        itemViews = [courseAvatarBioStackView, linkAndCompletionContainerView]
+        
+        for itemView in itemViews {
+            view.addSubview(itemView)
+            itemView.backgroundColor = .systemPink
+            itemView.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+            ])
+        }
+        
+        NSLayoutConstraint.activate([
+            courseAvatarBioStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            courseAvatarBioStackView.heightAnchor.constraint(equalToConstant: 410),
+            
+            
+            linkAndCompletionContainerView.topAnchor.constraint(equalTo: courseAvatarBioStackView.bottomAnchor, constant: padding),
+            linkAndCompletionContainerView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    
+    @objc func dismissVC() {
+        dismiss(animated: true)
+    }
 }
+

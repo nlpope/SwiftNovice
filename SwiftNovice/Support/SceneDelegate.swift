@@ -14,13 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        // replace below w 'didSet' prop observer so else block can fire
         #warning("don't forget to DISMISS the signInVC or memory will leak")
-//        var userLoggedIn: Bool      = PersistenceManager.retrieveLoggedInStatus() {
-//            didSet {
-//                determineRootVC()
-//            }
-//        }
+
         guard let windowScene       = (scene as? UIWindowScene) else { return }
             
         window                      = UIWindow(frame: windowScene.coordinateSpace.bounds)

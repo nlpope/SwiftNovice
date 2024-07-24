@@ -1,5 +1,5 @@
 //
-//  SNSecondaryLabel.swift
+//  SNInteractiveLabel.swift
 //  SwiftNovice
 //
 //  Created by Noah Pope on 7/18/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SNSecondaryLabel: UILabel {
+class SNInteractiveLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
