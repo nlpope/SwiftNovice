@@ -15,7 +15,7 @@ protocol CourseDetailsVCDelegate {
 class CourseDetailsVC: SNDataLoadingVC {
     
     // see note 1 in app delegate
-    let titleLabel          = SNTitleLabel(textAlignment: .left, fontSize: 50, lineBreakMode: .byWordWrapping)
+    let titleLabel          = SNTitleLabel(textAlignment: .left, fontSize: 30, lineBreakMode: .byWordWrapping)
     let courseImageView     = SNAvatarImageView(frame: .zero)
     let bioDetailItemView   = SNDetailItemView()
     let priceDetailItemView = SNDetailItemView()
@@ -64,6 +64,8 @@ class CourseDetailsVC: SNDataLoadingVC {
         bioDetailItemView.set(imageType: .bio, text: course.courseBio)
         priceDetailItemView.set(imageType: .price, text: String(course.price))
         callToActionButton.addTarget(self, action: #selector(goToCourse), for: .touchUpInside)
+        
+        toggleButton.setImage(SFSymbols.incomplete, for: .normal)
     }
     
     
@@ -71,8 +73,7 @@ class CourseDetailsVC: SNDataLoadingVC {
         let edgePadding: CGFloat    = 20
         let elementPadding: CGFloat = 5
         
-//        view.addSubviews(titleLabel, courseImageView, bioDetailItemView, priceDetailItemView, callToActionButton, toggleButton, toggleLabel)
-        view.addSubviews(titleLabel, courseImageView, bioDetailItemView, priceDetailItemView)
+        view.addSubviews(titleLabel, courseImageView, bioDetailItemView, priceDetailItemView, callToActionButton, toggleButton, toggleLabel)
 
         toggleButton.translatesAutoresizingMaskIntoConstraints          = false
         bioDetailItemView.translatesAutoresizingMaskIntoConstraints     = false
@@ -89,17 +90,30 @@ class CourseDetailsVC: SNDataLoadingVC {
             //avatar image
             courseImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: elementPadding),
             courseImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
-            courseImageView.heightAnchor.constraint(equalToConstant: 75),
-            courseImageView.widthAnchor.constraint(equalToConstant: 75),
+            courseImageView.heightAnchor.constraint(equalToConstant: 150),
+            courseImageView.widthAnchor.constraint(equalToConstant: 150),
             
             bioDetailItemView.topAnchor.constraint(equalTo: courseImageView.topAnchor, constant: elementPadding),
             bioDetailItemView.leadingAnchor.constraint(equalTo: courseImageView.trailingAnchor, constant: elementPadding),
             bioDetailItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding),
             bioDetailItemView.heightAnchor.constraint(equalToConstant: 30),
             
-            priceDetailItemView.topAnchor.constraint(equalTo: bioDetailItemView.bottomAnchor, constant: elementPadding),
-            priceDetailItemView.leadingAnchor.constraint(equalTo: courseImageView.trailingAnchor, constant: elementPadding),
+            priceDetailItemView.topAnchor.constraint(equalTo: courseImageView.bottomAnchor, constant: elementPadding),
+            priceDetailItemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
             priceDetailItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding),
+            
+            callToActionButton.topAnchor.constraint(equalTo: priceDetailItemView.bottomAnchor, constant: 70),
+            callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
+            callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding),
+            
+            toggleButton.topAnchor.constraint(equalTo: callToActionButton.bottomAnchor, constant: 25),
+            toggleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
+            toggleButton.widthAnchor.constraint(equalToConstant: 25),
+            toggleButton.heightAnchor.constraint(equalToConstant: 25),
+            
+            toggleLabel.topAnchor.constraint(equalTo: callToActionButton.bottomAnchor, constant: 28),
+            toggleLabel.leadingAnchor.constraint(equalTo: toggleButton.trailingAnchor, constant: elementPadding),
+            toggleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding)
         ])
     }
     

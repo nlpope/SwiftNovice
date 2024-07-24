@@ -14,7 +14,7 @@ enum ImageType {
 class SNDetailItemView: UIView {
 
     let iconImageView       = UIImageView()
-    let bodyLabel           = SNBodyLabel(textAlignment: .left)
+    let bodyLabel           = UILabel()
     
 
     override init(frame: CGRect) {
@@ -43,16 +43,23 @@ class SNDetailItemView: UIView {
         addSubviews(iconImageView, bodyLabel)
         
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        bodyLabel.translatesAutoresizingMaskIntoConstraints     = false
+        
         iconImageView.tintColor     = .label
         iconImageView.contentMode   = .scaleAspectFill
+        
+        bodyLabel.textAlignment     = .left
+        bodyLabel.font              = UIFont.systemFont(ofSize: 15)
+        bodyLabel.lineBreakMode     = .byTruncatingTail
+        bodyLabel.numberOfLines     = 10
         
         let imageToLabelPadding: CGFloat = 10
         
         NSLayoutConstraint.activate([
             iconImageView.topAnchor.constraint(equalTo: self.topAnchor),
             iconImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            iconImageView.heightAnchor.constraint(equalToConstant: 30),
-            iconImageView.widthAnchor.constraint(equalToConstant: 30),
+            iconImageView.heightAnchor.constraint(equalToConstant: 20),
+            iconImageView.widthAnchor.constraint(equalToConstant: 20),
             
             bodyLabel.topAnchor.constraint(equalTo: self.topAnchor),
             bodyLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: imageToLabelPadding),

@@ -14,8 +14,10 @@ enum SFSymbols {
     static let projects         = UIImage(systemName: "pencil.slash")
     static let inbox            = UIImage(systemName: "message")
     static let mentor           = UIImage(systemName: "eyeglasses")
-    static let bio             = UIImage(systemName: "book")
-    static let price            = UIImage(systemName: "dollarsign")
+    static let bio              = UIImage(systemName: "book")
+    static let price            = UIImage(systemName: "dollarsign.circle")
+    static let incomplete       = UIImage(systemName: "circle")
+    static let complete         = UIImage(systemName: "checkmark.circle")
 }
 
 
