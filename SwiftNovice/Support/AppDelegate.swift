@@ -85,10 +85,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  swift @ version: 5.10.1
  xcode @ version: 15.4
  --------------------------
- SHORTCUTS & HELPFUL TIPS (XCODE & SWIFT):
- https://docs.google.com/document/d/1yunA83JZ4FxS_WuIQMRwm6gkUDJC1jnkJ2Vtll8kid8/edit?usp=sharing
-
- --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
@@ -98,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  >  deeper understanding of inout (&) parameters in action - allows mutation of a let const. via a pointer
  
  * Unit testing
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -118,17 +115,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
+ SHORTCUTS & HELPFUL TIPS (XCODE & SWIFT):
+ * Link:
+ https://docs.google.com/document/d/1yunA83JZ4FxS_WuIQMRwm6gkUDJC1jnkJ2Vtll8kid8/edit?usp=sharing
  
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  PROJECT NOTES:
- 
- * Vapor Server
- > How to open it in swift:
- > from terminal navigate to Developer/ios & swift/Servers/SwiftNoviceServer/prerequisites/Sources/App the enter 'open Package.Swift'
- > If you're getting a binding error when trying to run the server, just hit the drop down arrow on the 'stop' button in Xcode, there may be more than one running - I don't know why, but it works when I shut down both and reran it
- 
- * SNLink
- 1. Replacing UILabel method with UITextView for its built in link formatting
- > https://stackoverflow.com/questions/70119562/how-do-i-add-a-link-to-a-uilabel-in-swift
+ * Link:
+ https://docs.google.com/document/d/1H16oibuQ_CakODNKcfurkgoYvvhRmKKfeDc8gDRJmdY/edit?usp=sharing
  
  */
 

@@ -11,6 +11,7 @@
 		401000E72C4BB15A00AE8F14 /* SNAlertChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401000E62C4BB15A00AE8F14 /* SNAlertChildVC.swift */; };
 		401000E92C4BB1E300AE8F14 /* SNAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401000E82C4BB1E300AE8F14 /* SNAlertContainerView.swift */; };
 		401000EB2C4BB23B00AE8F14 /* SNBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401000EA2C4BB23B00AE8F14 /* SNBodyLabel.swift */; };
+		402D4A342C50F19700FBBEE1 /* CourseDetailsAltVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D4A332C50F19700FBBEE1 /* CourseDetailsAltVC.swift */; };
 		4094E94C2C50AE03004AEAB7 /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4094E94B2C50AE03004AEAB7 /* AccountVC.swift */; };
 		4094E94E2C50AE4A004AEAB7 /* SignUPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4094E94D2C50AE4A004AEAB7 /* SignUPVC.swift */; };
 		4094E9502C50AEB6004AEAB7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4094E94F2C50AEB6004AEAB7 /* User.swift */; };
@@ -42,8 +43,7 @@
 		40EC48FD2C4D079800F1EEA1 /* CourseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48FC2C4D079800F1EEA1 /* CourseDetailsVC.swift */; };
 		40EC49222C4E04AA00F1EEA1 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC49212C4E04AA00F1EEA1 /* UITableView+Ext.swift */; };
 		40EC49272C4E6B7900F1EEA1 /* SNSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC49262C4E6B7900F1EEA1 /* SNSecondaryTitleLabel.swift */; };
-		40EC493E2C4F60C500F1EEA1 /* SNAvatarAndBioItemStackChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC493D2C4F60C400F1EEA1 /* SNAvatarAndBioItemStackChildVC.swift */; };
-		40EC49462C4F73F600F1EEA1 /* SNCourseBioItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC49452C4F73F600F1EEA1 /* SNCourseBioItemView.swift */; };
+		40EC49462C4F73F600F1EEA1 /* SNDetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC49452C4F73F600F1EEA1 /* SNDetailItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +61,7 @@
 		401000E62C4BB15A00AE8F14 /* SNAlertChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAlertChildVC.swift; sourceTree = "<group>"; };
 		401000E82C4BB1E300AE8F14 /* SNAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAlertContainerView.swift; sourceTree = "<group>"; };
 		401000EA2C4BB23B00AE8F14 /* SNBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNBodyLabel.swift; sourceTree = "<group>"; };
+		402D4A332C50F19700FBBEE1 /* CourseDetailsAltVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsAltVC.swift; sourceTree = "<group>"; };
 		4094E94B2C50AE03004AEAB7 /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
 		4094E94D2C50AE4A004AEAB7 /* SignUPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUPVC.swift; sourceTree = "<group>"; };
 		4094E94F2C50AEB6004AEAB7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -95,8 +96,7 @@
 		40EC48FC2C4D079800F1EEA1 /* CourseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsVC.swift; sourceTree = "<group>"; };
 		40EC49212C4E04AA00F1EEA1 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		40EC49262C4E6B7900F1EEA1 /* SNSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSecondaryTitleLabel.swift; sourceTree = "<group>"; };
-		40EC493D2C4F60C400F1EEA1 /* SNAvatarAndBioItemStackChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAvatarAndBioItemStackChildVC.swift; sourceTree = "<group>"; };
-		40EC49452C4F73F600F1EEA1 /* SNCourseBioItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNCourseBioItemView.swift; sourceTree = "<group>"; };
+		40EC49452C4F73F600F1EEA1 /* SNDetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNDetailItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +191,7 @@
 				40D47A7E2C48F168008B52CC /* SignInVC.swift */,
 				40C0BE3C2C44FD2C00AE66AC /* PrereqsVC.swift */,
 				40EC48FC2C4D079800F1EEA1 /* CourseDetailsVC.swift */,
+				402D4A332C50F19700FBBEE1 /* CourseDetailsAltVC.swift */,
 				40C0BE3E2C44FD5500AE66AC /* ProjectsVC.swift */,
 				4094E94B2C50AE03004AEAB7 /* AccountVC.swift */,
 				4094E94D2C50AE4A004AEAB7 /* SignUPVC.swift */,
@@ -239,7 +240,7 @@
 			children = (
 				40C0BE542C45656F00AE66AC /* SNEmptyStateView.swift */,
 				401000E82C4BB1E300AE8F14 /* SNAlertContainerView.swift */,
-				40EC49452C4F73F600F1EEA1 /* SNCourseBioItemView.swift */,
+				40EC49452C4F73F600F1EEA1 /* SNDetailItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,7 +261,6 @@
 			children = (
 				40C0BE502C4563E200AE66AC /* SNDataLoadingVC.swift */,
 				401000E62C4BB15A00AE8F14 /* SNAlertChildVC.swift */,
-				40EC493D2C4F60C400F1EEA1 /* SNAvatarAndBioItemStackChildVC.swift */,
 			);
 			path = ChildViewControllers;
 			sourceTree = "<group>";
@@ -414,7 +414,7 @@
 				40D27E332C498BFB0091FE3E /* SNTextField.swift in Sources */,
 				40EC49272C4E6B7900F1EEA1 /* SNSecondaryTitleLabel.swift in Sources */,
 				401000EB2C4BB23B00AE8F14 /* SNBodyLabel.swift in Sources */,
-				40EC49462C4F73F600F1EEA1 /* SNCourseBioItemView.swift in Sources */,
+				40EC49462C4F73F600F1EEA1 /* SNDetailItemView.swift in Sources */,
 				40D47A7B2C48EE60008B52CC /* NetworkManager.swift in Sources */,
 				40C0BE572C4565E300AE66AC /* UIView+Ext.swift in Sources */,
 				40D47A812C48F28C008B52CC /* SNInteractiveLabel.swift in Sources */,
@@ -430,7 +430,6 @@
 				40C0BE202C43CA2200AE66AC /* AppDelegate.swift in Sources */,
 				40C0BE4A2C4506C900AE66AC /* UIResponder+Utils.swift in Sources */,
 				40D47A7D2C48EF7B008B52CC /* Prerequisite.swift in Sources */,
-				40EC493E2C4F60C500F1EEA1 /* SNAvatarAndBioItemStackChildVC.swift in Sources */,
 				4094E9502C50AEB6004AEAB7 /* User.swift in Sources */,
 				40EC48FD2C4D079800F1EEA1 /* CourseDetailsVC.swift in Sources */,
 				40D47A792C48EDF4008B52CC /* SNError+Utils.swift in Sources */,
@@ -438,6 +437,7 @@
 				40C0BE222C43CA2200AE66AC /* SceneDelegate.swift in Sources */,
 				401000E92C4BB1E300AE8F14 /* SNAlertContainerView.swift in Sources */,
 				40EC48F92C4CD05700F1EEA1 /* PrerequsiteCell.swift in Sources */,
+				402D4A342C50F19700FBBEE1 /* CourseDetailsAltVC.swift in Sources */,
 				40EC49222C4E04AA00F1EEA1 /* UITableView+Ext.swift in Sources */,
 				40C0BE512C4563E200AE66AC /* SNDataLoadingVC.swift in Sources */,
 				40C0BE3F2C44FD5500AE66AC /* ProjectsVC.swift in Sources */,
