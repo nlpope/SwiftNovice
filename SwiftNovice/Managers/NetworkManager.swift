@@ -15,40 +15,52 @@ class NetworkManager {
     
     private init() {}
     
+    
     func getPrerequisites(completed: @escaping(Result<[Prerequisite], SNError>) -> Void) {
+        var prereqArray = [Prerequisite]()
+        let prereq1 = Prerequisite(courseName: "test course name", courseLink: "test course link", price: 500.00, instructor: "Sean Allen", avatarUrl: "", courseBio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum", orderId: 5)
         
-        guard let url = URL(string: baseUrl) else {
-            completed(.failure(.invalidURL))
-            return
-        }
+        let prereq2 = Prerequisite(courseName: "test course name", courseLink: "test course link", price: 500.00, instructor: "Sean Allen", avatarUrl: "", courseBio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum", orderId: 1)
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let _ = error {
-                completed(.failure(.invalidURL))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-            
-            guard let data else {
-                completed(.failure(.invalidData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let prerequisites = try decoder.decode([Prerequisite].self, from: data)
-                completed(.success(prerequisites))
-            } catch {
-                completed(.failure(.invalidData))
-            }
-        }
-        
-        task.resume()
+        prereqArray.append(prereq1)
+        prereqArray.append(prereq2)
+        completed(.success(prereqArray))
     }
+    
+//    func getPrerequisites(completed: @escaping(Result<[Prerequisite], SNError>) -> Void) {
+//        
+//        guard let url = URL(string: baseUrl) else {
+//            completed(.failure(.invalidURL))
+//            return
+//        }
+//        
+//        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+//            if let _ = error {
+//                completed(.failure(.invalidURL))
+//                return
+//            }
+//            
+//            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+//                completed(.failure(.invalidResponse))
+//                return
+//            }
+//            
+//            guard let data else {
+//                completed(.failure(.invalidData))
+//                return
+//            }
+//            
+//            do {
+//                let decoder = JSONDecoder()
+//                let prerequisites = try decoder.decode([Prerequisite].self, from: data)
+//                completed(.success(prerequisites))
+//            } catch {
+//                completed(.failure(.invalidData))
+//            }
+//        }
+//        
+//        task.resume()
+//    }
     
     
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
