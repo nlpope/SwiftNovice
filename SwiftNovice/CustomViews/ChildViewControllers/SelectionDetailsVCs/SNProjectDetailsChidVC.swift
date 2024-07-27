@@ -38,8 +38,7 @@ class SNProjectDetailsChildVC: SNSelectionDetailsSuperVC<Project> {
         titleLabel.text     = selectedItem.projectName
         selectedItemImageView.downloadImage(fromURL: selectedItem.avatarUrl)
         bioDetailItemView.set(imageType: .bio, text: selectedItem.projectBio)
-//        priceDetailItemView.set(imageType: .price, text: String(format: "%.2f", selectedItem.price))
-        priceDetailItemView.removeFromSuperview()
+        priceDetailItemView.set(imageType: .price, text: String(format: "%.2f", "$0.00"))
         callToActionButton.set(backgroundColor: .black, title: "Go to course")
     }
     
