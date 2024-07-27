@@ -8,6 +8,7 @@
 import Foundation
 
 struct Prerequisite: Codable, Comparable {
+    
     static func < (lhs: Prerequisite, rhs: Prerequisite) -> Bool {
         return lhs.courseName < rhs.courseName
     }

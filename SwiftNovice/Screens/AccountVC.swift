@@ -12,6 +12,8 @@ class AccountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // appears from bottom to midway up the screen for a few short options
-        // ... sign out being one of them.
+        // edit pswd
+        // delete acct
+        // sign out
     }
 }

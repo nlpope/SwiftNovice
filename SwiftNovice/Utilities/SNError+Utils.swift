@@ -9,8 +9,8 @@ import Foundation
 
 enum SNError: String, Error {
     
-    case invalidURL             = "There was an issue retrieving the courses from the server. Please try again."
-    case invalidResponse        = "The response received from the server was invalid. Please try again."
+    case invalidURL             = "Failed to get a response from the server. Please try again."
+    case invalidResponse        = "Failed to get a valid response from the server. Please try again."
     case invalidData            = "The data retrieved was invalid."
     
     case failedToSaveProgress   = "We failed to save your progress. Please try toggling the completion slider again."

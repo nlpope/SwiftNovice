@@ -51,7 +51,7 @@ class SNDetailItemView: UIView {
         bodyLabel.textAlignment     = .left
         bodyLabel.font              = UIFont.systemFont(ofSize: 15)
         bodyLabel.lineBreakMode     = .byTruncatingTail
-        bodyLabel.numberOfLines     = 10
+        bodyLabel.numberOfLines     = 0
         
         let imageToLabelPadding: CGFloat = 10
         

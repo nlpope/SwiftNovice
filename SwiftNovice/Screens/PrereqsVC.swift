@@ -60,19 +60,17 @@ class PrereqsVC: SNDataLoadingVC {
             switch result {
             case .success(let prerequisites):
                 self.prerequisites = prerequisites
-                print("inside closure: prereqs = \(self.prerequisites)")
                 updateUI()
             case .failure(let error):
                 self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
         }
-        print("outside of closure: prereqs = \(self.prerequisites)")
     }
     
     
     func saveProgressInPersistence(withCourse course: Prerequisite, toggleType: Bool) {
         showLoadingView()
-        let actionType: CoursePersistenceActionType = toggleType ? .complete : .incomplete
+        let actionType: ProgressPersistenceActionType = toggleType ? .complete : .incomplete
         
         PersistenceManager.updateWith(course: course, actionType: actionType) { [weak self] error in
             guard let self = self else { return }
@@ -149,8 +147,8 @@ extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let prerequisite    = prerequisites[indexPath.row]
-        let destVC          = CourseDetailsVC(course: prerequisite, delegate: self)
+        let course          = prerequisites[indexPath.row]
+        let destVC          = SNCourseDetailsChildVC(course: course, delegate: self)
         let navController   = UINavigationController(rootViewController: destVC)
         
         present(navController, animated: true)
@@ -158,9 +156,13 @@ extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 
-extension PrereqsVC: CourseDetailsVCDelegate {
+extension PrereqsVC: SNCourseDetailsChildVCDelegate {
+    func followLink(forCourse course: Prerequisite) {
+        print("delegate reached for course link")
+    }
     
-    func followCourseLink() {
+    
+    func followLink() {
        // open safari and go to course link
     }
     

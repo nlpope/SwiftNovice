@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CoursePersistenceActionType {
+enum ProgressPersistenceActionType {
     case complete, incomplete
 }
 
@@ -15,14 +15,15 @@ enum PersistenceManager {
     
     static private let defaults = UserDefaults.standard
     enum Keys {
-        static let accountHolders   = "accountHolders"
-        static let isLoggedIn       = "isLoggedIn"
-        static let completedCourses = "completedCourses"
+        static let accountHolders       = "accountHolders"
+        static let isLoggedIn           = "isLoggedIn"
+        static let completedCourses     = "completedCourses"
+        static let completedProjects    = "completedProjects"
     }
     
     
     // MARK: COURSE PERSISTENCE
-    static func updateWith(course: Prerequisite, actionType: CoursePersistenceActionType, completed: @escaping (SNError?) -> Void) {
+    static func updateWith(course: Prerequisite, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void) {
         retrieveCompletedCourses { result in
             switch result {
             case .success(var courses):
@@ -34,6 +35,26 @@ enum PersistenceManager {
                     courses.removeAll { $0.courseName == course.courseName }
                 }
                 completed(save(completedCourses: courses))
+                
+            case .failure(let error):
+                completed(error)
+            }
+        }
+    }  
+    
+    
+    static func updateWith(project: Project, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void) {
+        retrieveCompletedProjects { result in
+            switch result {
+            case .success(var projects):
+                switch actionType {
+                case .complete:
+                    projects.append(project)
+                    
+                case .incomplete:
+                    projects.removeAll { $0.projectName == project.projectName }
+                }
+                completed(save(completedProjects: projects))
                 
             case .failure(let error):
                 completed(error)
@@ -68,11 +89,39 @@ enum PersistenceManager {
     }
     
     
+    static func retrieveCompletedProjects(completed: @escaping (Result<[Project], SNError>) -> Void) {
+        guard let completedProjectsData = defaults.object(forKey: Keys.completedProjects) as? Data else {
+            completed(.success([]))
+            return
+        }
+        
+        do {
+            let decoder             = JSONDecoder()
+            let completedProjects   = try decoder.decode([Project].self, from: completedProjectsData)
+            completed(.success(completedProjects))
+        } catch {
+            completed(.failure(.failedToLoadProgress))
+        }
+    }
+    
+    
     static func save(completedCourses: [Prerequisite]) -> SNError? {
         do {
             let encoder = JSONEncoder()
             let encodedCompletedCourses = try encoder.encode(completedCourses)
             defaults.setValue(encodedCompletedCourses, forKey: Keys.completedCourses)
+            return nil
+        } catch {
+            return .failedToSaveProgress
+        }
+    } 
+    
+    
+    static func save(completedProjects: [Project]) -> SNError? {
+        do {
+            let encoder = JSONEncoder()
+            let encodedCompletedProjects = try encoder.encode(completedProjects)
+            defaults.setValue(encodedCompletedProjects, forKey: Keys.completedProjects)
             return nil
         } catch {
             return .failedToSaveProgress

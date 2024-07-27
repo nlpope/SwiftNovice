@@ -1,5 +1,5 @@
 //
-//  CourseDetailsVC.swift
+//  SNSelectionDetailsSuperVC.swift
 //  SwiftNovice
 //
 //  Created by Noah Pope on 7/24/24.
@@ -7,30 +7,24 @@
 
 import UIKit
 
-protocol CourseDetailsVCDelegate {
-    func followCourseLink()
-    func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool)
-}
-
-class CourseDetailsVC: SNDataLoadingVC {
+class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC {
     
     // see note 1 in app delegate
-    let titleLabel          = SNTitleLabel(textAlignment: .left, fontSize: 30, lineBreakMode: .byWordWrapping)
-    let courseImageView     = SNAvatarImageView(frame: .zero)
-    let bioDetailItemView   = SNDetailItemView()
-    let priceDetailItemView = SNDetailItemView()
-    let callToActionButton  = SNButton(backgroundColor: .systemGreen, title: "Go to course")
-    let toggleButton        = UIButton() // set your TAMIC
-    let toggleLabel         = SNSecondaryTitleLabel(fontSize: 18)
+    let titleLabel                  = SNTitleLabel(textAlignment: .left, fontSize: 20, lineBreakMode: .byWordWrapping)
+    let selectedItemImageView       = SNAvatarImageView(frame: .zero)
+    let bioDetailItemView           = SNDetailItemView()
+    let priceDetailItemView         = SNDetailItemView()
+    let callToActionButton          = SNButton()
+    let toggleButton                = UIButton() // set your TAMIC
+    let toggleLabel                 = SNSecondaryTitleLabel(fontSize: 18)
     
-    var course: Prerequisite!
-    var delegate: CourseDetailsVCDelegate!
+    // i wanna change this so I can pass in a course or a project
+    var selectedItem: T!
     
     
-    init(course: Prerequisite, delegate: CourseDetailsVCDelegate) {
+    init(selectedItem: T) {
         super.init(nibName: nil, bundle: nil)
-        self.course = course
-        self.delegate = delegate
+        self.selectedItem = selectedItem
     }
     
     
@@ -56,14 +50,13 @@ class CourseDetailsVC: SNDataLoadingVC {
     
     
     func configureUIElements() {
-        titleLabel.text     = course.courseName
-        // set toggleButton's conditional image
+//        titleLabel.text     = selectedItem.courseName
+        
         toggleLabel.text    = "Completed"
 
-        courseImageView.downloadImage(fromURL: course.avatarUrl)
-        bioDetailItemView.set(imageType: .bio, text: course.courseBio)
-        priceDetailItemView.set(imageType: .price, text: String(course.price))
-        callToActionButton.addTarget(self, action: #selector(goToCourse), for: .touchUpInside)
+//        selectedItemImageView.downloadImage(fromURL: selectedItem.avatarUrl)
+        
+        callToActionButton.addTarget(self, action: #selector(callToActionButtonTapped), for: .touchUpInside)
         
         toggleButton.setImage(SFSymbols.incomplete, for: .normal)
     }
@@ -73,7 +66,7 @@ class CourseDetailsVC: SNDataLoadingVC {
         let edgePadding: CGFloat    = 20
         let elementPadding: CGFloat = 5
         
-        view.addSubviews(titleLabel, courseImageView, bioDetailItemView, priceDetailItemView, callToActionButton, toggleButton, toggleLabel)
+        view.addSubviews(titleLabel, selectedItemImageView, bioDetailItemView, priceDetailItemView, callToActionButton, toggleButton, toggleLabel)
 
         toggleButton.translatesAutoresizingMaskIntoConstraints          = false
         bioDetailItemView.translatesAutoresizingMaskIntoConstraints     = false
@@ -82,27 +75,22 @@ class CourseDetailsVC: SNDataLoadingVC {
         // previous constraints = pieces in relation to each other
         // below constraints    = whole unit in relation to this VC
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding),
             titleLabel.heightAnchor.constraint(equalToConstant: 55),
             
             //avatar image
-            courseImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: elementPadding),
-            courseImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
-            courseImageView.heightAnchor.constraint(equalToConstant: 150),
-            courseImageView.widthAnchor.constraint(equalToConstant: 150),
+            selectedItemImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: elementPadding),
+            selectedItemImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
+            selectedItemImageView.heightAnchor.constraint(equalToConstant: 150),
+            selectedItemImageView.widthAnchor.constraint(equalToConstant: 150),
             
-            bioDetailItemView.topAnchor.constraint(equalTo: courseImageView.topAnchor, constant: elementPadding),
-            bioDetailItemView.leadingAnchor.constraint(equalTo: courseImageView.trailingAnchor, constant: elementPadding),
-            bioDetailItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding),
-            bioDetailItemView.heightAnchor.constraint(equalToConstant: 30),
-            
-            priceDetailItemView.topAnchor.constraint(equalTo: courseImageView.bottomAnchor, constant: elementPadding),
+            priceDetailItemView.topAnchor.constraint(equalTo: selectedItemImageView.bottomAnchor, constant: elementPadding),
             priceDetailItemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
             priceDetailItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding),
             
-            callToActionButton.topAnchor.constraint(equalTo: priceDetailItemView.bottomAnchor, constant: 70),
+            callToActionButton.topAnchor.constraint(equalTo: priceDetailItemView.bottomAnchor, constant: 30),
             callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
             callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding),
             
@@ -113,14 +101,16 @@ class CourseDetailsVC: SNDataLoadingVC {
             
             toggleLabel.topAnchor.constraint(equalTo: callToActionButton.bottomAnchor, constant: 28),
             toggleLabel.leadingAnchor.constraint(equalTo: toggleButton.trailingAnchor, constant: elementPadding),
-            toggleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding)
+            toggleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding),
+            
+            bioDetailItemView.topAnchor.constraint(equalTo: toggleLabel.bottomAnchor, constant: 25),
+            bioDetailItemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
+            bioDetailItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding)
         ])
     }
     
     
-    @objc func goToCourse() {
-        print("going to course link via safari")
-    }
+    @objc func callToActionButtonTapped() {}
   
     
     @objc func dismissVC() {
