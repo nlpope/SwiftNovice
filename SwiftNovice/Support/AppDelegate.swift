@@ -93,7 +93,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  >  deeper understanding of generics and variadic parameters in action
  >  deeper understanding of inout (&) parameters in action - allows mutation of a let const. via a pointer
  
+ * Presentation controller [.medium()] detents
+ 
  * Unit testing
+ 
+ * Deeper understanding of parent to child view controller relationships
+ 
+ * Sign in status persistence & resetting root view controllers between signed in & signed out states
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX

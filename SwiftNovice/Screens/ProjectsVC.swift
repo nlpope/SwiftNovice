@@ -82,7 +82,7 @@ class ProjectsVC: SNDataLoadingVC {
                     // PRESENT CONFETTI ANIMATION ON MAIN THREAD - CREATE IN UIVC+EXT
                     self.presentSNAlertOnMainThread(alertTitle: "Congratulations!", message: "Good work on completing this project. Keep going, you've got this 🥳.", buttonTitle: "Ok")
                 case .incomplete:
-                    self.presentSNAlertOnMainThread(alertTitle: "Course marked incomplete", message: "We have successfully removed this course from your completed lsit.", buttonTitle: "Ok")
+                    self.presentSNAlertOnMainThread(alertTitle: "Course marked incomplete", message: "We have successfully removed this project from your completed lsit.", buttonTitle: "Ok")
                 }
                 
                 return

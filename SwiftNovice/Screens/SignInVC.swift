@@ -117,7 +117,7 @@ class SignInVC: UIViewController {
     @objc func resetRootVC() {
         print("it works!")
         guard isUsernameEntered, isPasswordEntered else {
-            presentSNAlertOnMainThread(alertTitle: "Empty username or password", message: "The username or password field has been left blank. Please enter a value or sign up if you do not have an account.", buttonTitle: "Ok")
+            presentSNAlertOnMainThread(alertTitle: "Empty username/password", message: "The username or password field has been left blank. Please enter a value or sign up if you do not have an account.", buttonTitle: "Ok")
             return
         }
         
