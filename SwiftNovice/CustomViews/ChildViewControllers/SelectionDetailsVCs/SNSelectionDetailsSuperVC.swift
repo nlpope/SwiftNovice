@@ -18,8 +18,8 @@ class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC {
     let toggleButton                = UIButton() // set your TAMIC
     let toggleLabel                 = SNSecondaryTitleLabel(fontSize: 18)
     
-    // i wanna change this so I can pass in a course or a project
     var selectedItem: T!
+    var selectionCompleted: Bool    = false
     
     
     init(selectedItem: T) {
@@ -39,7 +39,7 @@ class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC {
         configureUIElements()
         layoutUIElements()
     }
-    
+
     
     func configureNavigation() {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
@@ -50,15 +50,10 @@ class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC {
     
     
     func configureUIElements() {
-//        titleLabel.text     = selectedItem.courseName
-        
-        toggleLabel.text    = "Completed"
-
-//        selectedItemImageView.downloadImage(fromURL: selectedItem.avatarUrl)
-        
         callToActionButton.addTarget(self, action: #selector(callToActionButtonTapped), for: .touchUpInside)
-        
+        toggleButton.addTarget(self, action: #selector(toggleButtonTapped), for: .touchUpInside)
         toggleButton.setImage(SFSymbols.incomplete, for: .normal)
+        toggleLabel.text    = "Completed"
     }
     
     
@@ -112,6 +107,14 @@ class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC {
     
     @objc func callToActionButtonTapped() {}
   
+    
+    @objc func toggleButtonTapped() {
+        selectionCompleted = !selectionCompleted
+        let imageToDisplay = selectionCompleted ? SFSymbols.complete : SFSymbols.incomplete
+        toggleButton.setImage(imageToDisplay, for: .normal)
+        toggleLabel.textColor = selectionCompleted ? .systemGreen : .secondaryLabel
+    }
+    
     
     @objc func dismissVC() {
         dismiss(animated: true)

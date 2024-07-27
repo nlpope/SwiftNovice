@@ -15,5 +15,6 @@ class AccountVC: UIViewController {
         // edit pswd
         // delete acct
         // sign out
+        view.backgroundColor = .systemBlue
     }
 }

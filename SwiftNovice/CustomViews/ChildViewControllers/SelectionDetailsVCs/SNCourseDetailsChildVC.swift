@@ -15,10 +15,12 @@ protocol SNCourseDetailsChildVCDelegate: AnyObject {
 class SNCourseDetailsChildVC: SNSelectionDetailsSuperVC<Prerequisite> {
 
     weak var delegate: SNCourseDetailsChildVCDelegate!
+    var completedCourses = [Prerequisite]()
 
     
-    init(course: Prerequisite, delegate: SNCourseDetailsChildVCDelegate) {
+    init(course: Prerequisite, completedCourses: [Prerequisite], delegate: SNCourseDetailsChildVCDelegate) {
         super.init(selectedItem: course)
+        self.completedCourses = completedCourses
         self.delegate = delegate
     }
     
@@ -34,12 +36,32 @@ class SNCourseDetailsChildVC: SNSelectionDetailsSuperVC<Prerequisite> {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureToggleButton()
+    }
+    
+    
     private func configureItems() {
         titleLabel.text     = selectedItem.courseName
         selectedItemImageView.downloadImage(fromURL: selectedItem.avatarUrl)
         bioDetailItemView.set(imageType: .bio, text: selectedItem.courseBio)
         priceDetailItemView.set(imageType: .price, text: String(format: "%.2f", selectedItem.price))
         callToActionButton.set(backgroundColor: .black, title: "Go to course")
+    }
+    
+    
+    private func configureToggleButton() {
+        selectionCompleted = completedCourses.contains(selectedItem) ? true : false
+        let imageToDisplay = selectionCompleted ? SFSymbols.complete : SFSymbols.incomplete
+        toggleButton.setImage(imageToDisplay, for: .normal)
+        toggleLabel.textColor = selectionCompleted ? .systemGreen : .secondaryLabel
+    }
+    
+    
+    override func toggleButtonTapped() {
+        super.toggleButtonTapped()
+        delegate.toggleCourseCompletion(onCourse: selectedItem, toggleType: selectionCompleted)
     }
     
     

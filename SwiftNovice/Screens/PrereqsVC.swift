@@ -12,8 +12,8 @@ class PrereqsVC: SNDataLoadingVC {
     // see anki - UserDefaults for tracking if users 1st time on screen
     
     let tableView               = UITableView()
-    var prerequisites           = [Prerequisite]()
-    var completedPrerequisites  = [Prerequisite]()
+    var courses                 = [Prerequisite]()
+    var completedCourses        = [Prerequisite]()
     
     
     override func viewDidLoad() {
@@ -30,10 +30,11 @@ class PrereqsVC: SNDataLoadingVC {
     
     
     func configureNavigation() {
-        let signOutButton       = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(signOut))
+        let accountButton       = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
+
         view.backgroundColor                                    = .systemBackground
-        title                                                   = "Prerequisites"
-        navigationItem.rightBarButtonItem                       = signOutButton
+        title                                                   = "Prerequisites\n"
+        navigationItem.rightBarButtonItem                       = accountButton
         navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
@@ -59,7 +60,7 @@ class PrereqsVC: SNDataLoadingVC {
             
             switch result {
             case .success(let prerequisites):
-                self.prerequisites = prerequisites
+                self.courses = prerequisites
                 updateUI()
             case .failure(let error):
                 self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
@@ -99,7 +100,7 @@ class PrereqsVC: SNDataLoadingVC {
             
             switch result {
             case .success(let prerequisites):
-                self.completedPrerequisites = prerequisites
+                self.completedCourses = prerequisites
                 updateUI()
                 
             case .failure(let error):
@@ -117,9 +118,17 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
+    @objc func openAccountMenu() {
+        let destVC = AccountVC()
+        if let acctVCPresentationController = destVC.presentationController as? UISheetPresentationController {
+            acctVCPresentationController.detents = [.medium()]
+        }
+        self.present(destVC, animated: true)
+    }
+    
+    
     @objc func signOut() {
         PersistenceManager.updateLoggedInStatus(loggedIn: false)
-        
         let signInVC = SignInVC()
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(signInVC, animated: true)
     }
@@ -129,16 +138,16 @@ class PrereqsVC: SNDataLoadingVC {
 extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return prerequisites.count
+        return courses.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell            = tableView.dequeueReusableCell(withIdentifier: PrerequisiteCell.reuseID) as! PrerequisiteCell
-        let prerequisite    = prerequisites[indexPath.row]
+        let course          = courses[indexPath.row]
         
-        cell.set(prerequisite: prerequisite)
-        cell.backgroundColor = completedPrerequisites.contains(prerequisite) ? .systemGreen : .systemBackground
+        cell.set(prerequisite: course)
+        cell.backgroundColor = completedCourses.contains(course) ? .systemGreen : .systemBackground
         
         return cell
     }
@@ -147,8 +156,8 @@ extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let course          = prerequisites[indexPath.row]
-        let destVC          = SNCourseDetailsChildVC(course: course, delegate: self)
+        let course          = courses[indexPath.row]
+        let destVC          = SNCourseDetailsChildVC(course: course, completedCourses: completedCourses, delegate: self)
         let navController   = UINavigationController(rootViewController: destVC)
         
         present(navController, animated: true)
@@ -157,25 +166,23 @@ extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
 
 
 extension PrereqsVC: SNCourseDetailsChildVCDelegate {
-    func followLink(forCourse course: Prerequisite) {
-        print("delegate reached for course link")
-    }
-    
-    
-    func followLink() {
-       // open safari and go to course link
-    }
-    
-    
     func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool) {
         // reload data
-        // play confetti animation
         // followed by congrats/keep going alert
         
         navigationController?.dismiss(animated: true)
         saveProgressInPersistence(withCourse: course, toggleType: toggleType)
         loadProgressFromPersistence()
-        
+    }
+    
+    func followLink(forCourse course: Prerequisite) {
+        print("delegate reached for course link")
+        navigationController?.dismiss(animated: true)
+        guard let url = URL(string: course.courseLink) else {
+            presentSNAlertOnMainThread(alertTitle: "Invalid URL", message: "The url attached to this course is invalid", buttonTitle: "Ok")
+            return
+        }
+        presentSafariVC(with: url)
     }
 }
 

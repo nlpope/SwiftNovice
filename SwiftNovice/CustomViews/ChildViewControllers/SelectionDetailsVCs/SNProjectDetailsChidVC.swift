@@ -15,10 +15,12 @@ protocol SNProjectDetailsChildVCDelegate: AnyObject {
 class SNProjectDetailsChildVC: SNSelectionDetailsSuperVC<Project> {
 
     weak var delegate: SNProjectDetailsChildVCDelegate!
+    var completedProjects = [Project]()
 
     
-    init(project: Project, delegate: SNProjectDetailsChildVCDelegate) {
+    init(project: Project, completedProjects: [Project], delegate: SNProjectDetailsChildVCDelegate) {
         super.init(selectedItem: project)
+        self.completedProjects = completedProjects
         self.delegate = delegate
     }
     
@@ -34,16 +36,36 @@ class SNProjectDetailsChildVC: SNSelectionDetailsSuperVC<Project> {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureToggleButton()
+    }
+    
+    
     private func configureItems() {
-        titleLabel.text     = selectedItem.projectName
+        priceDetailItemView.isHidden    = true
+        titleLabel.text                 = selectedItem.projectName
         selectedItemImageView.downloadImage(fromURL: selectedItem.avatarUrl)
         bioDetailItemView.set(imageType: .bio, text: selectedItem.projectBio)
-        priceDetailItemView.set(imageType: .price, text: String(format: "%.2f", "$0.00"))
-        callToActionButton.set(backgroundColor: .black, title: "Go to course")
+        callToActionButton.set(backgroundColor: .black, title: "Go to project")
+    }
+    
+    
+    private func configureToggleButton() {
+        selectionCompleted = completedProjects.contains(selectedItem) ? true : false
+        let imageToDisplay = selectionCompleted ? SFSymbols.complete : SFSymbols.incomplete
+        toggleButton.setImage(imageToDisplay, for: .normal)
+        toggleLabel.textColor = selectionCompleted ? .systemGreen : .secondaryLabel
     }
     
     
     override func callToActionButtonTapped() {
         delegate.followLink(forProject: selectedItem)
+    }
+    
+    
+    override func toggleButtonTapped() {
+        super.toggleButtonTapped()
+        delegate.toggleCourseCompletion(onProject: selectedItem, toggleType: selectionCompleted)
     }
 }

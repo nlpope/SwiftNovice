@@ -30,10 +30,11 @@ class ProjectsVC: SNDataLoadingVC {
     
     
     func configureNavigation() {
-        let signOutButton       = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(signOut))
+        let accountButton       = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
+        
         view.backgroundColor                                    = .systemBackground
-        title                                                   = "Projects"
-        navigationItem.rightBarButtonItem                       = signOutButton
+        title                                                   = "Projects\n"
+        navigationItem.rightBarButtonItem                       = accountButton
         navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
@@ -117,9 +118,17 @@ class ProjectsVC: SNDataLoadingVC {
     }
     
     
+    @objc func openAccountMenu() {
+        let destVC = AccountVC()
+        if let acctVCPresentationController = destVC.presentationController as? UISheetPresentationController {
+            acctVCPresentationController.detents = [.medium()]
+        }
+        self.present(destVC, animated: true)
+    }
+    
+    
     @objc func signOut() {
         PersistenceManager.updateLoggedInStatus(loggedIn: false)
-        
         let signInVC = SignInVC()
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(signInVC, animated: true)
     }
@@ -148,7 +157,7 @@ extension ProjectsVC: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let project             = projects[indexPath.row]
-        let destVC              = SNProjectDetailsChildVC(project: project, delegate: self)
+        let destVC              = SNProjectDetailsChildVC(project: project, completedProjects: completedProjects, delegate: self)
         let navController       = UINavigationController(rootViewController: destVC)
         
         present(navController, animated: true)
@@ -165,6 +174,12 @@ extension ProjectsVC: SNProjectDetailsChildVCDelegate {
     
     func followLink(forProject project: Project) {
         print("delegate reached for course link")
+        navigationController?.dismiss(animated: true)
+        guard let url = URL(string: project.projectLink) else {
+            presentSNAlertOnMainThread(alertTitle: "Invalid URL", message: "The url attached to this project is invalid", buttonTitle: "Ok")
+            return
+        }
+        presentSafariVC(with: url)
     }
 }
 
