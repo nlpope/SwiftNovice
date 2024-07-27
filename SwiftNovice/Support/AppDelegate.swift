@@ -99,7 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
  * Deeper understanding of parent to child view controller relationships
  
- * Sign in status persistence & resetting root view controllers between signed in & signed out states
+ * Sign in status persistence and resetting root view controllers between signed in & signed out states
+ 
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
