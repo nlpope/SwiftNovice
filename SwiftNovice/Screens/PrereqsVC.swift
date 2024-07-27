@@ -8,7 +8,6 @@
 import UIKit
 
 class PrereqsVC: SNDataLoadingVC {
-    // set mini tutorial as alert for instr. on how to unlock next tab
     // see anki - UserDefaults for tracking if users 1st time on screen
     
     let tableView               = UITableView()
@@ -119,18 +118,12 @@ class PrereqsVC: SNDataLoadingVC {
     
     
     @objc func openAccountMenu() {
-        let destVC = AccountVC()
+        let destVC      = AccountVC()
+        destVC.delegate = self
         if let acctVCPresentationController = destVC.presentationController as? UISheetPresentationController {
             acctVCPresentationController.detents = [.medium()]
         }
         self.present(destVC, animated: true)
-    }
-    
-    
-    @objc func signOut() {
-        PersistenceManager.updateLoggedInStatus(loggedIn: false)
-        let signInVC = SignInVC()
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(signInVC, animated: true)
     }
 }
 
@@ -183,6 +176,28 @@ extension PrereqsVC: SNCourseDetailsChildVCDelegate {
             return
         }
         presentSafariVC(with: url)
+    }
+}
+
+
+extension PrereqsVC: AccountVCDelegate {
+    func signOut() {
+        navigationController?.dismiss(animated: true)
+        PersistenceManager.updateLoggedInStatus(loggedIn: false)
+        let signInVC = SignInVC()
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(signInVC, animated: true)
+    }
+    
+    
+    func editPassword() {
+        navigationController?.dismiss(animated: true)
+        print("edit password tapped")
+    }
+    
+    
+    func deleteAccount() {
+        navigationController?.dismiss(animated: true)
+        print("delete account tapped")
     }
 }
 
