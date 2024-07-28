@@ -14,6 +14,7 @@ class SignInVC: UIViewController {
     let passwordTextField   = SNTextField(placeholder: "password")
     let signInLabel         = SNInteractiveLabel(textToDisplay: "Sign in", fontSize: 18)
     let signUpLabel         = SNInteractiveLabel(textToDisplay: "Don't have an account?", fontSize: 18)
+    let forgotLabel         = SNInteractiveLabel(textToDisplay: "Forgot username/password?", fontSize: 18)
     var userExists          = true
     var passwordIsCorrect   = true
     var isUsernameEntered: Bool { return !usernameTexField.text!.isEmpty }
@@ -21,9 +22,7 @@ class SignInVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        view.addSubviews(logoImageView, usernameTexField, passwordTextField, signInLabel, signUpLabel)
-        
+        configureVC()
         configureLogoImageView()
         configureUsernameTextField()
         configurePasswordTextField()
@@ -38,6 +37,12 @@ class SignInVC: UIViewController {
         usernameTexField.text = ""
         passwordTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    
+    func configureVC() {
+        view.backgroundColor = .systemBackground
+        view.addSubviews(logoImageView, usernameTexField, passwordTextField, signInLabel, signUpLabel, forgotLabel)
     }
     
     
@@ -109,6 +114,17 @@ class SignInVC: UIViewController {
     }
     
     
+    func configureForgotLabel() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(presentSignUpVC))
+        forgotLabel.addGestureRecognizer(tap)
+        
+        NSLayoutConstraint.activate([
+            forgotLabel.topAnchor.constraint(equalTo: signUpLabel.bottomAnchor, constant: 50),
+            forgotLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    
     func updateLoggedinStatus(withStatus status: Bool) {
         PersistenceManager.updateLoggedInStatus(loggedIn: status)
     }
@@ -122,7 +138,7 @@ class SignInVC: UIViewController {
         }
         
         guard userExists, passwordIsCorrect else {
-            presentSNAlertOnMainThread(alertTitle: "Wrong username or password", message: "The username or password is incorrect. Please try again or sign up if you do not have an account", buttonTitle: "Ok")
+            presentSNAlertOnMainThread(alertTitle: "Wrong username/password", message: "The username or password is incorrect. Please try again or sign up if you do not have an account", buttonTitle: "Ok")
             return
         }
         
@@ -142,6 +158,11 @@ class SignInVC: UIViewController {
 //        
 //        let prereqsVC = PrereqsVC(username: usernameTexField.text!)
 //        navigationController?.pushViewController(prereqsVC, animated: true)
+    }
+    
+    
+    @objc func presentPasswordReset() {
+        print("it works")
     }
 }
 

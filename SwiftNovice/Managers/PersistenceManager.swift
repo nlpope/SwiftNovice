@@ -15,10 +15,12 @@ enum PersistenceManager {
     
     static private let defaults = UserDefaults.standard
     enum Keys {
-        static let accountHolders       = "accountHolders"
-        static let isLoggedIn           = "isLoggedIn"
-        static let completedCourses     = "completedCourses"
-        static let completedProjects    = "completedProjects"
+        static let accountHolders                   = "accountHolders"
+        static let isLoggedIn                       = "isLoggedIn"
+        static let completedCourses                 = "completedCourses"
+        static let completedProjects                = "completedProjects"
+        static var isFirstVisitToPrerequisiteScreen = true
+        static var isFirstVisitToProjectScreen      = true
     }
     
     

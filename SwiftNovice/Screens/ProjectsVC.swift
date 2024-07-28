@@ -25,6 +25,11 @@ class ProjectsVC: SNDataLoadingVC {
     override func viewWillAppear(_ animated: Bool) {
         getProjectsFromServer()
         loadProgressFromPersistence()
+        PersistenceManager.Keys.isFirstVisitToProjectScreen = true
+        if PersistenceManager.Keys.isFirstVisitToProjectScreen {
+            presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "Below are sample projects that increase in difficulty as you progress to help practice what you've learned on the prerequisites tab. The first 4 are intermediate level and the last 3 are the hardest. I recommend you complete that tab in full before continuing on to this one. You can see this alert again by clicking on the icon account button in your nav bar.", buttonTitle: "Got it")
+            PersistenceManager.Keys.isFirstVisitToProjectScreen = false
+        }
     }
     
     

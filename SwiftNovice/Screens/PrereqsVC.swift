@@ -25,6 +25,10 @@ class PrereqsVC: SNDataLoadingVC {
     override func viewWillAppear(_ animated: Bool) {
         getPrerequisitesFromServer()
         loadProgressFromPersistence()
+        if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
+            presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "Below are courses that helped me get to where I am on my Swift development journey. I recommend you complete each in the order they appear as each lesson benefits from the last. You can see this alert again by clicking on the icon account button in your nav bar.", buttonTitle: "Got it")
+            PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
+        }
     }
     
     
@@ -124,6 +128,8 @@ class PrereqsVC: SNDataLoadingVC {
             acctVCPresentationController.detents = [.medium()]
         }
         self.present(destVC, animated: true)
+        
+        #warning("add btn to display OG alert after 1st visit to screen")
     }
 }
 
