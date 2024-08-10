@@ -25,9 +25,8 @@ class ProjectsVC: SNDataLoadingVC {
     override func viewWillAppear(_ animated: Bool) {
         getProjectsFromServer()
         loadProgressFromPersistence()
-        PersistenceManager.Keys.isFirstVisitToProjectScreen = true
         if PersistenceManager.Keys.isFirstVisitToProjectScreen {
-            presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "Below are sample projects that increase in difficulty as you progress to help practice what you've learned on the prerequisites tab. The first 4 are intermediate level and the last 3 are the hardest. I recommend you complete that tab in full before continuing on to this one. You can see this alert again by clicking on the icon account button in your nav bar.", buttonTitle: "Got it")
+            displayInstructions()
             PersistenceManager.Keys.isFirstVisitToProjectScreen = false
         }
     }
@@ -53,6 +52,13 @@ class ProjectsVC: SNDataLoadingVC {
         tableView.removeExcessCells()
         
         tableView.register(ProjectCell.self, forCellReuseIdentifier: ProjectCell.reuseID)
+    }
+    
+    
+    func displayInstructions() {
+        presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "Below are sample projects that increase in difficulty as you progress to help practice what you've learned on the prerequisites tab.", buttonTitle: "Continue")
+        presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "The first 4 are intermediate level and the last 3 are the hardest. I recommend you complete that tab in full before continuing on to this one.", buttonTitle: "Continue")
+        presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "You can see this alert again by clicking on the icon account button in your nav bar.", buttonTitle: "Got it")
     }
     
     
@@ -194,6 +200,12 @@ extension ProjectsVC: AccountVCDelegate {
     func editPassword() {
         navigationController?.dismiss(animated: true)
         print("edit password tapped")
+    }
+    
+    
+    func seeInstructions() {
+        navigationController?.dismiss(animated: true)
+        print("see instructions tapped")
     }
     
     

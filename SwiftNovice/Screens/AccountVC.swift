@@ -10,8 +10,10 @@ import UIKit
 protocol AccountVCDelegate: AnyObject {
     func signOut()
     func editPassword()
+    func seeInstructions()
     func deleteAccount()
 }
+
 
 class AccountVC: UIViewController {
 
@@ -19,6 +21,7 @@ class AccountVC: UIViewController {
     let menuOptions     = [
         "Sign Out",
         "Edit password",
+        "See instructions",
         "Delete Account"
     ]
     
@@ -68,6 +71,7 @@ extension AccountVC: UITableViewDelegate, UITableViewDataSource {
         
         if selectedOption == "Sign Out" { delegate.signOut() }
         else if selectedOption == "Edit password" { delegate.editPassword() }
+        else if selectedOption == "See instructions" { delegate.seeInstructions() }
         else if selectedOption == "Delete Account" { delegate.deleteAccount() }
     }
 }

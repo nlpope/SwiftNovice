@@ -49,12 +49,11 @@ class SNAlertChildVC: UIViewController {
     
     
     func configureContainerView() {
-        var containerHeight: CGFloat = (message?.count ?? 219) > 120 ? 430 : 220
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.widthAnchor.constraint(equalToConstant: 280),
-            containerView.heightAnchor.constraint(equalToConstant: containerHeight)
+            containerView.heightAnchor.constraint(equalToConstant: 220)
         ])
     }
     

@@ -26,7 +26,7 @@ class PrereqsVC: SNDataLoadingVC {
         getPrerequisitesFromServer()
         loadProgressFromPersistence()
         if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
-            presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "Below are courses that helped me get to where I am on my Swift development journey. I recommend you complete each in the order they appear as each lesson benefits from the last. You can see this alert again by clicking on the icon account button in your nav bar.", buttonTitle: "Got it")
+            displayTutorialPromptOne()
             PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
         }
     }
@@ -53,6 +53,58 @@ class PrereqsVC: SNDataLoadingVC {
         
         tableView.register(PrerequisiteCell.self, forCellReuseIdentifier: PrerequisiteCell.reuseID)
     }
+    
+    
+    func displayTutorialPromptOne() {
+        let message         = "Below are courses that helped me get to where I am on my Swift development journey..."
+        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.displayTutorialPromptTwo()
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    
+    func displayTutorialPromptTwo() {
+        let message         = "I recommend you complete each in the order they appear as each lesson benefits from the last..."
+        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.displayTutorialPromptThree()
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    
+    func displayTutorialPromptThree() {
+        let message         = "Once you mark an item as complete, it will glow green. You may change this status anytime..."
+        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.displayTutorialPromptFour()
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    
+    func displayTutorialPromptFour() {
+        let message         = "You may visit this tutorial again by clicking on the account icon above."
+        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction    = UIAlertAction(title: "Let's go!", style: .default, handler: nil)
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    
+    func dismissAC(action: UIAlertAction!) { dismiss(animated: true) }
     
     
     func getPrerequisitesFromServer() {
@@ -128,8 +180,6 @@ class PrereqsVC: SNDataLoadingVC {
             acctVCPresentationController.detents = [.medium()]
         }
         self.present(destVC, animated: true)
-        
-        #warning("add btn to display OG alert after 1st visit to screen")
     }
 }
 
@@ -174,6 +224,7 @@ extension PrereqsVC: SNCourseDetailsChildVCDelegate {
         loadProgressFromPersistence()
     }
     
+    
     func followLink(forCourse course: Prerequisite) {
         print("delegate reached for course link")
         navigationController?.dismiss(animated: true)
@@ -198,6 +249,12 @@ extension PrereqsVC: AccountVCDelegate {
     func editPassword() {
         navigationController?.dismiss(animated: true)
         print("edit password tapped")
+    }  
+    
+    
+    func seeInstructions() {
+        navigationController?.dismiss(animated: true)
+        displayTutorialPromptOne()
     }
     
     

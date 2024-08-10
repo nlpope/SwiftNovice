@@ -107,6 +107,12 @@ enum PersistenceManager {
     }
     
     
+//    static func savePrerequisiteFirstVisitPersistence(withBoolean boolean: Bool) -> SNError? {
+//        defaults.bool(forKey: Keys.isFirstVisitToPrerequisiteScreen) = boolean
+//       
+//    }
+    
+    
     static func save(completedCourses: [Prerequisite]) -> SNError? {
         do {
             let encoder = JSONEncoder()
