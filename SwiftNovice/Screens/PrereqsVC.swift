@@ -104,9 +104,6 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func dismissAC(action: UIAlertAction!) { dismiss(animated: true) }
-    
-    
     func getPrerequisitesFromServer() {
         showLoadingView()
         NetworkManager.shared.getPrerequisites { [weak self] result in

@@ -26,7 +26,7 @@ class ProjectsVC: SNDataLoadingVC {
         getProjectsFromServer()
         loadProgressFromPersistence()
         if PersistenceManager.Keys.isFirstVisitToProjectScreen {
-            displayInstructions()
+            displayTutorialPromptOne()
             PersistenceManager.Keys.isFirstVisitToProjectScreen = false
         }
     }
@@ -55,10 +55,52 @@ class ProjectsVC: SNDataLoadingVC {
     }
     
     
-    func displayInstructions() {
-        presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "Below are sample projects that increase in difficulty as you progress to help practice what you've learned on the prerequisites tab.", buttonTitle: "Continue")
-        presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "The first 4 are intermediate level and the last 3 are the hardest. I recommend you complete that tab in full before continuing on to this one.", buttonTitle: "Continue")
-        presentSNAlertOnMainThread(alertTitle: "Before you begin", message: "You can see this alert again by clicking on the icon account button in your nav bar.", buttonTitle: "Got it")
+    func displayTutorialPromptOne() {
+        let message         = "Below are sample projects that increase in difficulty to master what you've learned on the prerequisites tab..."
+        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.displayTutorialPromptTwo()
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    
+    func displayTutorialPromptTwo() {
+        let message         = "The first 4 are rather intermediate and the last 3 are most difficult. You may complete them in whichever order you desire..."
+        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.displayTutorialPromptThree()
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    
+    func displayTutorialPromptThree() {
+        let message         = "Once you mark an item as complete, it will glow green. You may change this status anytime..."
+        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.displayTutorialPromptFour()
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    
+    func displayTutorialPromptFour() {
+        let message         = "You may visit this tutorial again by clicking on the account icon above."
+        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction    = UIAlertAction(title: "Let's go!", style: .default, handler: nil)
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
     }
     
     
@@ -205,7 +247,7 @@ extension ProjectsVC: AccountVCDelegate {
     
     func seeInstructions() {
         navigationController?.dismiss(animated: true)
-        print("see instructions tapped")
+        displayTutorialPromptOne()
     }
     
     
