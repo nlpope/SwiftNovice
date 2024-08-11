@@ -17,11 +17,13 @@ SwiftNovice - A bootcamp in your pocket! SwiftNovice guides the user through pre
 6. In that list, select 'iphone' under the 'Devices' section (should be the only one of it's kind in that section)
   > This sets up your phone as the space the app will run on for the next step
 
-7. Once device is selected, hit cmd + r (or hit the play button at the very top of the navigation bar) to run the app
+7.WAIT! Before moving on to the next step, be sure to download and run the project in my repo titled "SwiftNoviceServerMk2"
 
-8. You should see the app's icon appear on your homescreen before it opens automatically
+8. Once device is selected, hit cmd + r (or hit the play button at the very top of the navigation bar) to run the app
 
-9. Happy learning!
+9. You should see the app's icon appear on your homescreen before it opens automatically
+
+10. Happy learning!
 
 
 
