@@ -7,8 +7,9 @@
 
 import UIKit
 
-class PrereqsVC: SNDataLoadingVC {
-    // see anki - UserDefaults for tracking if users 1st time on screen
+class PrereqsVC: SNDataLoadingVC
+{
+    /**see anki - UserDefaults for tracking if users 1st time on screen**/
     
     let tableView               = UITableView()
     var courses                 = [Prerequisite]()
@@ -22,7 +23,8 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         getPrerequisitesFromServer()
         loadProgressFromPersistence()
         if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
@@ -32,7 +34,8 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func configureNavigation() {
+    func configureNavigation()
+    {
         let accountButton       = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
 
         view.backgroundColor                                    = .systemBackground
@@ -42,7 +45,8 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func configureTableView() {
+    func configureTableView()
+    {
         view.addSubview(tableView)
         
         tableView.frame         = view.bounds
@@ -54,8 +58,12 @@ class PrereqsVC: SNDataLoadingVC {
         tableView.register(PrerequisiteCell.self, forCellReuseIdentifier: PrerequisiteCell.reuseID)
     }
     
+    //-------------------------------------//
+    // MARK: TUTORIAL PROMPTS
     
-    func displayTutorialPromptOne() {
+    
+    func displayTutorialPromptOne()
+    {
         let message         = "Below are courses that helped me get to where I am on my Swift development journey..."
         let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
         let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
@@ -68,7 +76,8 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func displayTutorialPromptTwo() {
+    func displayTutorialPromptTwo()
+    {
         let message         = "I recommend you complete each in the order they appear as each lesson benefits from the last..."
         let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
         let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
@@ -81,7 +90,8 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func displayTutorialPromptThree() {
+    func displayTutorialPromptThree()
+    {
         let message         = "Once you mark an item as complete, it will glow green. You may change this status anytime..."
         let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
         let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
@@ -94,7 +104,8 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func displayTutorialPromptFour() {
+    func displayTutorialPromptFour()
+    {
         let message         = "You may visit this tutorial again by clicking on the account icon above."
         let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
         let submitAction    = UIAlertAction(title: "Let's go!", style: .default, handler: nil)
@@ -104,7 +115,8 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func getPrerequisitesFromServer() {
+    func getPrerequisitesFromServer()
+    {
         showLoadingView()
         NetworkManager.shared.getPrerequisites { [weak self] result in
             guard let self = self else { return }
@@ -121,7 +133,8 @@ class PrereqsVC: SNDataLoadingVC {
     }
     
     
-    func saveProgressInPersistence(withCourse course: Prerequisite, toggleType: Bool) {
+    func saveProgressInPersistence(withCourse course: Prerequisite, toggleType: Bool)
+    {
         showLoadingView()
         let actionType: ProgressPersistenceActionType = toggleType ? .complete : .incomplete
         

@@ -161,7 +161,7 @@ class ProjectsVC: SNDataLoadingVC {
         }
     }
     
-    
+    #warning("consolidate into one place DRY")
     func updateUI() {
         DispatchQueue.main.async {
             self.tableView.reloadData()

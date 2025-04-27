@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum SNError: String, Error {
+enum SNError: String, Error
+{
     
     case invalidURL             = "Failed to get a response from the server. Please try again."
     case invalidResponse        = "Failed to get a valid response from the server. Please try again."

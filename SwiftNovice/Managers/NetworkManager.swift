@@ -16,23 +16,17 @@ class NetworkManager {
     private init() {}
     
     
-    func getPrerequisites(completed: @escaping(Result<[Prerequisite], SNError>) -> Void) {
-        
-        guard let url = URL(string: "\(baseUrl)getPrerequisites") else {
-            completed(.failure(.invalidURL))
-            return
-        }
+    func getPrerequisites(completed: @escaping(Result<[Prerequisite], SNError>) -> Void)
+    {
+        guard let url = URL(string: "\(baseUrl)getPrerequisites")
+        else { completed(.failure(.invalidURL)); return }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let _ = error {
-                completed(.failure(.invalidURL))
-                return
-            }
+            #warning("server call is failing here; wrong url?")
+//            if let _ = error { completed(.failure(.invalidURL)); return }
             
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200
+            else { completed(.failure(.invalidResponse)); return }
             
             guard let data else {
                 completed(.failure(.invalidData))
@@ -52,8 +46,8 @@ class NetworkManager {
     }
     
     
-    func getProjects(completed: @escaping(Result<[Project], SNError>) -> Void) {
-        
+    func getProjects(completed: @escaping(Result<[Project], SNError>) -> Void)
+    {
         guard let url = URL(string: "\(baseUrl)getProjects") else {
             completed(.failure(.invalidURL))
             return
