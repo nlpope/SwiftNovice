@@ -30,7 +30,9 @@ class NetworkManager {
             /**
              no & resp. == nil.
              & data == nil
-             
+             works on sim
+             tryin fix from https://forums.kodeco.com/t/chapter-12-running-app-from-physical-device-gives-error-connection-refused/122296/2
+             > not workin. my error, changing ip address to comps not phones
              */
             if let _ = error { completed(.failure(.invalidURL)); return }
             
