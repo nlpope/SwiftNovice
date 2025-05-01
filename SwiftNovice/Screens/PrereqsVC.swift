@@ -27,10 +27,10 @@ class PrereqsVC: SNDataLoadingVC
     {
         getPrerequisitesFromServer()
         loadProgressFromPersistence()
-        if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
-            displayTutorialPromptOne()
-            PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
-        }
+//        if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
+//            displayTutorialPromptOne()
+//            PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
+//        }
     }
     
     
@@ -246,7 +246,7 @@ extension PrereqsVC: SNCourseDetailsChildVCDelegate {
     }
 }
 
-
+#warning("move to xtensions file")
 extension PrereqsVC: AccountVCDelegate {
     func signOut() {
         navigationController?.dismiss(animated: true)

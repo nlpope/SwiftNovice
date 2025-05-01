@@ -18,12 +18,21 @@ class NetworkManager {
     
     func getPrerequisites(completed: @escaping(Result<[Prerequisite], SNError>) -> Void)
     {
-        guard let url = URL(string: "\(baseUrl)getPrerequisites")
+//        guard let url = URL(string: "\(baseUrl)getPrerequisites")
+        guard let url = URL(string: "http://127.0.0.1:8080/getPrerequisites")
         else { completed(.failure(.invalidURL)); return }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            print("YAY GOT A RESPONSE ===== \(response)")
+            print("DATA ======= \(data)")
+            print("ERRORERER ===== \(error)")
             #warning("server call is failing here; wrong url?")
-//            if let _ = error { completed(.failure(.invalidURL)); return }
+            /**
+             no & resp. == nil.
+             & data == nil
+             
+             */
+            if let _ = error { completed(.failure(.invalidURL)); return }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200
             else { completed(.failure(.invalidResponse)); return }
@@ -32,7 +41,7 @@ class NetworkManager {
                 completed(.failure(.invalidData))
                 return
             }
-            
+            #warning("abstract all do catch blocks into their own funcs for readability")
             do {
                 let decoder = JSONDecoder()
                 var prerequisites = try decoder.decode([Prerequisite].self, from: data)

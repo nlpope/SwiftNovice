@@ -130,15 +130,15 @@ class SignInVC: UIViewController {
     
     
     @objc func resetRootVC() {
-        guard isUsernameEntered, isPasswordEntered else {
-            presentSNAlertOnMainThread(alertTitle: "Empty username/password", message: "The username or password field has been left blank. Please enter a value or sign up if you do not have an account.", buttonTitle: "Ok")
-            return
-        }
-        
-        guard userExists, passwordIsCorrect else {
-            presentSNAlertOnMainThread(alertTitle: "Wrong username/password", message: "The username or password is incorrect. Please try again or sign up if you do not have an account", buttonTitle: "Ok")
-            return
-        }
+//        guard isUsernameEntered, isPasswordEntered else {
+//            presentSNAlertOnMainThread(alertTitle: "Empty username/password", message: "The username or password field has been left blank. Please enter a value or sign up if you do not have an account.", buttonTitle: "Ok")
+//            return
+//        }
+//        
+//        guard userExists, passwordIsCorrect else {
+//            presentSNAlertOnMainThread(alertTitle: "Wrong username/password", message: "The username or password is incorrect. Please try again or sign up if you do not have an account", buttonTitle: "Ok")
+//            return
+//        }
         
         updateLoggedinStatus(withStatus: true)
         usernameTextField.resignFirstResponder()
@@ -149,12 +149,14 @@ class SignInVC: UIViewController {
     }
     
     
-    @objc func presentSignUpVC() {
+    @objc func presentSignUpVC()
+    {
         
     }
     
     
-    @objc func presentPasswordReset() {
+    @objc func presentPasswordReset()
+    {
         print("it works")
     }
 }
