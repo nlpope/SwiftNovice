@@ -27,10 +27,10 @@ class PrereqsVC: SNDataLoadingVC
     {
         getPrerequisitesFromServer()
         loadProgressFromPersistence()
-//        if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
-//            displayTutorialPromptOne()
-//            PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
-//        }
+        if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
+            displayTutorialPromptOne()
+            PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
+        }
     }
     
     

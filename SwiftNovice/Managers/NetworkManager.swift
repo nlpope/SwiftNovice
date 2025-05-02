@@ -18,22 +18,10 @@ class NetworkManager {
     
     func getPrerequisites(completed: @escaping(Result<[Prerequisite], SNError>) -> Void)
     {
-//        guard let url = URL(string: "\(baseUrl)getPrerequisites")
-        guard let url = URL(string: "http://127.0.0.1:8080/getPrerequisites")
+        guard let url = URL(string: "\(baseUrl)getPrerequisites")
         else { completed(.failure(.invalidURL)); return }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            print("YAY GOT A RESPONSE ===== \(response)")
-            print("DATA ======= \(data)")
-            print("ERRORERER ===== \(error)")
-            #warning("server call is failing here; wrong url?")
-            /**
-             no & resp. == nil.
-             & data == nil
-             works on sim
-             tryin fix from https://forums.kodeco.com/t/chapter-12-running-app-from-physical-device-gives-error-connection-refused/122296/2
-             > not workin. my error, changing ip address to comps not phones
-             */
             if let _ = error { completed(.failure(.invalidURL)); return }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200
