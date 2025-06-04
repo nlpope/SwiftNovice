@@ -160,7 +160,7 @@ class PrereqsVC: SNDataLoadingVC
     
     
     func loadProgressFromPersistence() {
-        PersistenceManager.retrieveCompletedCourses { [weak self] result in
+        PersistenceManager.fetchCompletedCourses { [weak self] result in
             guard let self = self else { return }
             
             switch result {

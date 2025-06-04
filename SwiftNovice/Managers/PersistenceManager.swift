@@ -26,7 +26,7 @@ enum PersistenceManager {
     
     // MARK: COURSE PERSISTENCE
     static func updateWith(course: Prerequisite, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void) {
-        retrieveCompletedCourses { result in
+        fetchCompletedCourses { result in
             switch result {
             case .success(var courses):
                 switch actionType {
@@ -75,7 +75,7 @@ enum PersistenceManager {
     }
     
     
-    static func retrieveCompletedCourses(completed: @escaping (Result<[Prerequisite], SNError>) -> Void) {
+    static func fetchCompletedCourses(completed: @escaping (Result<[Prerequisite], SNError>) -> Void) {
         guard let completedCoursesData = defaults.object(forKey: Keys.completedCourses) as? Data else {
             completed(.success([]))
             return
