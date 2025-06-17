@@ -46,7 +46,7 @@ enum PersistenceManager {
     
     
     static func updateWith(project: Project, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void) {
-        retrieveCompletedProjects { result in
+        fetchCompletedProjects { result in
             switch result {
             case .success(var projects):
                 switch actionType {
@@ -91,7 +91,7 @@ enum PersistenceManager {
     }
     
     
-    static func retrieveCompletedProjects(completed: @escaping (Result<[Project], SNError>) -> Void) {
+    static func fetchCompletedProjects(completed: @escaping (Result<[Project], SNError>) -> Void) {
         guard let completedProjectsData = defaults.object(forKey: Keys.completedProjects) as? Data else {
             completed(.success([]))
             return
