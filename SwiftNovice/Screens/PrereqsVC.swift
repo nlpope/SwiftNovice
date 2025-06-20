@@ -9,14 +9,13 @@ import UIKit
 
 class PrereqsVC: SNDataLoadingVC
 {
-    /**see anki - UserDefaults for tracking if users 1st time on screen**/
-    
-    let tableView               = UITableView()
-    var courses                 = [Prerequisite]()
-    var completedCourses        = [Prerequisite]()
+    let tableView = UITableView()
+    var courses = [Prerequisite]()
+    var completedCourses = [Prerequisite]()
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         configureNavigation()
         configureTableView()
@@ -36,12 +35,12 @@ class PrereqsVC: SNDataLoadingVC
     
     func configureNavigation()
     {
-        let accountButton       = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
+        let accountButton = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
 
-        view.backgroundColor                                    = .systemBackground
-        title                                                   = "Prerequisites\n"
-        navigationItem.rightBarButtonItem                       = accountButton
-        navigationController?.navigationBar.prefersLargeTitles  = true
+        view.backgroundColor = .systemBackground
+        title = "Prerequisites\n"
+        navigationItem.rightBarButtonItem = accountButton
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
@@ -49,10 +48,10 @@ class PrereqsVC: SNDataLoadingVC
     {
         view.addSubview(tableView)
         
-        tableView.frame         = view.bounds
-        tableView.rowHeight     = 80
-        tableView.delegate      = self
-        tableView.dataSource    = self
+        tableView.frame = view.bounds
+        tableView.rowHeight = 80
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.removeExcessCells()
         
         tableView.register(PrerequisiteCell.self, forCellReuseIdentifier: PrerequisiteCell.reuseID)
@@ -61,12 +60,11 @@ class PrereqsVC: SNDataLoadingVC
     //-------------------------------------//
     // MARK: TUTORIAL PROMPTS
     
-    
     func displayTutorialPromptOne()
     {
-        let message         = "Below are courses that helped me get to where I am on my Swift development journey..."
-        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+        let message = "Below are courses that helped me get to where I am on my Swift development journey..."
+        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.displayTutorialPromptTwo()
         }
@@ -78,9 +76,9 @@ class PrereqsVC: SNDataLoadingVC
     
     func displayTutorialPromptTwo()
     {
-        let message         = "I recommend you complete each in the order they appear as each lesson benefits from the last..."
-        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+        let message = "I recommend you complete each in the order they appear as each lesson benefits from the last..."
+        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.displayTutorialPromptThree()
         }
@@ -92,9 +90,9 @@ class PrereqsVC: SNDataLoadingVC
     
     func displayTutorialPromptThree()
     {
-        let message         = "Once you mark an item as complete, it will glow green. You may change this status anytime..."
-        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+        let message = "Once you mark an item as complete, it will glow green. You may change this status anytime..."
+        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.displayTutorialPromptFour()
         }
@@ -106,9 +104,9 @@ class PrereqsVC: SNDataLoadingVC
     
     func displayTutorialPromptFour()
     {
-        let message         = "You may visit this tutorial again by clicking on the account icon above."
-        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction    = UIAlertAction(title: "Let's go!", style: .default, handler: nil)
+        let message = "You may visit this tutorial again by clicking on the account icon above."
+        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Let's go!", style: .default, handler: nil)
         
         ac.addAction(submitAction)
         present(ac, animated: true)
@@ -145,7 +143,6 @@ class PrereqsVC: SNDataLoadingVC
             guard let error else {
                 switch actionType {
                 case .complete:
-                    // PRESENT CONFETTI ANIMATION ON MAIN THREAD - CREATE IN UIVC+EXT
                     self.presentSNAlertOnMainThread(alertTitle: "Congratulations!", message: "Good work on completing this prerequisite. Keep going, you've got this 🥳.", buttonTitle: "Ok")
                 case .incomplete:
                     self.presentSNAlertOnMainThread(alertTitle: "Course marked incomplete", message: "We have successfully removed this course from your completed lsit.", buttonTitle: "Ok")
@@ -159,7 +156,8 @@ class PrereqsVC: SNDataLoadingVC
     }
     
     
-    func loadProgressFromPersistence() {
+    func loadProgressFromPersistence()
+    {
         PersistenceManager.fetchCompletedCourses { [weak self] result in
             guard let self = self else { return }
             
@@ -175,7 +173,8 @@ class PrereqsVC: SNDataLoadingVC
     }
     
     
-    func updateUI() {
+    func updateUI()
+    {
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.view.bringSubviewToFront(self.tableView)
@@ -183,7 +182,8 @@ class PrereqsVC: SNDataLoadingVC
     }
     
     
-    @objc func openAccountMenu() {
+    @objc func openAccountMenu()
+    {
         let destVC      = AccountVC()
         destVC.delegate = self
         if let acctVCPresentationController = destVC.presentationController as? UISheetPresentationController {
@@ -194,16 +194,16 @@ class PrereqsVC: SNDataLoadingVC
 }
 
 
-extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
+extension PrereqsVC: UITableViewDataSource, UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    { return courses.count }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return courses.count
-    }
     
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell            = tableView.dequeueReusableCell(withIdentifier: PrerequisiteCell.reuseID) as! PrerequisiteCell
-        let course          = courses[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PrerequisiteCell.reuseID) as! PrerequisiteCell
+        let course = courses[indexPath.row]
         
         cell.set(prerequisite: course)
         cell.backgroundColor = completedCourses.contains(course) ? .systemGreen : .systemBackground
@@ -212,43 +212,46 @@ extension PrereqsVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let course          = courses[indexPath.row]
-        let destVC          = SNCourseDetailsChildVC(course: course, completedCourses: completedCourses, delegate: self)
-        let navController   = UINavigationController(rootViewController: destVC)
+        let course = courses[indexPath.row]
+        let destVC = SNCourseDetailsChildVC(course: course, completedCourses: completedCourses, delegate: self)
+        let navController = UINavigationController(rootViewController: destVC)
         
         present(navController, animated: true)
     }
 }
 
 
-extension PrereqsVC: SNCourseDetailsChildVCDelegate {
-    func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool) {
-        // reload data
-        // followed by congrats/keep going alert
-        
+extension PrereqsVC: SNCourseDetailsChildVCDelegate
+{
+    func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool)
+    {
         navigationController?.dismiss(animated: true)
         saveProgressInPersistence(withCourse: course, toggleType: toggleType)
         loadProgressFromPersistence()
     }
     
     
-    func followLink(forCourse course: Prerequisite) {
-        print("delegate reached for course link")
+    func followLink(forCourse course: Prerequisite)
+    {
         navigationController?.dismiss(animated: true)
         guard let url = URL(string: course.courseLink) else {
             presentSNAlertOnMainThread(alertTitle: "Invalid URL", message: "The url attached to this course is invalid", buttonTitle: "Ok")
             return
         }
+        
         presentSafariVC(with: url)
     }
 }
 
 #warning("move to xtensions file")
-extension PrereqsVC: AccountVCDelegate {
-    func signOut() {
+extension PrereqsVC: AccountVCDelegate
+{
+    func signOut()
+    {
         navigationController?.dismiss(animated: true)
         PersistenceManager.updateLoggedInStatus(loggedIn: false)
         let signInVC = SignInVC()
@@ -256,27 +259,32 @@ extension PrereqsVC: AccountVCDelegate {
     }
     
     
-    func editPassword() {
+    func editPassword()
+    {
         navigationController?.dismiss(animated: true)
         print("edit password tapped")
     }  
     
     
-    func seeInstructions() {
+    func seeInstructions()
+    {
         navigationController?.dismiss(animated: true)
         displayTutorialPromptOne()
     }
     
     
-    func deleteAccount() {
+    func deleteAccount()
+    {
         navigationController?.dismiss(animated: true)
         print("delete account tapped")
     }
 }
 
 
-extension PrereqsVC: UIAdaptivePresentationControllerDelegate {
-    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+extension PrereqsVC: UIAdaptivePresentationControllerDelegate
+{
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController)
+    {
         print("about to dismiss")
     }
 }

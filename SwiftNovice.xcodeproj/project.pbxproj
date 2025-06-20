@@ -42,6 +42,7 @@
 		40D47A7D2C48EF7B008B52CC /* Prerequisite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7C2C48EF7B008B52CC /* Prerequisite.swift */; };
 		40D47A7F2C48F168008B52CC /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7E2C48F168008B52CC /* SignInVC.swift */; };
 		40D47A812C48F28C008B52CC /* SNInteractiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A802C48F28C008B52CC /* SNInteractiveLabel.swift */; };
+		40EB0CD52E05284100462DA9 /* LogoLauncher+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CD42E05284100462DA9 /* LogoLauncher+Utils.swift */; };
 		40EC48F02C4C8C5B00F1EEA1 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48EF2C4C8C5B00F1EEA1 /* NetworkManagerTests.swift */; };
 		40EC48F92C4CD05700F1EEA1 /* PrerequisiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48F82C4CD05700F1EEA1 /* PrerequisiteCell.swift */; };
 		40EC48FB2C4D00D700F1EEA1 /* SNAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48FA2C4D00D700F1EEA1 /* SNAvatarImageView.swift */; };
@@ -98,6 +99,7 @@
 		40D47A7C2C48EF7B008B52CC /* Prerequisite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prerequisite.swift; sourceTree = "<group>"; };
 		40D47A7E2C48F168008B52CC /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		40D47A802C48F28C008B52CC /* SNInteractiveLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNInteractiveLabel.swift; sourceTree = "<group>"; };
+		40EB0CD42E05284100462DA9 /* LogoLauncher+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogoLauncher+Utils.swift"; sourceTree = "<group>"; };
 		40EC48ED2C4C8C5B00F1EEA1 /* NetworkManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40EC48EF2C4C8C5B00F1EEA1 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		40EC48F82C4CD05700F1EEA1 /* PrerequisiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrerequisiteCell.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				40C0BE442C45013800AE66AC /* Constants+Utils.swift */,
 				40C0BE492C4506C900AE66AC /* UIResponder+Utils.swift */,
 				40D47A782C48EDF4008B52CC /* SNError+Utils.swift */,
+				40EB0CD42E05284100462DA9 /* LogoLauncher+Utils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				40C0BE552C45656F00AE66AC /* SNEmptyStateView.swift in Sources */,
 				40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */,
 				40D27E332C498BFB0091FE3E /* SNTextField.swift in Sources */,
+				40EB0CD52E05284100462DA9 /* LogoLauncher+Utils.swift in Sources */,
 				40EC49272C4E6B7900F1EEA1 /* SNSecondaryTitleLabel.swift in Sources */,
 				401000EB2C4BB23B00AE8F14 /* SNBodyLabel.swift in Sources */,
 				402D4A3F2C546AA600FBBEE1 /* ProjectCell.swift in Sources */,
