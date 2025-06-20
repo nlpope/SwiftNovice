@@ -45,6 +45,7 @@
 		40EB0CD52E05284100462DA9 /* SNLogoLauncher+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CD42E05284100462DA9 /* SNLogoLauncher+Utils.swift */; };
 		40EB0CDE2E05421700462DA9 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CDD2E05421700462DA9 /* KeychainWrapper.swift */; };
 		40EB0CDF2E05421700462DA9 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CDC2E05421700462DA9 /* KeychainItemAccessibility.swift */; };
+		40EB0CE32E054C8600462DA9 /* launchscreen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 40EB0CE22E054C8600462DA9 /* launchscreen.mp4 */; };
 		40EC48F02C4C8C5B00F1EEA1 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48EF2C4C8C5B00F1EEA1 /* NetworkManagerTests.swift */; };
 		40EC48F92C4CD05700F1EEA1 /* PrerequisiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48F82C4CD05700F1EEA1 /* PrerequisiteCell.swift */; };
 		40EC48FB2C4D00D700F1EEA1 /* SNAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC48FA2C4D00D700F1EEA1 /* SNAvatarImageView.swift */; };
@@ -104,6 +105,7 @@
 		40EB0CD42E05284100462DA9 /* SNLogoLauncher+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNLogoLauncher+Utils.swift"; sourceTree = "<group>"; };
 		40EB0CDC2E05421700462DA9 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		40EB0CDD2E05421700462DA9 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		40EB0CE22E054C8600462DA9 /* launchscreen.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = launchscreen.mp4; sourceTree = "<group>"; };
 		40EC48ED2C4C8C5B00F1EEA1 /* NetworkManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40EC48EF2C4C8C5B00F1EEA1 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		40EC48F82C4CD05700F1EEA1 /* PrerequisiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrerequisiteCell.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				40EB0CDC2E05421700462DA9 /* KeychainItemAccessibility.swift */,
 				40EB0CDD2E05421700462DA9 /* KeychainWrapper.swift */,
 				40C0BE2B2C43CA2900AE66AC /* Assets.xcassets */,
+				40EB0CE22E054C8600462DA9 /* launchscreen.mp4 */,
 				40C0BE2D2C43CA2900AE66AC /* LaunchScreen.storyboard */,
 				40C0BE282C43CA2200AE66AC /* SwiftNovice.xcdatamodeld */,
 			);
@@ -418,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40C0BE2C2C43CA2900AE66AC /* Assets.xcassets in Resources */,
+				40EB0CE32E054C8600462DA9 /* launchscreen.mp4 in Resources */,
 				40C0BE2F2C43CA2900AE66AC /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
