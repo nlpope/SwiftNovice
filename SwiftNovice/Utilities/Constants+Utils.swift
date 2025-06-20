@@ -17,10 +17,20 @@ enum SFSymbols
     static let complete = UIImage(systemName: "checkmark.circle")
 }
 
-
 enum Images
 {
     static let snLogo = UIImage(named: "sn-logo")
     static let emptyStateLogo = UIImage(named: "empty-state-logo")
     static let placeholder = UIImage(named: "avatar-placeholder")
+}
+
+enum SaveKeys
+{
+    static let isFirstVisit = "isFirstVisitStatus"
+}
+
+enum VideoKeys
+{
+    static let launchScreen = "launchscreen"
+    static let playerLayerName = "PlayerLayerName"
 }

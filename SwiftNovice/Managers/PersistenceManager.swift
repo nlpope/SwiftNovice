@@ -13,6 +13,10 @@ enum PersistenceManager
 {
     static private let defaults = UserDefaults.standard
     
+    static var isFirstVisitStatus: Bool! = fetchFirstVisitStatus() {
+        didSet { PersistenceManager.saveFirstVisitStatus(status: self.isFirstVisitStatus) }
+    }
+    
     enum Keys
     {
         static let accountHolders = "accountHolders"
@@ -21,6 +25,36 @@ enum PersistenceManager
         static let completedProjects = "completedProjects"
         static var isFirstVisitToPrerequisiteScreen = true
         static var isFirstVisitToProjectScreen = true
+    }
+    
+    //-------------------------------------//
+    // MARK: - SAVE / FETCH FIRST VISIT STATUS (FOR LOGO LAUNCHER)
+    
+    static func saveFirstVisitStatus(status: Bool)
+    {
+        do {
+            let encoder = JSONEncoder()
+            let encodedStatus = try encoder.encode(status)
+            defaults.set(encodedStatus, forKey: SaveKeys.isFirstVisit)
+        } catch {
+            print("failed ato save visit status"); return
+        }
+    }
+    
+    
+    static func fetchFirstVisitStatus() -> Bool
+    {
+        guard let visitStatusData = defaults.object(forKey: SaveKeys.isFirstVisit) as? Data
+        else { return true }
+        
+        do {
+            let decoder = JSONDecoder()
+            let fetchedStatus = try decoder.decode(Bool.self, from: visitStatusData)
+            return fetchedStatus
+        } catch {
+            print("unable to load first visit status")
+            return true
+        }
     }
     
     //-------------------------------------//
@@ -44,7 +78,7 @@ enum PersistenceManager
                 completed(error)
             }
         }
-    }  
+    }
     
     
     static func updateWith(project: Project, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void)
@@ -121,7 +155,7 @@ enum PersistenceManager
         } catch {
             return .failedToSaveProgress
         }
-    } 
+    }
     
     
     static func save(completedProjects: [Project]) -> SNError?

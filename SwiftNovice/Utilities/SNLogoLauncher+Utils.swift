@@ -2,120 +2,24 @@
 //  Project: Project32-SwiftSearcher
 //  Created by: Noah Pope on 6/20/25.
 
-//  * ADD THE MP4 FLICKER LOGO FILE
-//  * ADD THE AVPLAYER+EXT FILE
-//  * BE SURE 'FORRESOURCE' NAME INS CONTANTS MATCHES LAUNCHSCREEN.MP4 FILE
-//  * (OPT) SEE IOS NOTES CLONE & MultiBrowser FOR REFERENCES
-
-/**
- SCENE DELEGATE
- func sceneWillResignActive(_ scene: UIScene) { PersistenceManager.isFirstVisitStatus = true }
- ----------------------------------
- AVPLAYER+EXT
- import AVKit
- import AVFoundation
-
- extension AVPlayer
- {
-     var isPlaying: Bool { return rate != 0 && error == nil }
- }
- ----------------------------------
- CONSTANTS
- enum SaveKeys
- {
-     static let isFirstVisit = "isFirstVisitStatus"
- }
-
- enum VideoKeys
- {
- static let launchScreen = "launchscreen"
- static let playerLayerName = "PlayerLayerName"
- }
- ----------------------------------
- PERSISTENCE MANAGER
- enum PersistenceManager
- {
-    static private let defaults = UserDefaults.standard
-    static var isFirstVisitStatus: Bool! = fetchFirstVisitStatus() {
-        didSet { PersistenceManager.saveFirstVisitStatus(status: self.isFirstVisitStatus) }
-    }
- 
- //-------------------------------------//
- // MARK: - SAVE / FETCH FIRST VISIT STATUS (FOR LOGO LAUNCHER)
- 
-     static func saveFirstVisitStatus(status: Bool)
-     {
-         do {
-             let encoder = JSONEncoder()
-             let encodedStatus = try encoder.encode(status)
-             defaults.set(encodedStatus, forKey: SaveKeys.isFirstVisit)
-         } catch {
-             print("failed ato save visit status"); return
-         }
-     }
-     
-     
-     static func fetchFirstVisitStatus() -> Bool
-     {
-         guard let visitStatusData = defaults.object(forKey: SaveKeys.isFirstVisit) as? Data
-         else { return true }
-         
-         do {
-             let decoder = JSONDecoder()
-             let fetchedStatus = try decoder.decode(Bool.self, from: visitStatusData)
-             return fetchedStatus
-         } catch {
-             print("unable to load first visit status")
-             return true
-         }
-     }
- }
- ----------------------------------
- HOMEVC
- override func viewDidLoad()
- {
-     super.viewDidLoad()
-     PersistenceManager.isFirstVisitStatus = true
-     // all config calls go here
- }
- 
- 
- override func viewWillAppear(_ animated: Bool)
- {
-     logoLauncher = SNLogoLauncher(targetVC: self)
-     if PersistenceManager.fetchFirstVisitStatus() {
-         logoLauncher.configLogoLauncher()
-     } else {
-         fetchProjects()
-     }
- }
- 
- 
- override func viewWillDisappear(_ animated: Bool) { logoLauncher = nil }
- 
- 
- deinit { logoLauncher.removeAllAVPlayerLayers() }
- ----------------------------------
- 
- */
-
 import UIKit
 import AVKit
 import AVFoundation
 
 class SNLogoLauncher
 {
-    var targetVC: HomeVC!
+    var targetVC: PrereqsVC!
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
     var animationDidPause = false
 
     
-    init(targetVC: UIViewController) { self.targetVC = targetVC as? HomeVC }
+    init(targetVC: UIViewController) { self.targetVC = targetVC as? PrereqsVC }
     
     
-    func configLogoLauncher( )
+    func configLogoLauncher()
     {
+        print("configing logo launcher")
         maskHomeVCForIntro()
         configNotifications()
         
@@ -146,6 +50,11 @@ class SNLogoLauncher
     func maskHomeVCForIntro()
     {
         targetVC.navigationController?.isNavigationBarHidden = true
+        if #available(iOS 18.0, *) {
+            targetVC.tabBarController?.isTabBarHidden = true
+        } else {
+            print("can't hide tabbar")
+        }
         targetVC.view.backgroundColor = .black
     }
     
@@ -170,16 +79,20 @@ class SNLogoLauncher
     
     @objc func playerDidFinishPlaying()
     {
+        print("didfinishplaying flicker")
         targetVC.navigationController?.isNavigationBarHidden = false
+        if #available(iOS 18.0, *) {
+            targetVC.tabBarController?.isTabBarHidden = false
+        } else {
+            print("can't hide tabbar")
+        }
         targetVC.view.backgroundColor = .systemBackground
-        // MAYBE LOOK INTO TINKERING W THE Z-AXIS VALUE FOR THINGS LIKE BROWSERS & SEARCHBARS CALLED EARLIER IN THE VDL
         
         PersistenceManager.isFirstVisitStatus = false
         removeAllAVPlayerLayers()
     
-        // KEEP ALL CONFIG CALLS IN THE VDL (IN ONE PLACE) IF POSSIBLE SO ITS NOT NEEDED IN HERE AND THE VDAppear
-        targetVC.fetchProjects()
-        targetVC.fetchFavorites()
+        targetVC.fetchPrerequisitesFromServer()
+        targetVC.loadProgressFromPersistence()
     }
     
     

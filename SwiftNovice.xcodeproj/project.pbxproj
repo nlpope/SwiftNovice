@@ -52,6 +52,7 @@
 		40EC49222C4E04AA00F1EEA1 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC49212C4E04AA00F1EEA1 /* UITableView+Ext.swift */; };
 		40EC49272C4E6B7900F1EEA1 /* SNSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC49262C4E6B7900F1EEA1 /* SNSecondaryTitleLabel.swift */; };
 		40EC49462C4F73F600F1EEA1 /* SNDetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EC49452C4F73F600F1EEA1 /* SNDetailItemView.swift */; };
+		40FF06F92E055241008370C5 /* AVPlayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF06F82E055241008370C5 /* AVPlayer+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		40EC49212C4E04AA00F1EEA1 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		40EC49262C4E6B7900F1EEA1 /* SNSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		40EC49452C4F73F600F1EEA1 /* SNDetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNDetailItemView.swift; sourceTree = "<group>"; };
+		40FF06F82E055241008370C5 /* AVPlayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 		40C0BE462C45056A00AE66AC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				40FF06F82E055241008370C5 /* AVPlayer+Ext.swift */,
 				40C0BE472C45058A00AE66AC /* UIViewController+Ext.swift */,
 				40C0BE562C4565E300AE66AC /* UIView+Ext.swift */,
 				40EC49212C4E04AA00F1EEA1 /* UITableView+Ext.swift */,
@@ -465,6 +468,7 @@
 				4094E94C2C50AE03004AEAB7 /* AccountVC.swift in Sources */,
 				40C0BE3D2C44FD2C00AE66AC /* PrereqsVC.swift in Sources */,
 				402D4A372C51CCBE00FBBEE1 /* SNCourseDetailsChildVC.swift in Sources */,
+				40FF06F92E055241008370C5 /* AVPlayer+Ext.swift in Sources */,
 				40D27E312C49890F0091FE3E /* SNButton.swift in Sources */,
 				40C0BE202C43CA2200AE66AC /* AppDelegate.swift in Sources */,
 				40C0BE4A2C4506C900AE66AC /* UIResponder+Utils.swift in Sources */,

@@ -10,27 +10,43 @@ class PrereqsVC: SNDataLoadingVC
     var courses = [Prerequisite]()
     var completedCourses = [Prerequisite]()
     
+    var logoLauncher: SNLogoLauncher!
+    
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        configureNavigation()
-        configureTableView()
+        PersistenceManager.isFirstVisitStatus = true
+        configNavigation()
+        configTableView()
     }
     
     
     override func viewWillAppear(_ animated: Bool)
     {
-        getPrerequisitesFromServer()
-        loadProgressFromPersistence()
-        if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
-            displayTutorialPromptOne()
-            PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
+        logoLauncher = SNLogoLauncher(targetVC: self)
+        if PersistenceManager.fetchFirstVisitStatus() {
+            logoLauncher.configLogoLauncher()
+        } else {
+            fetchPrerequisitesFromServer()
+            loadProgressFromPersistence()
         }
+//        if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
+//            displayTutorialPromptOne()
+//            PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
+//        }
     }
     
     
-    func configureNavigation()
+    override func viewWillDisappear(_ animated: Bool) { logoLauncher = nil }
+    
+    
+    deinit { logoLauncher.removeAllAVPlayerLayers() }
+
+    //-------------------------------------//
+    // MARK: - CONFIGURATION
+    
+    func configNavigation()
     {
         let accountButton = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
 
@@ -41,7 +57,7 @@ class PrereqsVC: SNDataLoadingVC
     }
     
     
-    func configureTableView()
+    func configTableView()
     {
         view.addSubview(tableView)
         
@@ -110,7 +126,7 @@ class PrereqsVC: SNDataLoadingVC
     }
     
     
-    func getPrerequisitesFromServer()
+    func fetchPrerequisitesFromServer()
     {
         showLoadingView()
         NetworkManager.shared.getPrerequisites { [weak self] result in
