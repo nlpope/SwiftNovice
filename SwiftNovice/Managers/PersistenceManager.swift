@@ -1,31 +1,33 @@
-//
-//  PersistenceManager.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/20/24.
-//
+//  File: PersistenceManager.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/20/24.
 
 import Foundation
 
-enum ProgressPersistenceActionType {
+enum ProgressPersistenceActionType
+{
     case complete, incomplete
 }
 
-enum PersistenceManager {
-    
+enum PersistenceManager
+{
     static private let defaults = UserDefaults.standard
-    enum Keys {
-        static let accountHolders                   = "accountHolders"
-        static let isLoggedIn                       = "isLoggedIn"
-        static let completedCourses                 = "completedCourses"
-        static let completedProjects                = "completedProjects"
+    
+    enum Keys
+    {
+        static let accountHolders = "accountHolders"
+        static let isLoggedIn = "isLoggedIn"
+        static let completedCourses = "completedCourses"
+        static let completedProjects = "completedProjects"
         static var isFirstVisitToPrerequisiteScreen = true
-        static var isFirstVisitToProjectScreen      = true
+        static var isFirstVisitToProjectScreen = true
     }
     
+    //-------------------------------------//
+    // MARK: - COURSE PERSISTENCE
     
-    // MARK: COURSE PERSISTENCE
-    static func updateWith(course: Prerequisite, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void) {
+    static func updateWith(course: Prerequisite, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void)
+    {
         fetchCompletedCourses { result in
             switch result {
             case .success(var courses):
@@ -45,7 +47,8 @@ enum PersistenceManager {
     }  
     
     
-    static func updateWith(project: Project, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void) {
+    static func updateWith(project: Project, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void)
+    {
         fetchCompletedProjects { result in
             switch result {
             case .success(var projects):
@@ -65,7 +68,8 @@ enum PersistenceManager {
     }
     
     
-    static func updateLoggedInStatus(loggedIn: Bool) {
+    static func updateLoggedInStatus(loggedIn: Bool)
+    {
         guard loggedIn else {
             defaults.set(false, forKey: Keys.isLoggedIn)
             return
@@ -98,8 +102,8 @@ enum PersistenceManager {
         }
         
         do {
-            let decoder             = JSONDecoder()
-            let completedProjects   = try decoder.decode([Project].self, from: completedProjectsData)
+            let decoder = JSONDecoder()
+            let completedProjects = try decoder.decode([Project].self, from: completedProjectsData)
             completed(.success(completedProjects))
         } catch {
             completed(.failure(.failedToLoadProgress))
@@ -107,13 +111,8 @@ enum PersistenceManager {
     }
     
     
-//    static func savePrerequisiteFirstVisitPersistence(withBoolean boolean: Bool) -> SNError? {
-//        defaults.bool(forKey: Keys.isFirstVisitToPrerequisiteScreen) = boolean
-//       
-//    }
-    
-    
-    static func save(completedCourses: [Prerequisite]) -> SNError? {
+    static func save(completedCourses: [Prerequisite]) -> SNError?
+    {
         do {
             let encoder = JSONEncoder()
             let encodedCompletedCourses = try encoder.encode(completedCourses)
@@ -125,7 +124,8 @@ enum PersistenceManager {
     } 
     
     
-    static func save(completedProjects: [Project]) -> SNError? {
+    static func save(completedProjects: [Project]) -> SNError?
+    {
         do {
             let encoder = JSONEncoder()
             let encodedCompletedProjects = try encoder.encode(completedProjects)
@@ -136,9 +136,11 @@ enum PersistenceManager {
         }
     }
     
+    //-------------------------------------//
+    // MARK: - LOGIN PERSISTENCE
     
-    // MARK: LOGIN PERSISTENCE
-    static func retrieveLoggedInStatus() -> Bool {
+    static func retrieveLoggedInStatus() -> Bool
+    {
         let loggedInStatus = defaults.bool(forKey: Keys.isLoggedIn)
         guard loggedInStatus else { return false }
         return true
