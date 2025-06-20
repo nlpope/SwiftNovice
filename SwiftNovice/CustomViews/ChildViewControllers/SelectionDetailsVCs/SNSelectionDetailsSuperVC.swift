@@ -7,33 +7,32 @@
 
 import UIKit
 
-class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC {
-    
-    // see note 1 in app delegate
-    let titleLabel                  = SNTitleLabel(textAlignment: .left, fontSize: 20, lineBreakMode: .byWordWrapping)
-    let selectedItemImageView       = SNAvatarImageView(frame: .zero)
-    let bioDetailItemView           = SNDetailItemView()
-    let priceDetailItemView         = SNDetailItemView()
-    let callToActionButton          = SNButton()
-    let toggleButton                = UIButton() // set your TAMIC
-    let toggleLabel                 = SNSecondaryTitleLabel(fontSize: 18)
+class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC
+{
+    let titleLabel = SNTitleLabel(textAlignment: .left, fontSize: 20, lineBreakMode: .byWordWrapping)
+    let selectedItemImageView = SNAvatarImageView(frame: .zero)
+    let bioDetailItemView = SNDetailItemView()
+    let priceDetailItemView = SNDetailItemView()
+    let callToActionButton = SNButton()
+    let toggleButton = UIButton() // set your TAMIC
+    let toggleLabel = SNSecondaryTitleLabel(fontSize: 18)
     
     var selectedItem: T!
-    var selectionCompleted: Bool    = false
+    var selectionCompleted: Bool = false
     
     
-    init(selectedItem: T) {
+    init(selectedItem: T)
+    {
         super.init(nibName: nil, bundle: nil)
         self.selectedItem = selectedItem
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         configureNavigation()
         configureUIElements()
@@ -41,41 +40,41 @@ class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC {
     }
 
     
-    func configureNavigation() {
+    func configureNavigation()
+    {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
 
-        view.backgroundColor                = .systemBackground
-        navigationItem.rightBarButtonItem   = doneButton
+        view.backgroundColor = .systemBackground
+        navigationItem.rightBarButtonItem = doneButton
     }
     
     
-    func configureUIElements() {
+    func configureUIElements()
+    {
         callToActionButton.addTarget(self, action: #selector(callToActionButtonTapped), for: .touchUpInside)
         toggleButton.addTarget(self, action: #selector(toggleButtonTapped), for: .touchUpInside)
         toggleButton.setImage(SFSymbols.incomplete, for: .normal)
-        toggleLabel.text    = "Completed"
+        toggleLabel.text = "Completed"
     }
     
     
-    func layoutUIElements() {
-        let edgePadding: CGFloat    = 20
+    func layoutUIElements()
+    {
+        let edgePadding: CGFloat = 20
         let elementPadding: CGFloat = 5
         
         view.addSubviews(titleLabel, selectedItemImageView, bioDetailItemView, priceDetailItemView, callToActionButton, toggleButton, toggleLabel)
 
-        toggleButton.translatesAutoresizingMaskIntoConstraints          = false
-        bioDetailItemView.translatesAutoresizingMaskIntoConstraints     = false
-        priceDetailItemView.translatesAutoresizingMaskIntoConstraints   = false
+        toggleButton.translatesAutoresizingMaskIntoConstraints = false
+        bioDetailItemView.translatesAutoresizingMaskIntoConstraints = false
+        priceDetailItemView.translatesAutoresizingMaskIntoConstraints = false
         
-        // previous constraints = pieces in relation to each other
-        // below constraints    = whole unit in relation to this VC
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -edgePadding),
             titleLabel.heightAnchor.constraint(equalToConstant: 55),
             
-            //avatar image
             selectedItemImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: elementPadding),
             selectedItemImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: edgePadding),
             selectedItemImageView.heightAnchor.constraint(equalToConstant: 150),
@@ -108,7 +107,8 @@ class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC {
     @objc func callToActionButtonTapped() {}
   
     
-    @objc func toggleButtonTapped() {
+    @objc func toggleButtonTapped()
+    {
         selectionCompleted = !selectionCompleted
         let imageToDisplay = selectionCompleted ? SFSymbols.complete : SFSymbols.incomplete
         toggleButton.setImage(imageToDisplay, for: .normal)
@@ -116,8 +116,5 @@ class SNSelectionDetailsSuperVC<T: Codable>: SNDataLoadingVC {
     }
     
     
-    @objc func dismissVC() {
-        dismiss(animated: true)
-    }
+    @objc func dismissVC() { dismiss(animated: true) }
 }
-
