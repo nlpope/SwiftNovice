@@ -8,11 +8,14 @@
 import XCTest
 @testable import SwiftNovice
 
-final class NetworkManagerTests: XCTestCase {
+final class NetworkManagerTests: XCTestCase
+{
     // ARRANGE
     var prerequisites = [Prerequisite]()
 
-    func testSuccessfulPrerequisiteFetch() {
+    
+    func testSuccessfulPrerequisiteFetch()
+    {
         // ACT
         NetworkManager.shared.getPrerequisites { [weak self] result in
             guard let self = self else { return }
@@ -27,7 +30,5 @@ final class NetworkManagerTests: XCTestCase {
             // ASSERT
             XCTAssertTrue(!self.prerequisites.isEmpty)
         }
-        
     }
-
 }
