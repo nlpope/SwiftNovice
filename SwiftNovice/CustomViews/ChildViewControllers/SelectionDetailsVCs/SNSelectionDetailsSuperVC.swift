@@ -1,9 +1,6 @@
-//
-//  SNSelectionDetailsSuperVC.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/24/24.
-//
+//  File: SNSelectionDetailsSuperVC.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/24/24.
 
 import UIKit
 

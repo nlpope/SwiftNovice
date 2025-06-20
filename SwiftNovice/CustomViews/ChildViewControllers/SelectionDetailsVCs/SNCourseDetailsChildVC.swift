@@ -1,9 +1,6 @@
-//
-//  SNCourseDetailsChildVC.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/24/24.
-//
+//  File: SNCourseDetailsChildVC.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/24/24.
 
 import UIKit
 
@@ -13,8 +10,8 @@ protocol SNCourseDetailsChildVCDelegate: AnyObject
     func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool)
 }
 
-class SNCourseDetailsChildVC: SNSelectionDetailsSuperVC<Prerequisite> {
-
+class SNCourseDetailsChildVC: SNSelectionDetailsSuperVC<Prerequisite>
+{
     weak var delegate: SNCourseDetailsChildVCDelegate!
     var completedCourses = [Prerequisite]()
 

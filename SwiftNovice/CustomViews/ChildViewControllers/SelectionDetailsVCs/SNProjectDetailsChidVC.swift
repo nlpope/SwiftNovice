@@ -1,9 +1,6 @@
-//
-//  SNProjectDetailsChidVC.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/25/24.
-//
+//  File: SNProjectDetailsChidVC.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/25/24.
 
 import UIKit
 
