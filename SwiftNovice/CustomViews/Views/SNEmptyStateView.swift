@@ -1,44 +1,39 @@
-//
-//  SNEmptyStateView.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/15/24.
-//
+//  File: SNEmptyStateView.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/15/24.
 
 import UIKit
 
-class SNEmptyStateView: UIView {
-    
-    let messageLabel        = SNTitleLabel(textAlignment: .center, fontSize: 30, lineBreakMode: .byWordWrapping)
-    let logoImageView       = UIImageView()
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-    }
+class SNEmptyStateView: UIView
+{
+    let messageLabel = SNTitleLabel(textAlignment: .center, fontSize: 30, lineBreakMode: .byWordWrapping)
+    let logoImageView = UIImageView()
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    override init(frame: CGRect) { super.init(frame: frame) }
     
     
-    convenience init(message: String) {
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
+    
+    convenience init(message: String)
+    {
         self.init(frame: .zero)
         messageLabel.text = message
     }
     
     
-    private func configure() {
+    private func configure()
+    {
         configureMessageLabel()
         configureLogoImageView()
     }
     
     
-    private func configureMessageLabel() {
-        messageLabel.numberOfLines  = 3
-        messageLabel.textColor      = .secondaryLabel
+    private func configureMessageLabel()
+    {
+        messageLabel.numberOfLines = 3
+        messageLabel.textColor = .secondaryLabel
         
         NSLayoutConstraint.activate([
             messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -150),
@@ -49,8 +44,9 @@ class SNEmptyStateView: UIView {
     }
     
     
-    private func configureLogoImageView() {
-        logoImageView.image         = Images.emptyStateLogo
+    private func configureLogoImageView()
+    {
+        logoImageView.image = Images.emptyStateLogo
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

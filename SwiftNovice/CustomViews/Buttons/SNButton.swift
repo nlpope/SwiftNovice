@@ -1,41 +1,40 @@
-//
-//  SNButton.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/18/24.
-//
+//  File: SNButton.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/18/24.
 
 import UIKit
 
-class SNButton: UIButton {
-    
-    override init(frame: CGRect) {
+class SNButton: UIButton
+{
+    override init(frame: CGRect)
+    {
         super.init(frame: frame)
         configure()
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    convenience init(backgroundColor: UIColor, title: String) {
+    convenience init(backgroundColor: UIColor, title: String)
+    {
         self.init(frame: .zero)
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
     }
     
     
-    private func configure() {
-        layer.cornerRadius                          = 10
-        titleLabel?.font                            = UIFont.preferredFont(forTextStyle: .headline)
+    private func configure()
+    {
+        layer.cornerRadius = 10
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         setTitleColor(.white, for: .normal)
-        translatesAutoresizingMaskIntoConstraints   = false
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     
-    func set(backgroundColor: UIColor, title: String) {
+    func set(backgroundColor: UIColor, title: String)
+    {
         self.backgroundColor = backgroundColor
         setTitle(title, for: .normal)
     }

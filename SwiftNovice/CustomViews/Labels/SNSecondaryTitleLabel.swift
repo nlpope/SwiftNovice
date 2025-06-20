@@ -1,9 +1,6 @@
-//
-//  SNSecondaryTitleLabel.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/22/24.
-//
+//  File: SNSecondaryTitleLabel.swift
+//  Proejct: SwiftNovice
+//  Created by: Noah Pope on 7/22/24.
 
 import UIKit
 

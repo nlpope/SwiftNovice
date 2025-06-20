@@ -1,9 +1,6 @@
-//
-//  PrerequsiteCell.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/21/24.
-//
+//  File: PrerequsiteCell.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/21/24.
 
 import UIKit
 

@@ -1,34 +1,32 @@
-//
-//  SNDetailItemView.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/23/24.
-//
+//  File: SNDetailItemView.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/23/24.
 
 import UIKit
 
-enum ImageType {
+enum ImageType
+{
     case bio, price
 }
 
-class SNDetailItemView: UIView {
-
+class SNDetailItemView: UIView
+{
     let iconImageView       = UIImageView()
     let bodyLabel           = UILabel()
     
 
-    override init(frame: CGRect) {
+    override init(frame: CGRect)
+    {
         super.init(frame: frame)
         configure()
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     
-    func set(imageType: ImageType, text: String) {
+    func set(imageType: ImageType, text: String)
+    {
         switch imageType {
         case .bio:
             iconImageView.image = SFSymbols.bio
@@ -39,19 +37,20 @@ class SNDetailItemView: UIView {
     }
     
     
-    private func configure() {
+    private func configure()
+    {
         addSubviews(iconImageView, bodyLabel)
         
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         bodyLabel.translatesAutoresizingMaskIntoConstraints     = false
         
-        iconImageView.tintColor     = .label
-        iconImageView.contentMode   = .scaleAspectFill
+        iconImageView.tintColor = .label
+        iconImageView.contentMode = .scaleAspectFill
         
-        bodyLabel.textAlignment     = .left
-        bodyLabel.font              = UIFont.systemFont(ofSize: 15)
-        bodyLabel.lineBreakMode     = .byTruncatingTail
-        bodyLabel.numberOfLines     = 0
+        bodyLabel.textAlignment = .left
+        bodyLabel.font = UIFont.systemFont(ofSize: 15)
+        bodyLabel.lineBreakMode = .byTruncatingTail
+        bodyLabel.numberOfLines = 0
         
         let imageToLabelPadding: CGFloat = 10
         

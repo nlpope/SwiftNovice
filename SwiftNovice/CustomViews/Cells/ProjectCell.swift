@@ -1,9 +1,6 @@
-//
-//  ProjectCell.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/26/24.
-//
+//  File: ProjectCell.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/26/24.
 
 import UIKit
 
