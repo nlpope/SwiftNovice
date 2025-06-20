@@ -11,8 +11,7 @@ import SafariServices
 extension UIViewController
 {
     func presentSNAlertOnMainThread(alertTitle: String, message: String, buttonTitle: String) {
-        DispatchQueue.main.async
-        {
+        DispatchQueue.main.async {
             let alertVC = SNAlertChildVC(alertTitle: alertTitle, message: message, buttonTitle: buttonTitle)
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve

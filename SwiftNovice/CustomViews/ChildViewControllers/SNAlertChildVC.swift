@@ -7,12 +7,12 @@
 
 import UIKit
 
-class SNAlertChildVC: UIViewController {
-
+class SNAlertChildVC: UIViewController
+{
     let containerView = SNAlertContainerView()
-    let titleLabel    = SNTitleLabel(textAlignment: .center, fontSize: 20, lineBreakMode: .byWordWrapping)
-    let messageLabel  = SNBodyLabel(textAlignment: .center)
-    let actionButton  = SNButton(backgroundColor: .systemPink, title: "ok")
+    let titleLabel = SNTitleLabel(textAlignment: .center, fontSize: 20, lineBreakMode: .byWordWrapping)
+    let messageLabel = SNBodyLabel(textAlignment: .center)
+    let actionButton = SNButton(backgroundColor: .systemPink, title: "ok")
     
     var alertTitle: String?
     var message: String?
@@ -21,20 +21,20 @@ class SNAlertChildVC: UIViewController {
     let padding: CGFloat = 20
     
     
-    init(alertTitle: String, message: String, buttonTitle: String) {
+    init(alertTitle: String, message: String, buttonTitle: String)
+    {
         super.init(nibName: nil, bundle: nil)
-        self.alertTitle  = alertTitle
-        self.message     = message
+        self.alertTitle = alertTitle
+        self.message = message
         self.buttonTitle = buttonTitle
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         view.addSubview(containerView)
@@ -48,7 +48,8 @@ class SNAlertChildVC: UIViewController {
     }
     
     
-    func configureContainerView() {
+    func configureContainerView()
+    {
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -58,8 +59,8 @@ class SNAlertChildVC: UIViewController {
     }
     
     
-    func configureTitleLabel() {
-        // for if alertTitle's custom init isn't used & it comes up nil
+    func configureTitleLabel()
+    {
         titleLabel.text = alertTitle ?? "Something went wrong"
         
         NSLayoutConstraint.activate([
@@ -71,8 +72,9 @@ class SNAlertChildVC: UIViewController {
     }
     
     
-    func configureMessageLabel() {
-        messageLabel.text          = message ?? "Unable to complete request"
+    func configureMessageLabel()
+    {
+        messageLabel.text = message ?? "Unable to complete request"
         messageLabel.numberOfLines = 0
         
         NSLayoutConstraint.activate([
@@ -84,7 +86,8 @@ class SNAlertChildVC: UIViewController {
     }
     
     
-    func configureActionButton() {
+    func configureActionButton()
+    {
         actionButton.setTitle(buttonTitle, for: .normal)
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         
@@ -98,7 +101,5 @@ class SNAlertChildVC: UIViewController {
     }
     
     
-    @objc func dismissVC() {
-        dismiss(animated: true)
-    }
+    @objc func dismissVC() { dismiss(animated: true) }
 }

@@ -7,17 +7,18 @@
 
 import UIKit
 
-class SNDataLoadingVC: UIViewController {
-
+class SNDataLoadingVC: UIViewController
+{
     var containerView: UIView!
 
 
-    func showLoadingView() {
+    func showLoadingView()
+    {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
         
-        containerView.backgroundColor   = .systemBackground
-        containerView.alpha             = 0
+        containerView.backgroundColor = .systemBackground
+        containerView.alpha = 0
         
         UIView.animate(withDuration: 0.25) { self.containerView.alpha = 0.8 }
         
@@ -35,7 +36,8 @@ class SNDataLoadingVC: UIViewController {
     }
     
     
-    func dismissLoadingView() {
+    func dismissLoadingView()
+    {
         DispatchQueue.main.async {
             self.containerView.removeFromSuperview()
             self.containerView = nil
@@ -43,10 +45,10 @@ class SNDataLoadingVC: UIViewController {
     }
     
     
-    func showEmptyStateView(with message: String, in view: UIView) {
+    func showEmptyStateView(with message: String, in view: UIView)
+    {
         let emptyStateView      = SNEmptyStateView(message: message)
         emptyStateView.frame    = view.bounds
         view.addSubview(emptyStateView)
     }
-
 }
