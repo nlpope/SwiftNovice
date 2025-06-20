@@ -7,15 +7,15 @@
 
 import UIKit
 
-extension UIResponder {
+extension UIResponder
+{
+    //-------------------------------------//
+    // MARK: - KEYBOARD HANDLER
+    private struct Static { static weak var responder: UIResponder? }
     
-    // MARK: KEYBOARD
-    private struct Static {
-        static weak var responder: UIResponder?
-    }
     
-    
-    static func currentResponder() -> UIResponder? {
+    static func currentResponder() -> UIResponder?
+    {
         Static.responder = nil
         UIApplication.shared.sendAction(#selector(UIResponder._trap), to: nil, from: nil, for: nil)
         return Static.responder

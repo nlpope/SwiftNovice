@@ -158,9 +158,9 @@
 		40C0BE1E2C43CA2200AE66AC /* SwiftNovice */ = {
 			isa = PBXGroup;
 			children = (
+				40D47A772C48EDA6008B52CC /* Managers */,
 				40C0BE462C45056A00AE66AC /* Extensions */,
 				40C0BE432C45011D00AE66AC /* Utilities */,
-				40D47A772C48EDA6008B52CC /* Managers */,
 				40D47A762C48ED9B008B52CC /* Models */,
 				40C0BE362C44FBD700AE66AC /* CustomViews */,
 				40C0BE3B2C44FCE900AE66AC /* Screens */,

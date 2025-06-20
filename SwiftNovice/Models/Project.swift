@@ -9,9 +9,11 @@ import Foundation
 
 struct Project: Codable, Comparable {
     
-    static func < (lhs: Project, rhs: Project) -> Bool {
+    static func < (lhs: Project, rhs: Project) -> Bool
+    {
         return lhs.projectName < rhs.projectName
     }
+    
     
     let projectName: String
     let projectLink: String

@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct User: Comparable {
-    static func < (lhs: User, rhs: User) -> Bool {
-        return lhs.username < rhs.username
-    }
-    
+struct User: Comparable
+{
     let username: String
     let password: String
+    
+    
+    static func < (lhs: User, rhs: User) -> Bool { return lhs.username < rhs.username }
 }
