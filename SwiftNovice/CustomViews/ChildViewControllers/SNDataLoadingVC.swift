@@ -1,9 +1,6 @@
-//
-//  SNDataLoadingVC.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/15/24.
-//
+//  File: SNDataLoadingVC.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/15/24.
 
 import UIKit
 

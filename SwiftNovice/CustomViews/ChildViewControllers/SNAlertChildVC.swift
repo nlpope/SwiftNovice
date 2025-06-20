@@ -1,9 +1,6 @@
-//
-//  SNAlertChildVC.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/20/24.
-//
+//  File: SNAlertChildVC.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/20/24.
 
 import UIKit
 
@@ -44,7 +41,6 @@ class SNAlertChildVC: UIViewController
         configureTitleLabel()
         configureMessageLabel()
         configureActionButton()
-        
     }
     
     
