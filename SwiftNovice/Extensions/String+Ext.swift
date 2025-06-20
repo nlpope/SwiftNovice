@@ -1,10 +1,6 @@
-//
-//  String+Ext.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/26/24.
-//
-
+//  File: String+Ext.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/26/24.
 
 import Foundation
 
@@ -19,8 +15,8 @@ extension String
 
     var isValidPassword: Bool
     {
-        let passwordFormat      = "(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}"
-        let passwordPredicate   = NSPredicate(format: "SELF MATCHES %@", passwordFormat)
+        let passwordFormat = "(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}"
+        let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordFormat)
         return passwordPredicate.evaluate(with: self)
     }
 

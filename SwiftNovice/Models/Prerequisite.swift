@@ -1,9 +1,6 @@
-//
-//  Prerequisite.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/18/24.
-//
+//  File: Prerequisite.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/18/24.
 
 import Foundation
 

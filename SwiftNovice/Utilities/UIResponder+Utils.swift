@@ -1,9 +1,6 @@
-//
-//  UIResponder+Utils.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/15/24.
-//
+//  File: UIResponder+Utils.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/15/24.
 
 import UIKit
 
@@ -11,6 +8,7 @@ extension UIResponder
 {
     //-------------------------------------//
     // MARK: - KEYBOARD HANDLER
+    
     private struct Static { static weak var responder: UIResponder? }
     
     
@@ -22,7 +20,5 @@ extension UIResponder
     }
     
     
-    @objc private func _trap() {
-        Static.responder = self
-    }
+    @objc private func _trap() { Static.responder = self }
 }

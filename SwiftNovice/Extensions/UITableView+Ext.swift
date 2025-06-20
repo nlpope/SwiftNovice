@@ -1,9 +1,6 @@
-//
-//  UITableView+Ext.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/21/24.
-//
+//  File: UITableView+Ext.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/21/24.
 
 import UIKit
 

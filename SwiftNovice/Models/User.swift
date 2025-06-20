@@ -1,9 +1,6 @@
-//
-//  User.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/23/24.
-//
+//  File: User.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/23/24.
 
 import Foundation
 

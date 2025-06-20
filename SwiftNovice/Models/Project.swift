@@ -1,9 +1,6 @@
-//
-//  Project.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/26/24.
-//
+//  File: Project.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/26/24.
 
 import Foundation
 

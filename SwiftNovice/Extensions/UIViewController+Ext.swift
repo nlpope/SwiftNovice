@@ -1,9 +1,6 @@
-//
-//  UIViewController+Ext.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/15/24.
-//
+//  File: UIViewController+Ext.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/15/24.
 
 import UIKit
 import SafariServices
@@ -21,15 +18,17 @@ extension UIViewController
     }
     
     
-    func presentSafariVC(with url: URL) {
+    func presentSafariVC(with url: URL)
+    {
         let safariVC = SFSafariViewController(url: url)
         safariVC.preferredControlTintColor = .systemGreen
         present(safariVC, animated: true)
     }
     
+    #warning("keyboard not triggering UI lift for some reason - fix this")
+    //-------------------------------------//
+    // MARK: - SOLVE FOR KEYBOARD BLOCKING VIEW
     
-    #warning("keyboard not triggering UI lift for some reason - fix later")
-    // MARK: SOLVE FOR KEYBOARD BLOCKING FIELD
     func setupKeyboardHiding()
     {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

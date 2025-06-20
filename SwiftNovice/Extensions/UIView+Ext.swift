@@ -1,9 +1,6 @@
-//
-//  UIView+Ext.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/15/24.
-//
+//  File: UIView+Ext.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/15/24.
 
 import UIKit
 

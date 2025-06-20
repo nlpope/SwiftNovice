@@ -1,6 +1,6 @@
 //  File: SNLogoLauncher+Utils.swift
 //  Project: Project32-SwiftSearcher
-//  Created by: Noah Pope on 6/3/25.
+//  Created by: Noah Pope on 6/20/25.
 
 //  * ADD THE MP4 FLICKER LOGO FILE
 //  * ADD THE AVPLAYER+EXT FILE

@@ -1,9 +1,6 @@
-//
-//  Constants+Utils.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/15/24.
-//
+//  File: Constants+Utils.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/15/24.
 
 import UIKit
 
