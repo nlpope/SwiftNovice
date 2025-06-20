@@ -1,14 +1,11 @@
-//
-//  SignInVC.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/18/24.
-//
+//  File: SignInVC.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/18/24.
 
 import UIKit
 
-class SignInVC: UIViewController {
-    
+class SignInVC: UIViewController
+{
     let logoImageView       = UIImageView()
     let usernameTextField   = SNTextField(placeholder: "username")
     let passwordTextField   = SNTextField(placeholder: "password")
@@ -20,7 +17,8 @@ class SignInVC: UIViewController {
     var isUsernameEntered: Bool { return !usernameTextField.text!.isEmpty }
     var isPasswordEntered: Bool { return !passwordTextField.text!.isEmpty }
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         configureVC()
         configureLogoImageView()
@@ -32,7 +30,8 @@ class SignInVC: UIViewController {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         usernameTextField.text = ""
         passwordTextField.text = ""
@@ -40,19 +39,22 @@ class SignInVC: UIViewController {
     }
     
     
-    func configureVC() {
+    func configureVC()
+    {
         view.backgroundColor = .systemBackground
         view.addSubviews(logoImageView, usernameTextField, passwordTextField, signInLabel, signUpLabel, forgotLabel)
     }
     
     
-    func createDismissKeyboardTapGesture() {
+    func createDismissKeyboardTapGesture()
+    {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
     
     
-    func configureLogoImageView() {
+    func configureLogoImageView()
+    {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = Images.snLogo
         
@@ -66,7 +68,8 @@ class SignInVC: UIViewController {
     }
     
     
-    func configureUsernameTextField() {
+    func configureUsernameTextField()
+    {
         usernameTextField.delegate = self
         
         NSLayoutConstraint.activate([
@@ -78,7 +81,8 @@ class SignInVC: UIViewController {
     }  
     
     
-    func configurePasswordTextField() {
+    func configurePasswordTextField()
+    {
         passwordTextField.delegate = self
         passwordTextField.isSecureTextEntry = true
         
@@ -91,7 +95,8 @@ class SignInVC: UIViewController {
     }
     
     
-    func configureSignInLabel() {
+    func configureSignInLabel()
+    {
         let tap = UITapGestureRecognizer(target: self, action: #selector(resetRootVC))
         signInLabel.addGestureRecognizer(tap)
         
@@ -102,7 +107,8 @@ class SignInVC: UIViewController {
     }
     
     
-    func configureSignUpLabel() {
+    func configureSignUpLabel()
+    {
         let tap = UITapGestureRecognizer(target: self, action: #selector(presentSignUpVC))
         signUpLabel.addGestureRecognizer(tap)
         
@@ -129,7 +135,8 @@ class SignInVC: UIViewController {
     }
     
     
-    @objc func resetRootVC() {
+    @objc func resetRootVC()
+    {
 //        guard isUsernameEntered, isPasswordEntered else {
 //            presentSNAlertOnMainThread(alertTitle: "Empty username/password", message: "The username or password field has been left blank. Please enter a value or sign up if you do not have an account.", buttonTitle: "Ok")
 //            return
@@ -162,8 +169,10 @@ class SignInVC: UIViewController {
 }
 
 
-extension SignInVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+extension SignInVC: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         resetRootVC()
         return true
     }

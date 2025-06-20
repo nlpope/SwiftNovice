@@ -1,28 +1,26 @@
-//
-//  ProjectsVC.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/15/24.
-//
+//  File: ProjectsVC.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/15/24.
 
 import UIKit
 
-class ProjectsVC: SNDataLoadingVC {
-    // see anki - UserDefaults for tracking if users 1st time on screen
-    
+class ProjectsVC: SNDataLoadingVC
+{
     let tableView               = UITableView()
     var projects                = [Project]()
     var completedProjects       = [Project]()
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         configureNavigation()
         configureTableView()
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         getProjectsFromServer()
         loadProgressFromPersistence()
         if PersistenceManager.Keys.isFirstVisitToProjectScreen {
@@ -32,33 +30,36 @@ class ProjectsVC: SNDataLoadingVC {
     }
     
     
-    func configureNavigation() {
-        let accountButton       = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
+    func configureNavigation()
+    {
+        let accountButton = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
         
-        view.backgroundColor                                    = .systemBackground
-        title                                                   = "Projects\n"
-        navigationItem.rightBarButtonItem                       = accountButton
-        navigationController?.navigationBar.prefersLargeTitles  = true
+        view.backgroundColor = .systemBackground
+        title = "Projects\n"
+        navigationItem.rightBarButtonItem = accountButton
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
-    func configureTableView() {
+    func configureTableView()
+    {
         view.addSubview(tableView)
         
-        tableView.frame         = view.bounds
-        tableView.rowHeight     = 80
-        tableView.delegate      = self
-        tableView.dataSource    = self
+        tableView.frame = view.bounds
+        tableView.rowHeight = 80
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.removeExcessCells()
         
         tableView.register(ProjectCell.self, forCellReuseIdentifier: ProjectCell.reuseID)
     }
     
     
-    func displayTutorialPromptOne() {
-        let message         = "Below are sample projects that increase in difficulty to master what you've learned on the prerequisites tab..."
-        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+    func displayTutorialPromptOne()
+    {
+        let message = "Below are sample projects that increase in difficulty to master what you've learned on the prerequisites tab..."
+        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.displayTutorialPromptTwo()
         }
@@ -68,10 +69,11 @@ class ProjectsVC: SNDataLoadingVC {
     }
     
     
-    func displayTutorialPromptTwo() {
-        let message         = "The first 4 are rather intermediate and the last 3 are most difficult. You may complete them in whichever order you desire..."
-        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+    func displayTutorialPromptTwo()
+    {
+        let message = "The first 4 are rather intermediate and the last 3 are most difficult. You may complete them in whichever order you desire..."
+        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.displayTutorialPromptThree()
         }
@@ -81,10 +83,11 @@ class ProjectsVC: SNDataLoadingVC {
     }
     
     
-    func displayTutorialPromptThree() {
-        let message         = "Once you mark an item as complete, it will glow green. You may change this status anytime..."
-        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction    = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
+    func displayTutorialPromptThree()
+    {
+        let message = "Once you mark an item as complete, it will glow green. You may change this status anytime..."
+        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.displayTutorialPromptFour()
         }
@@ -94,17 +97,19 @@ class ProjectsVC: SNDataLoadingVC {
     }
     
     
-    func displayTutorialPromptFour() {
-        let message         = "You may visit this tutorial again by clicking on the account icon above."
-        let ac              = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction    = UIAlertAction(title: "Let's go!", style: .default, handler: nil)
+    func displayTutorialPromptFour()
+    {
+        let message = "You may visit this tutorial again by clicking on the account icon above."
+        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Let's go!", style: .default, handler: nil)
         
         ac.addAction(submitAction)
         present(ac, animated: true)
     }
     
     
-    func getProjectsFromServer() {
+    func getProjectsFromServer()
+    {
         showLoadingView()
         NetworkManager.shared.getProjects { [weak self] result in
             guard let self = self else { return }
@@ -121,7 +126,8 @@ class ProjectsVC: SNDataLoadingVC {
     }
     
     
-    func saveProgressInPersistence(withProject project: Project, toggleType: Bool) {
+    func saveProgressInPersistence(withProject project: Project, toggleType: Bool)
+    {
         showLoadingView()
         let actionType: ProgressPersistenceActionType = toggleType ? .complete : .incomplete
         
@@ -132,7 +138,6 @@ class ProjectsVC: SNDataLoadingVC {
             guard let error else {
                 switch actionType {
                 case .complete:
-                    // PRESENT CONFETTI ANIMATION ON MAIN THREAD - CREATE IN UIVC+EXT
                     self.presentSNAlertOnMainThread(alertTitle: "Congratulations!", message: "Good work on completing this project. Keep going, you've got this 🥳.", buttonTitle: "Ok")
                 case .incomplete:
                     self.presentSNAlertOnMainThread(alertTitle: "Course marked incomplete", message: "We have successfully removed this project from your completed lsit.", buttonTitle: "Ok")
@@ -146,7 +151,8 @@ class ProjectsVC: SNDataLoadingVC {
     }
     
     
-    func loadProgressFromPersistence() {
+    func loadProgressFromPersistence()
+    {
         PersistenceManager.fetchCompletedProjects { [weak self] result in
             guard let self = self else { return }
             
@@ -161,8 +167,9 @@ class ProjectsVC: SNDataLoadingVC {
         }
     }
     
-    #warning("consolidate into one place DRY")
-    func updateUI() {
+   
+    func updateUI()
+    {
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.view.bringSubviewToFront(self.tableView)
@@ -170,8 +177,9 @@ class ProjectsVC: SNDataLoadingVC {
     }
     
     
-    @objc func openAccountMenu() {
-        let destVC      = AccountVC()
+    @objc func openAccountMenu()
+    {
+        let destVC = AccountVC()
         destVC.delegate = self
         if let acctVCPresentationController = destVC.presentationController as? UISheetPresentationController {
             acctVCPresentationController.detents = [.medium()]
@@ -181,16 +189,16 @@ class ProjectsVC: SNDataLoadingVC {
 }
 
 
-extension ProjectsVC: UITableViewDataSource, UITableViewDelegate {
+extension ProjectsVC: UITableViewDataSource, UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    { return projects.count }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projects.count
-    }
     
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell            = tableView.dequeueReusableCell(withIdentifier: ProjectCell.reuseID) as! ProjectCell
-        let project         = projects[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProjectCell.reuseID) as! ProjectCell
+        let project = projects[indexPath.row]
         
         cell.set(project: project)
         cell.backgroundColor = completedProjects.contains(project) ? .systemGreen : .systemBackground
@@ -199,26 +207,31 @@ extension ProjectsVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let project             = projects[indexPath.row]
-        let destVC              = SNProjectDetailsChildVC(project: project, completedProjects: completedProjects, delegate: self)
-        let navController       = UINavigationController(rootViewController: destVC)
+        let project = projects[indexPath.row]
+        let destVC = SNProjectDetailsChildVC(project: project, completedProjects: completedProjects, delegate: self)
+        let navController = UINavigationController(rootViewController: destVC)
         
         present(navController, animated: true)
     }
 }
 
 
-extension ProjectsVC: SNProjectDetailsChildVCDelegate {
-    func toggleCourseCompletion(onProject project: Project, toggleType: Bool) {
+extension ProjectsVC: SNProjectDetailsChildVCDelegate
+{
+    func toggleCourseCompletion(onProject project: Project, toggleType: Bool)
+    {
         navigationController?.dismiss(animated: true)
         saveProgressInPersistence(withProject: project, toggleType: toggleType)
         loadProgressFromPersistence()
     }
     
-    func followLink(forProject project: Project) {
+    
+    func followLink(forProject project: Project)
+    {
         print("delegate reached for course link")
         navigationController?.dismiss(animated: true)
         guard let url = URL(string: project.projectLink) else {
@@ -230,8 +243,10 @@ extension ProjectsVC: SNProjectDetailsChildVCDelegate {
 }
 
 
-extension ProjectsVC: AccountVCDelegate {
-    func signOut() {
+extension ProjectsVC: AccountVCDelegate
+{
+    func signOut()
+    {
         navigationController?.dismiss(animated: true)
         PersistenceManager.updateLoggedInStatus(loggedIn: false)
         let signInVC = SignInVC()
@@ -239,26 +254,30 @@ extension ProjectsVC: AccountVCDelegate {
     }
     
     
-    func editPassword() {
+    func editPassword()
+    {
         navigationController?.dismiss(animated: true)
         print("edit password tapped")
     }
     
     
-    func seeInstructions() {
+    func seeInstructions()
+    {
         navigationController?.dismiss(animated: true)
         displayTutorialPromptOne()
     }
     
     
-    func deleteAccount() {
+    func deleteAccount()
+    {
         navigationController?.dismiss(animated: true)
         print("delete account tapped")
     }
 }
 
 
-extension ProjectsVC: UIAdaptivePresentationControllerDelegate {
+extension ProjectsVC: UIAdaptivePresentationControllerDelegate
+{
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
         print("about to dismiss")
     }

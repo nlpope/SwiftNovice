@@ -1,9 +1,6 @@
-//
-//  PrereqsVC.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/15/24.
-//
+//  File: PrereqsVC.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/15/24.
 
 import UIKit
 
@@ -247,7 +244,7 @@ extension PrereqsVC: SNCourseDetailsChildVCDelegate
     }
 }
 
-#warning("move to xtensions file")
+
 extension PrereqsVC: AccountVCDelegate
 {
     func signOut()
@@ -288,5 +285,3 @@ extension PrereqsVC: UIAdaptivePresentationControllerDelegate
         print("about to dismiss")
     }
 }
-
-// create alert that pops up here after account creation - 'this app is free but to progress you must buy 1 prerequisite. You will spend no more than $45 should you wish to continue" - this refers to hacking with swift by Paul Hudson

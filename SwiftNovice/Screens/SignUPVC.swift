@@ -1,9 +1,6 @@
-//
-//  SignUPVC.swift
-//  SwiftNovice
-//
-//  Created by Noah Pope on 7/23/24.
-//
+//  File: SignUPVC.swift
+//  Project: SwiftNovice
+//  Created by: Noah Pope on 7/23/24.
 
 import UIKit
 
@@ -11,13 +8,13 @@ import UIKit
 // saves the user account to user defaults on completion  (check for duplicates)
 // ... then sets the rootVC back to sign in once complete
 
-protocol SignUpVCDelegate: AnyObject {
+protocol SignUpVCDelegate: AnyObject
+{
     func createAccount()
 }
 
-
-class SignUpVC: UIViewController {
-
+class SignUpVC: UIViewController
+{
     let usernameTextField           = SNTextField(placeholder: "username")
     let passwordTextField           = SNTextField(placeholder: "password")
     let confirmPasswordTextField    = SNTextField(placeholder: "confirm password")
@@ -26,7 +23,9 @@ class SignUpVC: UIViewController {
     weak var delegate: SignUpVCDelegate!
     let padding: CGFloat = 20
 
-    override func viewDidLoad() {
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
@@ -34,7 +33,8 @@ class SignUpVC: UIViewController {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         usernameTextField.text = ""
         passwordTextField.text = ""
@@ -43,19 +43,22 @@ class SignUpVC: UIViewController {
     }
     
     
-    func configureVC() {
+    func configureVC()
+    {
         view.backgroundColor = .systemBackground
         view.addSubviews(usernameTextField, passwordTextField, confirmPasswordTextField, signInLabel)
     }
     
     
-    func createDismissKeyboardTapGesture() {
+    func createDismissKeyboardTapGesture()
+    {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
     
     
-    func configureUsernameTextField() {
+    func configureUsernameTextField()
+    {
         usernameTextField.delegate = self
         
         NSLayoutConstraint.activate([
@@ -67,13 +70,15 @@ class SignUpVC: UIViewController {
     }
     
     
-    @objc func resetRootVC() {
+    @objc func resetRootVC()
+    {
         
     }
 }
 
 
-extension SignUpVC: UITextFieldDelegate {
+extension SignUpVC: UITextFieldDelegate
+{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         resetRootVC()
         return true
