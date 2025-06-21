@@ -19,7 +19,7 @@ class SNTabBarController: UITabBarController
     
     func createPrerequisitesNC() -> UINavigationController
     {
-        let prereqsVC = PrereqsVC()
+        let prereqsVC = HomeVC()
         prereqsVC.title = "Prerequisites"
         prereqsVC.tabBarItem.image = SFSymbols.prereqs
         

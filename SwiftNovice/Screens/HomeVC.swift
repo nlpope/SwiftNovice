@@ -1,10 +1,14 @@
-//  File: PrereqsVC.swift
+//  File: HomeVC.swift
 //  Project: SwiftNovice
 //  Created by: Noah Pope on 7/15/24.
 
 import UIKit
+import AVKit
+import AVFoundation
+import SafariServices
 
-class PrereqsVC: SNDataLoadingVC
+// AKA PrereqsVC
+class HomeVC: SNDataLoadingVC
 {
     let tableView = UITableView()
     var courses = [Prerequisite]()
@@ -24,36 +28,39 @@ class PrereqsVC: SNDataLoadingVC
     
     override func viewWillAppear(_ animated: Bool)
     {
+        super.viewWillAppear(animated)
         logoLauncher = SNLogoLauncher(targetVC: self)
-        if PersistenceManager.fetchFirstVisitStatus() {
-            logoLauncher.configLogoLauncher()
-        } else {
-            fetchPrerequisitesFromServer()
-            loadProgressFromPersistence()
-        }
+        if PersistenceManager.fetchFirstVisitStatus() { logoLauncher.configLogoLauncher() }
+        else { fetchPrerequisitesFromServer(); loadProgressFromPersistence() }
+    }
+    
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
 //        if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
 //            displayTutorialPromptOne()
 //            PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
 //        }
-    }
+//    }
     
     
     override func viewWillDisappear(_ animated: Bool) { logoLauncher = nil }
     
     
-    deinit { logoLauncher.removeAllAVPlayerLayers() }
+    deinit { logoLauncher.removeAllAVPlayerLayers(); logoLauncher.removeNotifications() }
 
     //-------------------------------------//
     // MARK: - CONFIGURATION
     
     func configNavigation()
     {
-        let accountButton = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
-
         view.backgroundColor = .systemBackground
         title = "Prerequisites\n"
-        navigationItem.rightBarButtonItem = accountButton
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let accountButton = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
+
+        navigationItem.rightBarButtonItem = accountButton
     }
     
     
@@ -75,6 +82,8 @@ class PrereqsVC: SNDataLoadingVC
     
     func displayTutorialPromptOne()
     {
+        PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
+        
         let message = "Below are courses that helped me get to where I am on my Swift development journey..."
         let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
         let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
@@ -137,6 +146,8 @@ class PrereqsVC: SNDataLoadingVC
             case .success(let prerequisites):
                 self.courses = prerequisites
                 updateUI()
+                guard PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen else { return }
+                displayTutorialPromptOne()
             case .failure(let error):
                 self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
@@ -207,7 +218,7 @@ class PrereqsVC: SNDataLoadingVC
 }
 
 
-extension PrereqsVC: UITableViewDataSource, UITableViewDelegate
+extension HomeVC: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     { return courses.count }
@@ -238,7 +249,7 @@ extension PrereqsVC: UITableViewDataSource, UITableViewDelegate
 }
 
 
-extension PrereqsVC: SNCourseDetailsChildVCDelegate
+extension HomeVC: SNCourseDetailsChildVCDelegate
 {
     func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool)
     {
@@ -261,7 +272,7 @@ extension PrereqsVC: SNCourseDetailsChildVCDelegate
 }
 
 
-extension PrereqsVC: AccountVCDelegate
+extension HomeVC: AccountVCDelegate
 {
     func signOut()
     {
@@ -294,7 +305,7 @@ extension PrereqsVC: AccountVCDelegate
 }
 
 
-extension PrereqsVC: UIAdaptivePresentationControllerDelegate
+extension HomeVC: UIAdaptivePresentationControllerDelegate
 {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController)
     {

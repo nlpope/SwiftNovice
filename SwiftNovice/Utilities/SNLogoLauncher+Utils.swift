@@ -8,13 +8,13 @@ import AVFoundation
 
 class SNLogoLauncher
 {
-    var targetVC: PrereqsVC!
+    var targetVC: HomeVC!
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
     var animationDidPause = false
 
     
-    init(targetVC: UIViewController) { self.targetVC = targetVC as? PrereqsVC }
+    init(targetVC: UIViewController) { self.targetVC = targetVC as? HomeVC }
     
     
     func configLogoLauncher()
@@ -49,13 +49,17 @@ class SNLogoLauncher
     
     func maskHomeVCForIntro()
     {
+        targetVC.view.backgroundColor = .black
+
         targetVC.navigationController?.isNavigationBarHidden = true
+        
         if #available(iOS 18.0, *) {
             targetVC.tabBarController?.isTabBarHidden = true
         } else {
             print("can't hide tabbar")
         }
-        targetVC.view.backgroundColor = .black
+        
+        targetVC.tableView.isHidden = true
     }
     
     
@@ -79,18 +83,23 @@ class SNLogoLauncher
     
     @objc func playerDidFinishPlaying()
     {
-        print("didfinishplaying flicker")
+        targetVC.view.backgroundColor = .systemBackground
+
         targetVC.navigationController?.isNavigationBarHidden = false
+        
         if #available(iOS 18.0, *) {
             targetVC.tabBarController?.isTabBarHidden = false
         } else {
             print("can't hide tabbar")
         }
-        targetVC.view.backgroundColor = .systemBackground
+        
+        targetVC.tableView.isHidden = false
         
         PersistenceManager.isFirstVisitStatus = false
         removeAllAVPlayerLayers()
     
+        targetVC.configNavigation()
+        targetVC.configTableView()
         targetVC.fetchPrerequisitesFromServer()
         targetVC.loadProgressFromPersistence()
     }
