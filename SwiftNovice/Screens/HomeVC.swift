@@ -35,15 +35,6 @@ class HomeVC: SNDataLoadingVC
     }
     
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        if PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen {
-//            displayTutorialPromptOne()
-//            PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
-//        }
-//    }
-    
-    
     override func viewWillDisappear(_ animated: Bool) { logoLauncher = nil }
     
     

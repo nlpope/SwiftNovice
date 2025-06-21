@@ -21,12 +21,9 @@ class ProjectsVC: SNDataLoadingVC
     
     override func viewWillAppear(_ animated: Bool)
     {
-        getProjectsFromServer()
+        super.viewWillAppear(animated)
+        fetchProjectsFromServer()
         loadProgressFromPersistence()
-        if PersistenceManager.Keys.isFirstVisitToProjectScreen {
-            displayTutorialPromptOne()
-            PersistenceManager.Keys.isFirstVisitToProjectScreen = false
-        }
     }
     
     
@@ -57,6 +54,8 @@ class ProjectsVC: SNDataLoadingVC
     
     func displayTutorialPromptOne()
     {
+        PersistenceManager.Keys.isFirstVisitToProjectScreen = false
+
         let message = "Below are sample projects that increase in difficulty to master what you've learned on the prerequisites tab..."
         let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
         let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
@@ -108,7 +107,7 @@ class ProjectsVC: SNDataLoadingVC
     }
     
     
-    func getProjectsFromServer()
+    func fetchProjectsFromServer()
     {
         showLoadingView()
         NetworkManager.shared.getProjects { [weak self] result in
@@ -119,6 +118,8 @@ class ProjectsVC: SNDataLoadingVC
             case .success(let projects):
                 self.projects = projects
                 updateUI()
+                guard PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen else { return }
+                displayTutorialPromptOne()
             case .failure(let error):
                 self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
