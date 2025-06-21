@@ -11,7 +11,7 @@ import XCTest
 final class NetworkManagerTests: XCTestCase
 {
     // ARRANGE
-    var prerequisites = [Prerequisite]()
+    var prerequisites = [SNCourseProject]()
 
     
     func testSuccessfulPrerequisiteFetch()

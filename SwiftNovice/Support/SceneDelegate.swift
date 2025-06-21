@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
 
     func sceneDidBecomeActive(_ scene: UIScene) {}
 
-    func sceneWillResignActive(_ scene: UIScene) { PersistenceManager.isFirstVisitStatus = true }
+    func sceneWillResignActive(_ scene: UIScene) { PersistenceManager.isFirstVisitAfterDismissal = true }
 
     func sceneWillEnterForeground(_ scene: UIScene) {}
 

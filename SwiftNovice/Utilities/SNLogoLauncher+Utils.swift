@@ -8,13 +8,13 @@ import AVFoundation
 
 class SNLogoLauncher
 {
-    var targetVC: HomeVC!
+    var targetVC: CoursesVC!
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
     var animationDidPause = false
 
     
-    init(targetVC: UIViewController) { self.targetVC = targetVC as? HomeVC }
+    init(targetVC: UIViewController) { self.targetVC = targetVC as? CoursesVC }
     
     
     func configLogoLauncher()
@@ -95,11 +95,10 @@ class SNLogoLauncher
         
         targetVC.tableView.isHidden = false
         
-        PersistenceManager.isFirstVisitStatus = false
+        PersistenceManager.isFirstVisitAfterDismissal = false
         removeAllAVPlayerLayers()
     
-        targetVC.configNavigation()
-        targetVC.configTableView()
+      
         targetVC.fetchPrerequisitesFromServer()
         targetVC.loadProgressFromPersistence()
     }
@@ -120,7 +119,7 @@ class SNLogoLauncher
     
     @objc func reinitializePlayerLayer()
     {
-        guard PersistenceManager.isFirstVisitStatus else { return }
+        guard PersistenceManager.isFirstVisitAfterDismissal else { return }
         if let player = player {
             playerLayer = AVPlayerLayer(player: player)
             playerLayer?.name = VideoKeys.playerLayerName

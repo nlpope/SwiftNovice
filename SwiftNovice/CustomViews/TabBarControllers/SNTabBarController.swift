@@ -19,9 +19,9 @@ class SNTabBarController: UITabBarController
     
     func createPrerequisitesNC() -> UINavigationController
     {
-        let prereqsVC = HomeVC()
-        prereqsVC.title = "Prerequisites"
-        prereqsVC.tabBarItem.image = SFSymbols.prereqs
+        let prereqsVC = CoursesVC()
+        prereqsVC.title = "Courses"
+        prereqsVC.tabBarItem.image = SFSymbols.courses
         
         return UINavigationController(rootViewController: prereqsVC)
     }
@@ -29,10 +29,10 @@ class SNTabBarController: UITabBarController
     
     func createProjectsNC() -> UINavigationController
     {
-        let projectsVC = ProjectsVC()
-        projectsVC.title = "Projects"
-        projectsVC.tabBarItem.image = SFSymbols.projects
+        let bookmarksVC = ProjectsVC()
+        bookmarksVC.title = "Bookmarks"
+        bookmarksVC.tabBarItem.image = SFSymbols.bookmarks
         
-        return UINavigationController(rootViewController: projectsVC)
+        return UINavigationController(rootViewController: bookmarksVC)
     }
 }

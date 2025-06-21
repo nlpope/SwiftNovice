@@ -4,11 +4,11 @@
 
 import UIKit
 
-class SNDataLoadingVC: UIViewController
+class SNDataLoadingVC: UITableViewController
 {
     var containerView: UIView!
 
-
+    
     func showLoadingView()
     {
         containerView = UIView(frame: view.bounds)

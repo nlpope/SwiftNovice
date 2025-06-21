@@ -14,7 +14,7 @@ class NetworkManager
     private init() {}
     
     
-    func getPrerequisites(completed: @escaping(Result<[Prerequisite], SNError>) -> Void)
+    func getPrerequisites(completed: @escaping(Result<[SNCourseProject], SNError>) -> Void)
     {
         guard let url = URL(string: "\(baseUrl)getPrerequisites")
         else { completed(.failure(.invalidURL)); return }
@@ -32,7 +32,7 @@ class NetworkManager
             
             do {
                 let decoder = JSONDecoder()
-                var prerequisites = try decoder.decode([Prerequisite].self, from: data)
+                var prerequisites = try decoder.decode([SNCourseProject].self, from: data)
                 completed(.success(prerequisites.sorted { $0.orderId < $1.orderId }))
             } catch {
                 completed(.failure(.invalidData))
@@ -43,7 +43,7 @@ class NetworkManager
     }
     
     
-    func getProjects(completed: @escaping(Result<[Project], SNError>) -> Void)
+    func getProjects(completed: @escaping(Result<[SNCourseProject], SNError>) -> Void)
     {
         guard let url = URL(string: "\(baseUrl)getProjects") else {
             completed(.failure(.invalidURL))
@@ -68,7 +68,7 @@ class NetworkManager
             
             do {
                 let decoder = JSONDecoder()
-                var projects = try decoder.decode([Project].self, from: data)
+                var projects = try decoder.decode([SNCourseProject].self, from: data)
                 completed(.success(projects.sorted { $0.orderId < $1.orderId }))
             } catch {
                 completed(.failure(.invalidData))

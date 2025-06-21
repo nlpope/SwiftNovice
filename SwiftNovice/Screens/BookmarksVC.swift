@@ -1,18 +1,23 @@
-//  File: HomeVC.swift
+//  File: BookmarksVC.swift
 //  Project: SwiftNovice
-//  Created by: Noah Pope on 7/15/24.
+//  Created by: Noah Pope on 6/21/25.
 
 import UIKit
 import AVKit
 import AVFoundation
 import SafariServices
 
-// AKA PrereqsVC
-class HomeVC: SNDataLoadingVC
+// HOMEVC
+class BookmarksVC: SNDataLoadingVC, UISearchBarDelegate, UISearchResultsUpdating
 {
+    func updateSearchResults(for searchController: UISearchController) {
+        //
+    }
+    
+    var dataSource: SNTableViewDiffableDataSource!
     let tableView = UITableView()
-    var courses = [Prerequisite]()
-    var completedCourses = [Prerequisite]()
+    var courses = [SNCourseProject]()
+    var completedCourses = [SNCourseProject]()
     
     var logoLauncher: SNLogoLauncher!
     
@@ -20,7 +25,7 @@ class HomeVC: SNDataLoadingVC
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        PersistenceManager.isFirstVisitStatus = true
+        PersistenceManager.isFirstVisitAfterDismissal = true
         configNavigation()
         configTableView()
     }
@@ -30,7 +35,7 @@ class HomeVC: SNDataLoadingVC
     {
         super.viewWillAppear(animated)
         logoLauncher = SNLogoLauncher(targetVC: self)
-        if PersistenceManager.fetchFirstVisitStatus() { logoLauncher.configLogoLauncher() }
+        if PersistenceManager.fetchFirstVisitPostDismissalStatus() { logoLauncher.configLogoLauncher() }
         else { fetchPrerequisitesFromServer(); loadProgressFromPersistence() }
     }
     
@@ -71,9 +76,14 @@ class HomeVC: SNDataLoadingVC
     //-------------------------------------//
     // MARK: TUTORIAL PROMPTS
     
+//    func displayTutorialPrompts(num: Int, )
+//    {
+//
+//    }
+    
     func displayTutorialPromptOne()
     {
-        PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen = false
+        PersistenceManager.AccountKeys.isFirstVisitToCoursesScreen = false
         
         let message = "Below are courses that helped me get to where I am on my Swift development journey..."
         let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
@@ -137,7 +147,7 @@ class HomeVC: SNDataLoadingVC
             case .success(let prerequisites):
                 self.courses = prerequisites
                 updateUI()
-                guard PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen else { return }
+                guard PersistenceManager.AccountKeys.isFirstVisitToCoursesScreen else { return }
                 displayTutorialPromptOne()
             case .failure(let error):
                 self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
@@ -146,7 +156,7 @@ class HomeVC: SNDataLoadingVC
     }
     
     
-    func saveProgressInPersistence(withCourse course: Prerequisite, toggleType: Bool)
+    func saveProgressInPersistence(withCourse course: SNCourseProject, toggleType: Bool)
     {
         showLoadingView()
         let actionType: ProgressPersistenceActionType = toggleType ? .complete : .incomplete
@@ -209,7 +219,7 @@ class HomeVC: SNDataLoadingVC
 }
 
 
-extension HomeVC: UITableViewDataSource, UITableViewDelegate
+extension CoursesVC: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     { return courses.count }
@@ -240,9 +250,9 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate
 }
 
 
-extension HomeVC: SNCourseDetailsChildVCDelegate
+extension CoursesVC: SNCourseDetailsChildVCDelegate
 {
-    func toggleCourseCompletion(onCourse course: Prerequisite, toggleType: Bool)
+    func toggleCourseCompletion(onCourse course: SNCourseProject, toggleType: Bool)
     {
         navigationController?.dismiss(animated: true)
         saveProgressInPersistence(withCourse: course, toggleType: toggleType)
@@ -250,7 +260,7 @@ extension HomeVC: SNCourseDetailsChildVCDelegate
     }
     
     
-    func followLink(forCourse course: Prerequisite)
+    func followLink(forCourse course: SNCourseProject)
     {
         navigationController?.dismiss(animated: true)
         guard let url = URL(string: course.courseLink) else {
@@ -263,7 +273,7 @@ extension HomeVC: SNCourseDetailsChildVCDelegate
 }
 
 
-extension HomeVC: AccountVCDelegate
+extension CoursesVC: AccountVCDelegate
 {
     func signOut()
     {
@@ -278,7 +288,7 @@ extension HomeVC: AccountVCDelegate
     {
         navigationController?.dismiss(animated: true)
         print("edit password tapped")
-    }  
+    }
     
     
     func seeInstructions()
@@ -296,7 +306,7 @@ extension HomeVC: AccountVCDelegate
 }
 
 
-extension HomeVC: UIAdaptivePresentationControllerDelegate
+extension CoursesVC: UIAdaptivePresentationControllerDelegate
 {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController)
     {

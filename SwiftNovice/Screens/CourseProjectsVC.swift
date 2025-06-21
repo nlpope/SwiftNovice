@@ -1,20 +1,28 @@
-//  File: ProjectsVC.swift
+//  File: CourseProjectsVC.swift
 //  Project: SwiftNovice
-//  Created by: Noah Pope on 7/15/24.
+//  Created by: Noah Pope on 6/21/25.
 
+#warning("so keep everything the same but present an alert to ask user if they want to mark it complete/incomplete or just want to bookmark/unbookmark the project")
 import UIKit
+import SafariServices
 
-class ProjectsVC: SNDataLoadingVC
+class CourseProjectsVC: SNDataLoadingVC
 {
-    let tableView               = UITableView()
-    var projects                = [Project]()
-    var completedProjects       = [Project]()
+    var projects = [SNCourseProject]()
+    var filteredProjects = [SNCourseProject]()
+    var completedProjects = [SNCourseProject]()
+    var bookmarkedProjects = [SNCourseProject]()
+    
+    var isSearching = false
+    var editModeOn = false {
+        didSet { tableView.isEditing = editModeOn ? true : false; configNavigation() }
+    }
     
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        configureNavigation()
+        configNavigation()
         configureTableView()
     }
     
@@ -27,7 +35,7 @@ class ProjectsVC: SNDataLoadingVC
     }
     
     
-    func configureNavigation()
+    func configNavigation()
     {
         let accountButton = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
         
@@ -52,61 +60,6 @@ class ProjectsVC: SNDataLoadingVC
     }
     
     
-    func displayTutorialPromptOne()
-    {
-        PersistenceManager.Keys.isFirstVisitToProjectScreen = false
-
-        let message = "Below are sample projects that increase in difficulty to master what you've learned on the prerequisites tab..."
-        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.displayTutorialPromptTwo()
-        }
-        
-        ac.addAction(submitAction)
-        present(ac, animated: true)
-    }
-    
-    
-    func displayTutorialPromptTwo()
-    {
-        let message = "The first 4 are rather intermediate and the last 3 are most difficult. You may complete them in whichever order you desire..."
-        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.displayTutorialPromptThree()
-        }
-        
-        ac.addAction(submitAction)
-        present(ac, animated: true)
-    }
-    
-    
-    func displayTutorialPromptThree()
-    {
-        let message = "Once you mark an item as complete, it will glow green. You may change this status anytime..."
-        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction = UIAlertAction(title: "Continue", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.displayTutorialPromptFour()
-        }
-        
-        ac.addAction(submitAction)
-        present(ac, animated: true)
-    }
-    
-    
-    func displayTutorialPromptFour()
-    {
-        let message = "You may visit this tutorial again by clicking on the account icon above."
-        let ac = UIAlertController(title: "Before you begin", message: message, preferredStyle: .alert)
-        let submitAction = UIAlertAction(title: "Let's go!", style: .default, handler: nil)
-        
-        ac.addAction(submitAction)
-        present(ac, animated: true)
-    }
-    
-    
     func fetchProjectsFromServer()
     {
         showLoadingView()
@@ -118,8 +71,6 @@ class ProjectsVC: SNDataLoadingVC
             case .success(let projects):
                 self.projects = projects
                 updateUI()
-                guard PersistenceManager.Keys.isFirstVisitToPrerequisiteScreen else { return }
-                displayTutorialPromptOne()
             case .failure(let error):
                 self.presentSNAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
@@ -127,7 +78,7 @@ class ProjectsVC: SNDataLoadingVC
     }
     
     
-    func saveProgressInPersistence(withProject project: Project, toggleType: Bool)
+    func saveProgressInPersistence(withProject project: SNCourseProject, toggleType: Bool)
     {
         showLoadingView()
         let actionType: ProgressPersistenceActionType = toggleType ? .complete : .incomplete
@@ -223,7 +174,7 @@ extension ProjectsVC: UITableViewDataSource, UITableViewDelegate
 
 extension ProjectsVC: SNProjectDetailsChildVCDelegate
 {
-    func toggleCourseCompletion(onProject project: Project, toggleType: Bool)
+    func toggleCourseCompletion(onProject project: SNCourseProject, toggleType: Bool)
     {
         navigationController?.dismiss(animated: true)
         saveProgressInPersistence(withProject: project, toggleType: toggleType)
@@ -231,7 +182,7 @@ extension ProjectsVC: SNProjectDetailsChildVCDelegate
     }
     
     
-    func followLink(forProject project: Project)
+    func followLink(forProject project: SNCourseProject)
     {
         print("delegate reached for course link")
         navigationController?.dismiss(animated: true)

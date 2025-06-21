@@ -21,7 +21,7 @@ class PrerequisiteCell: UITableViewCell
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    func set(prerequisite: Prerequisite)
+    func set(prerequisite: SNCourseProject)
     {
         contentNameLabel.text = prerequisite.courseName
         avatarImageView.image = Images.placeholder

@@ -15,7 +15,6 @@
 		402D4A372C51CCBE00FBBEE1 /* SNCourseDetailsChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D4A362C51CCBE00FBBEE1 /* SNCourseDetailsChildVC.swift */; };
 		402D4A392C52D8EA00FBBEE1 /* SNProjectDetailsChidVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D4A382C52D8E900FBBEE1 /* SNProjectDetailsChidVC.swift */; };
 		402D4A3B2C5451C900FBBEE1 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D4A3A2C5451C900FBBEE1 /* String+Ext.swift */; };
-		402D4A3D2C54530800FBBEE1 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D4A3C2C54530800FBBEE1 /* Project.swift */; };
 		402D4A3F2C546AA600FBBEE1 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D4A3E2C546AA600FBBEE1 /* ProjectCell.swift */; };
 		4094E94C2C50AE03004AEAB7 /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4094E94B2C50AE03004AEAB7 /* AccountVC.swift */; };
 		4094E94E2C50AE4A004AEAB7 /* SignUPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4094E94D2C50AE4A004AEAB7 /* SignUPVC.swift */; };
@@ -26,8 +25,7 @@
 		40C0BE2C2C43CA2900AE66AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40C0BE2B2C43CA2900AE66AC /* Assets.xcassets */; };
 		40C0BE2F2C43CA2900AE66AC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 40C0BE2E2C43CA2900AE66AC /* Base */; };
 		40C0BE392C44FC3100AE66AC /* SNTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE382C44FC3100AE66AC /* SNTabBarController.swift */; };
-		40C0BE3D2C44FD2C00AE66AC /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE3C2C44FD2C00AE66AC /* HomeVC.swift */; };
-		40C0BE3F2C44FD5500AE66AC /* ProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE3E2C44FD5500AE66AC /* ProjectsVC.swift */; };
+		40C0BE3D2C44FD2C00AE66AC /* CoursesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE3C2C44FD2C00AE66AC /* CoursesVC.swift */; };
 		40C0BE452C45013800AE66AC /* Constants+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE442C45013800AE66AC /* Constants+Utils.swift */; };
 		40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE472C45058A00AE66AC /* UIViewController+Ext.swift */; };
 		40C0BE4A2C4506C900AE66AC /* UIResponder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0BE492C4506C900AE66AC /* UIResponder+Utils.swift */; };
@@ -39,9 +37,13 @@
 		40D27E332C498BFB0091FE3E /* SNTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D27E322C498BFB0091FE3E /* SNTextField.swift */; };
 		40D47A792C48EDF4008B52CC /* SNError+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A782C48EDF4008B52CC /* SNError+Utils.swift */; };
 		40D47A7B2C48EE60008B52CC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7A2C48EE60008B52CC /* NetworkManager.swift */; };
-		40D47A7D2C48EF7B008B52CC /* Prerequisite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7C2C48EF7B008B52CC /* Prerequisite.swift */; };
+		40D47A7D2C48EF7B008B52CC /* SNCourseProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7C2C48EF7B008B52CC /* SNCourseProject.swift */; };
 		40D47A7F2C48F168008B52CC /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A7E2C48F168008B52CC /* SignInVC.swift */; };
 		40D47A812C48F28C008B52CC /* SNInteractiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D47A802C48F28C008B52CC /* SNInteractiveLabel.swift */; };
+		40E2377A2E0685DB00582F28 /* SNTableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E237792E0685DB00582F28 /* SNTableViewDiffableDataSource.swift */; };
+		40E2377C2E068A5200582F28 /* CourseProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2377B2E068A5200582F28 /* CourseProjectsVC.swift */; };
+		40E2377E2E068AB100582F28 /* SNCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2377D2E068AB100582F28 /* SNCourse.swift */; };
+		40E237802E068B8D00582F28 /* BookmarksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2377F2E068B8D00582F28 /* BookmarksVC.swift */; };
 		40EB0CD52E05284100462DA9 /* SNLogoLauncher+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CD42E05284100462DA9 /* SNLogoLauncher+Utils.swift */; };
 		40EB0CDE2E05421700462DA9 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CDD2E05421700462DA9 /* KeychainWrapper.swift */; };
 		40EB0CDF2E05421700462DA9 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CDC2E05421700462DA9 /* KeychainItemAccessibility.swift */; };
@@ -74,7 +76,6 @@
 		402D4A362C51CCBE00FBBEE1 /* SNCourseDetailsChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNCourseDetailsChildVC.swift; sourceTree = "<group>"; };
 		402D4A382C52D8E900FBBEE1 /* SNProjectDetailsChidVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNProjectDetailsChidVC.swift; sourceTree = "<group>"; };
 		402D4A3A2C5451C900FBBEE1 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
-		402D4A3C2C54530800FBBEE1 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		402D4A3E2C546AA600FBBEE1 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		4094E94B2C50AE03004AEAB7 /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
 		4094E94D2C50AE4A004AEAB7 /* SignUPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUPVC.swift; sourceTree = "<group>"; };
@@ -87,8 +88,7 @@
 		40C0BE2E2C43CA2900AE66AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40C0BE302C43CA2900AE66AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40C0BE382C44FC3100AE66AC /* SNTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNTabBarController.swift; sourceTree = "<group>"; };
-		40C0BE3C2C44FD2C00AE66AC /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
-		40C0BE3E2C44FD5500AE66AC /* ProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsVC.swift; sourceTree = "<group>"; };
+		40C0BE3C2C44FD2C00AE66AC /* CoursesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesVC.swift; sourceTree = "<group>"; };
 		40C0BE442C45013800AE66AC /* Constants+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Utils.swift"; sourceTree = "<group>"; };
 		40C0BE472C45058A00AE66AC /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		40C0BE492C4506C900AE66AC /* UIResponder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Utils.swift"; sourceTree = "<group>"; };
@@ -100,9 +100,13 @@
 		40D27E322C498BFB0091FE3E /* SNTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNTextField.swift; sourceTree = "<group>"; };
 		40D47A782C48EDF4008B52CC /* SNError+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNError+Utils.swift"; sourceTree = "<group>"; };
 		40D47A7A2C48EE60008B52CC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		40D47A7C2C48EF7B008B52CC /* Prerequisite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prerequisite.swift; sourceTree = "<group>"; };
+		40D47A7C2C48EF7B008B52CC /* SNCourseProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNCourseProject.swift; sourceTree = "<group>"; };
 		40D47A7E2C48F168008B52CC /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		40D47A802C48F28C008B52CC /* SNInteractiveLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNInteractiveLabel.swift; sourceTree = "<group>"; };
+		40E237792E0685DB00582F28 /* SNTableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNTableViewDiffableDataSource.swift; sourceTree = "<group>"; };
+		40E2377B2E068A5200582F28 /* CourseProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProjectsVC.swift; sourceTree = "<group>"; };
+		40E2377D2E068AB100582F28 /* SNCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNCourse.swift; sourceTree = "<group>"; };
+		40E2377F2E068B8D00582F28 /* BookmarksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksVC.swift; sourceTree = "<group>"; };
 		40EB0CD42E05284100462DA9 /* SNLogoLauncher+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNLogoLauncher+Utils.swift"; sourceTree = "<group>"; };
 		40EB0CDC2E05421700462DA9 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		40EB0CDD2E05421700462DA9 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				40C0BE212C43CA2200AE66AC /* SceneDelegate.swift */,
 				40EB0CDC2E05421700462DA9 /* KeychainItemAccessibility.swift */,
 				40EB0CDD2E05421700462DA9 /* KeychainWrapper.swift */,
+				40E237792E0685DB00582F28 /* SNTableViewDiffableDataSource.swift */,
 				40C0BE2B2C43CA2900AE66AC /* Assets.xcassets */,
 				40EB0CE22E054C8600462DA9 /* launchscreen.mp4 */,
 				40C0BE2D2C43CA2900AE66AC /* LaunchScreen.storyboard */,
@@ -221,9 +226,10 @@
 			children = (
 				40D47A7E2C48F168008B52CC /* SignInVC.swift */,
 				4094E94D2C50AE4A004AEAB7 /* SignUPVC.swift */,
-				40C0BE3C2C44FD2C00AE66AC /* HomeVC.swift */,
-				40C0BE3E2C44FD5500AE66AC /* ProjectsVC.swift */,
 				4094E94B2C50AE03004AEAB7 /* AccountVC.swift */,
+				40C0BE3C2C44FD2C00AE66AC /* CoursesVC.swift */,
+				40E2377B2E068A5200582F28 /* CourseProjectsVC.swift */,
+				40E2377F2E068B8D00582F28 /* BookmarksVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -302,8 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				4094E94F2C50AEB6004AEAB7 /* User.swift */,
-				40D47A7C2C48EF7B008B52CC /* Prerequisite.swift */,
-				402D4A3C2C54530800FBBEE1 /* Project.swift */,
+				40E2377D2E068AB100582F28 /* SNCourse.swift */,
+				40D47A7C2C48EF7B008B52CC /* SNCourseProject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -444,21 +450,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				40C0BE392C44FC3100AE66AC /* SNTabBarController.swift in Sources */,
+				40E237802E068B8D00582F28 /* BookmarksVC.swift in Sources */,
 				40D47A7F2C48F168008B52CC /* SignInVC.swift in Sources */,
 				40C0BE552C45656F00AE66AC /* SNEmptyStateView.swift in Sources */,
 				40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */,
+				40E2377A2E0685DB00582F28 /* SNTableViewDiffableDataSource.swift in Sources */,
 				40D27E332C498BFB0091FE3E /* SNTextField.swift in Sources */,
 				40EB0CD52E05284100462DA9 /* SNLogoLauncher+Utils.swift in Sources */,
 				40EC49272C4E6B7900F1EEA1 /* SNSecondaryTitleLabel.swift in Sources */,
 				401000EB2C4BB23B00AE8F14 /* SNBodyLabel.swift in Sources */,
 				402D4A3F2C546AA600FBBEE1 /* ProjectCell.swift in Sources */,
 				40EC49462C4F73F600F1EEA1 /* SNDetailItemView.swift in Sources */,
+				40E2377E2E068AB100582F28 /* SNCourse.swift in Sources */,
 				402D4A392C52D8EA00FBBEE1 /* SNProjectDetailsChidVC.swift in Sources */,
 				40D47A7B2C48EE60008B52CC /* NetworkManager.swift in Sources */,
 				40C0BE572C4565E300AE66AC /* UIView+Ext.swift in Sources */,
 				40D47A812C48F28C008B52CC /* SNInteractiveLabel.swift in Sources */,
 				40C0BE2A2C43CA2200AE66AC /* SwiftNovice.xcdatamodeld in Sources */,
-				402D4A3D2C54530800FBBEE1 /* Project.swift in Sources */,
 				401000E52C4BAD6200AE8F14 /* PersistenceManager.swift in Sources */,
 				4094E94E2C50AE4A004AEAB7 /* SignUPVC.swift in Sources */,
 				40C0BE452C45013800AE66AC /* Constants+Utils.swift in Sources */,
@@ -466,13 +474,13 @@
 				40EC48FB2C4D00D700F1EEA1 /* SNAvatarImageView.swift in Sources */,
 				402D4A3B2C5451C900FBBEE1 /* String+Ext.swift in Sources */,
 				4094E94C2C50AE03004AEAB7 /* AccountVC.swift in Sources */,
-				40C0BE3D2C44FD2C00AE66AC /* HomeVC.swift in Sources */,
+				40C0BE3D2C44FD2C00AE66AC /* CoursesVC.swift in Sources */,
 				402D4A372C51CCBE00FBBEE1 /* SNCourseDetailsChildVC.swift in Sources */,
 				40FF06F92E055241008370C5 /* AVPlayer+Ext.swift in Sources */,
 				40D27E312C49890F0091FE3E /* SNButton.swift in Sources */,
 				40C0BE202C43CA2200AE66AC /* AppDelegate.swift in Sources */,
 				40C0BE4A2C4506C900AE66AC /* UIResponder+Utils.swift in Sources */,
-				40D47A7D2C48EF7B008B52CC /* Prerequisite.swift in Sources */,
+				40D47A7D2C48EF7B008B52CC /* SNCourseProject.swift in Sources */,
 				4094E9502C50AEB6004AEAB7 /* User.swift in Sources */,
 				40D47A792C48EDF4008B52CC /* SNError+Utils.swift in Sources */,
 				40C0BE532C45648C00AE66AC /* SNTitleLabel.swift in Sources */,
@@ -483,8 +491,8 @@
 				40EC48F92C4CD05700F1EEA1 /* PrerequisiteCell.swift in Sources */,
 				402D4A342C50F19700FBBEE1 /* SNSelectionDetailsSuperVC.swift in Sources */,
 				40EC49222C4E04AA00F1EEA1 /* UITableView+Ext.swift in Sources */,
+				40E2377C2E068A5200582F28 /* CourseProjectsVC.swift in Sources */,
 				40C0BE512C4563E200AE66AC /* SNDataLoadingVC.swift in Sources */,
-				40C0BE3F2C44FD5500AE66AC /* ProjectsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

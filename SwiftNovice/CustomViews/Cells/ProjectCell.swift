@@ -21,7 +21,7 @@ class ProjectCell: UITableViewCell
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    func set(project: Project)
+    func set(project: SNCourseProject)
     {
         contentNameLabel.text = project.projectName
         avatarImageView.image = Images.placeholder

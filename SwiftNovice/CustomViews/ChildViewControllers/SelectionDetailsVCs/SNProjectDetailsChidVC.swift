@@ -6,17 +6,17 @@ import UIKit
 
 protocol SNProjectDetailsChildVCDelegate: AnyObject
 {
-    func followLink(forProject project: Project)
-    func toggleCourseCompletion(onProject project: Project, toggleType: Bool)
+    func followLink(forProject project: SNCourseProject)
+    func toggleCourseCompletion(onProject project: SNCourseProject, toggleType: Bool)
 }
 
-class SNProjectDetailsChildVC: SNSelectionDetailsSuperVC<Project>
+class SNProjectDetailsChildVC: SNSelectionDetailsSuperVC<SNCourseProject>
 {
     weak var delegate: SNProjectDetailsChildVCDelegate!
-    var completedProjects = [Project]()
+    var completedProjects = [SNCourseProject]()
 
     
-    init(project: Project, completedProjects: [Project], delegate: SNProjectDetailsChildVCDelegate)
+    init(project: SNCourseProject, completedProjects: [SNCourseProject], delegate: SNProjectDetailsChildVCDelegate)
     {
         super.init(selectedItem: project)
         self.completedProjects = completedProjects
