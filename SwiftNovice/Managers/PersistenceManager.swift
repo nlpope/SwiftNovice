@@ -4,9 +4,9 @@
 
 import Foundation
 
-enum ProgressPersistenceActionType
+enum ProjectPersistenceActionType
 {
-    case complete, incomplete
+    case complete, incomplete, bookmark, unbookmark
 }
 
 enum PersistenceManager
@@ -31,7 +31,7 @@ enum PersistenceManager
             let encodedStatus = try encoder.encode(status)
             defaults.set(encodedStatus, forKey: AccountKeys.isVeryFirstVisitStatus)
         } catch {
-            print("failed ato save very first visit status"); return
+            print("failed ato save very first visit status")
         }
     }
     
@@ -61,7 +61,7 @@ enum PersistenceManager
             let encodedStatus = try encoder.encode(status)
             defaults.set(encodedStatus, forKey: AccountKeys.isFirstVisitPostDismissalStatus)
         } catch {
-            print("failed ato save first visit post dismissal status"); return
+            print("failed ato save first visit post dismissal status")
         }
     }
     
@@ -84,13 +84,14 @@ enum PersistenceManager
     //-------------------------------------//
     // MARK: - COURSE PERSISTENCE
     
-    static func updateWith(course: SNCourseProject, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void)
+    static func updateCourseProgress(withCourse course: SNCourse, actionType: ProjectPersistenceActionType, completed: @escaping (SNError?) -> Void)
     {
-        fetchCompletedCourses { result in
+        fetchCourseProgress { result in
             switch result {
             case .success(var courses):
                 switch actionType {
                 case .complete:
+                    courses.removeAll { $0.title == course.title }
                     courses.append(course)
                     
                 case .incomplete:
@@ -105,9 +106,9 @@ enum PersistenceManager
     }
     
     
-    static func updateWith(project: SNCourseProject, actionType: ProgressPersistenceActionType, completed: @escaping (SNError?) -> Void)
+    static func updateWith(project: SNCourseProject, actionType: ProjectPersistenceActionType, completed: @escaping (SNError?) -> Void)
     {
-        fetchCompletedProjects { result in
+        fetchProjectProgress { result in
             switch result {
             case .success(var projects):
                 switch actionType {
@@ -126,26 +127,15 @@ enum PersistenceManager
     }
     
     
-    static func updateLoggedInStatus(loggedIn: Bool)
-    {
-        guard loggedIn else {
-            defaults.set(false, forKey: AccountKeys.isLoggedIn)
-            return
-        }
-        defaults.set(true, forKey: AccountKeys.isLoggedIn)
-        return
-    }
-    
-    
-    static func fetchCompletedCourses(completed: @escaping (Result<[SNCourseProject], SNError>) -> Void) {
-        guard let completedCoursesData = defaults.object(forKey: AccountKeys.completedCourses) as? Data else {
+    static func fetchCourseProgress(completed: @escaping (Result<[SNCourse], SNError>) -> Void) {
+        guard let completedCoursesData = defaults.object(forKey: AccountKeys.courseProgress) as? Data else {
             completed(.success([]))
             return
         }
         
         do {
             let decoder = JSONDecoder()
-            let completedCourses = try decoder.decode([SNCourseProject].self, from: completedCoursesData)
+            let completedCourses = try decoder.decode([SNCourse].self, from: completedCoursesData)
             completed(.success(completedCourses))
         } catch {
             completed(.failure(.failedToLoadProgress))
@@ -153,46 +143,34 @@ enum PersistenceManager
     }
     
     
-    static func fetchCompletedProjects(completed: @escaping (Result<[SNCourseProject], SNError>) -> Void) {
-        guard let completedProjectsData = defaults.object(forKey: AccountKeys.completedProjects) as? Data else {
+    static func fetchProjectProgress(completed: @escaping (Result<[SNCourseProject], SNError>) -> Void) {
+        guard let projectProgressData = defaults.object(forKey: AccountKeys.projectProgress) as? Data else {
             completed(.success([]))
             return
         }
         
         do {
             let decoder = JSONDecoder()
-            let completedProjects = try decoder.decode([SNCourseProject].self, from: completedProjectsData)
-            completed(.success(completedProjects))
+            let projectProgress = try decoder.decode([SNCourseProject].self, from: projectProgressData)
+            completed(.success(projectProgress))
         } catch {
             completed(.failure(.failedToLoadProgress))
         }
     }
     
     
-    static func save(completedCourses: [SNCourseProject]) -> SNError?
+    static func saveProgress(forCourses courses: [SNCourse]) -> SNError?
     {
         do {
             let encoder = JSONEncoder()
-            let encodedCompletedCourses = try encoder.encode(completedCourses)
-            defaults.setValue(encodedCompletedCourses, forKey: AccountKeys.completedCourses)
+            let encodedCompletedCourses = try encoder.encode(courses)
+            defaults.setValue(encodedCompletedCourses, forKey: AccountKeys.courseProgress)
             return nil
         } catch {
             return .failedToSaveProgress
         }
     }
     
-    
-    static func save(completedProjects: [SNCourseProject]) -> SNError?
-    {
-        do {
-            let encoder = JSONEncoder()
-            let encodedCompletedProjects = try encoder.encode(completedProjects)
-            defaults.setValue(encodedCompletedProjects, forKey: AccountKeys.completedProjects)
-            return nil
-        } catch {
-            return .failedToSaveProgress
-        }
-    }
     
     //-------------------------------------//
     // MARK: - LOGIN PERSISTENCE
@@ -202,5 +180,16 @@ enum PersistenceManager
         let loggedInStatus = defaults.bool(forKey: AccountKeys.isLoggedIn)
         guard loggedInStatus else { return false }
         return true
+    }
+    
+    
+    static func updateLoggedInStatus(loggedIn: Bool)
+    {
+        guard loggedIn else {
+            defaults.set(false, forKey: AccountKeys.isLoggedIn)
+            return
+        }
+        defaults.set(true, forKey: AccountKeys.isLoggedIn)
+        return
     }
 }

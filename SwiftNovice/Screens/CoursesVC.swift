@@ -126,7 +126,7 @@ class CoursesVC: SNDataLoadingVC, UISearchBarDelegate, UISearchResultsUpdating
     func saveProgressInPersistence(withCourse course: SNCourseProject, toggleType: Bool)
     {
         showLoadingView()
-        let actionType: ProgressPersistenceActionType = toggleType ? .complete : .incomplete
+        let actionType: ProjectPersistenceActionType = toggleType ? .complete : .incomplete
         
         PersistenceManager.updateWith(course: course, actionType: actionType) { [weak self] error in
             guard let self = self else { return }

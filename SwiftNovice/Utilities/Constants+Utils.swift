@@ -38,8 +38,8 @@ enum AccountKeys
 {
     static let accountHolders = "accountHolders"
     static let isLoggedIn = "isLoggedIn"
-    static let completedCourses = "completedCourses"
-    static let completedProjects = "completedProjects"
+    static let courseProgress = "courseProgress"
+    static let projectProgress = "projectProgress"
     
     static let isFirstVisitPostDismissalStatus = "isFirstVisitPostDismissalStatus"
     static var isVeryFirstVisitStatus = "isVeryFirstVisitStatus"

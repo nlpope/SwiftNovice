@@ -17,7 +17,7 @@ final class NetworkManagerTests: XCTestCase
     func testSuccessfulPrerequisiteFetch()
     {
         // ACT
-        NetworkManager.shared.getPrerequisites { [weak self] result in
+        NetworkManager.shared.fetchCourses { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let prerequisites):

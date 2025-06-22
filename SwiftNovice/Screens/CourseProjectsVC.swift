@@ -8,6 +8,7 @@ import SafariServices
 
 class CourseProjectsVC: SNDataLoadingVC
 {
+    var selectedCourse: SNCourse!
     var projects = [SNCourseProject]()
     var filteredProjects = [SNCourseProject]()
     var completedProjects = [SNCourseProject]()
@@ -17,6 +18,12 @@ class CourseProjectsVC: SNDataLoadingVC
     var editModeOn = false {
         didSet { tableView.isEditing = editModeOn ? true : false; configNavigation() }
     }
+    
+    
+    init(selectedCourse: SNCourse) { self.selectedCourse = selectedCourse }
+    
+    
+    required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
     override func viewDidLoad()
@@ -63,7 +70,7 @@ class CourseProjectsVC: SNDataLoadingVC
     func fetchProjectsFromServer()
     {
         showLoadingView()
-        NetworkManager.shared.getProjects { [weak self] result in
+        NetworkManager.shared.fetchProjects { [weak self] result in
             guard let self = self else { return }
             self.dismissLoadingView()
             
@@ -81,7 +88,7 @@ class CourseProjectsVC: SNDataLoadingVC
     func saveProgressInPersistence(withProject project: SNCourseProject, toggleType: Bool)
     {
         showLoadingView()
-        let actionType: ProgressPersistenceActionType = toggleType ? .complete : .incomplete
+        let actionType: ProjectPersistenceActionType = toggleType ? .complete : .incomplete
         
         PersistenceManager.updateWith(project: project, actionType: actionType) { [weak self] error in
             guard let self = self else { return }
@@ -105,7 +112,7 @@ class CourseProjectsVC: SNDataLoadingVC
     
     func loadProgressFromPersistence()
     {
-        PersistenceManager.fetchCompletedProjects { [weak self] result in
+        PersistenceManager.fetchProjectProgress { [weak self] result in
             guard let self = self else { return }
             
             switch result {
