@@ -93,7 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
  🎺 Implemented unit testing
  
  🎺 Gained deeper understanding of parent to child view controller relationships
- 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
