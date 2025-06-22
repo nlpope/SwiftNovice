@@ -8,9 +8,7 @@ struct SNCourseProject: Codable, Hashable
 {
     let title, subtitle, skills, link, avatarURL: String
     let index: Int
-    let completed: Bool
-    let bookmarked: Bool
-    
+    let completed: Bool    
     
     func hash(into hasher: inout Hasher) { hasher.combine(title) }
 }

@@ -11,7 +11,7 @@ enum SFSymbols
 {
     static let account = UIImage(systemName: "person.circle")
     static let courses = UIImage(systemName: "books.vertical")
-    static let bookmarks = UIImage(systemName: "bookmark")
+    static let challenges = UIImage(systemName: "figure.badminton")
 }
 
 enum Images
@@ -23,15 +23,14 @@ enum Images
 
 enum MessageKeys
 {
-    static let courseTutorial1 = "Here you will find courses that were instrumental in getting me to where I am on my Swift development journey."
-    static let courseTutorial2 = "Click on a course to reveal its projects. You may go in any order you'd like."
+    static let courseTutorial1 = "Here you will find courses that were instrumental in getting me to where I am today on my Swift development journey."
+    static let courseTutorial2 = "Click on a course to reveal its projects. You may go in any order you'd like. Every course is searchable via your iPhone's 'Spotlight' feature - enter this project's title and you will be taken directly to a course's 'projects' page."
     
     static let projectstutorial1 = "Welcome to this course's 'projects' page. It is highly recommended you complete them in the order they appear."
-    static let projectstutorial2 = "You may tap the 'edit' button above to add or remove projects to your bookmarks or simply toggle a checkmark stating the project is complete or incomplete."
-    static let projectstutorial3 = "Once every project is marked 'complete' you will receive a checkmark for the overall course in the previous screen. Enjoy and good luck."
+    static let projectstutorial2 = "You may tap the 'edit' button above to mark any project as complete or incomplete. Once every project is marked 'complete' you will receive a checkmark for the overall course in the previous screen. Enjoy and good luck."
     
-    static let bookmarkSuccessfulTitle = "Added to favorites 🥳"
-    static let bookmarkSuccessfulMessage = "Successfully added to your bookmarks. It is now searchable via your iPhone's Spotlight feature - enter this project's title and you will be taken directly to the project's web page."
+    static let projectCompleteTitle = "Project complete! 🥳"
+    static let projectCompleteMessage = "Congratulations on completing this project. Keep going!"
 }
 
 enum AccountKeys
@@ -39,7 +38,6 @@ enum AccountKeys
     static let accountHolders = "accountHolders"
     static let isLoggedIn = "isLoggedIn"
     static let courseProgress = "courseProgress"
-    static let projectProgress = "projectProgress"
     
     static let isFirstVisitPostDismissalStatus = "isFirstVisitPostDismissalStatus"
     static var isVeryFirstVisitStatus = "isVeryFirstVisitStatus"

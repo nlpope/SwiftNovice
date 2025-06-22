@@ -2,17 +2,16 @@
 //  Project: SwiftNovice
 //  Created by: Noah Pope on 6/21/25.
 
-#warning("so keep everything the same but present an alert to ask user if they want to mark it complete/incomplete or just want to bookmark/unbookmark the project")
 import UIKit
 import SafariServices
 
 class CourseProjectsVC: SNDataLoadingVC
 {
     var selectedCourse: SNCourse!
+    var dataSource: SNTableViewDiffableDataSource!
     var projects = [SNCourseProject]()
     var filteredProjects = [SNCourseProject]()
     var completedProjects = [SNCourseProject]()
-    var bookmarkedProjects = [SNCourseProject]()
     
     var isSearching = false
     var editModeOn = false {
@@ -30,7 +29,7 @@ class CourseProjectsVC: SNDataLoadingVC
     {
         super.viewDidLoad()
         configNavigation()
-        configureTableView()
+        configTableView()
     }
     
     
@@ -53,17 +52,10 @@ class CourseProjectsVC: SNDataLoadingVC
     }
     
     
-    func configureTableView()
+    func configTableView()
     {
-        view.addSubview(tableView)
-        
-        tableView.frame = view.bounds
-        tableView.rowHeight = 80
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.removeExcessCells()
-        
-        tableView.register(ProjectCell.self, forCellReuseIdentifier: ProjectCell.reuseID)
+        tableView.allowsSelectionDuringEditing = false
+        dataSource.delegate = self
     }
     
     

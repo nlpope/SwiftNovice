@@ -14,25 +14,25 @@ class SNTabBarController: UITabBarController
     }
     
     
-    func setUpVCs() { viewControllers = [createPrerequisitesNC(), createProjectsNC()] }
+    func setUpVCs() { viewControllers = [createCoursesNC(), createChallengesNC()] }
     
     
-    func createPrerequisitesNC() -> UINavigationController
+    func createCoursesNC() -> UINavigationController
     {
-        let prereqsVC = CoursesVC()
-        prereqsVC.title = "Courses"
-        prereqsVC.tabBarItem.image = SFSymbols.courses
+        let coursesVC = CoursesVC()
+        coursesVC.title = "Courses"
+        coursesVC.tabBarItem.image = SFSymbols.courses
         
-        return UINavigationController(rootViewController: prereqsVC)
+        return UINavigationController(rootViewController: coursesVC)
     }
     
     
-    func createProjectsNC() -> UINavigationController
+    func createChallengesNC() -> UINavigationController
     {
-        let bookmarksVC = ProjectsVC()
-        bookmarksVC.title = "Bookmarks"
-        bookmarksVC.tabBarItem.image = SFSymbols.bookmarks
+        let challengesVC = ChallengesVC()
+        challengesVC.title = "Challenges"
+        challengesVC.tabBarItem.image = SFSymbols.challenges
         
-        return UINavigationController(rootViewController: bookmarksVC)
+        return UINavigationController(rootViewController: challengesVC)
     }
 }

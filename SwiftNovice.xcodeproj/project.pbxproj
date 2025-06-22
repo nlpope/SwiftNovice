@@ -43,7 +43,7 @@
 		40E2377A2E0685DB00582F28 /* SNTableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E237792E0685DB00582F28 /* SNTableViewDiffableDataSource.swift */; };
 		40E2377C2E068A5200582F28 /* CourseProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2377B2E068A5200582F28 /* CourseProjectsVC.swift */; };
 		40E2377E2E068AB100582F28 /* SNCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2377D2E068AB100582F28 /* SNCourse.swift */; };
-		40E237802E068B8D00582F28 /* BookmarksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2377F2E068B8D00582F28 /* BookmarksVC.swift */; };
+		40E237802E068B8D00582F28 /* ChallengesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E2377F2E068B8D00582F28 /* ChallengesVC.swift */; };
 		40EB0CD52E05284100462DA9 /* SNLogoLauncher+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CD42E05284100462DA9 /* SNLogoLauncher+Utils.swift */; };
 		40EB0CDE2E05421700462DA9 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CDD2E05421700462DA9 /* KeychainWrapper.swift */; };
 		40EB0CDF2E05421700462DA9 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB0CDC2E05421700462DA9 /* KeychainItemAccessibility.swift */; };
@@ -106,7 +106,7 @@
 		40E237792E0685DB00582F28 /* SNTableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNTableViewDiffableDataSource.swift; sourceTree = "<group>"; };
 		40E2377B2E068A5200582F28 /* CourseProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProjectsVC.swift; sourceTree = "<group>"; };
 		40E2377D2E068AB100582F28 /* SNCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNCourse.swift; sourceTree = "<group>"; };
-		40E2377F2E068B8D00582F28 /* BookmarksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksVC.swift; sourceTree = "<group>"; };
+		40E2377F2E068B8D00582F28 /* ChallengesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesVC.swift; sourceTree = "<group>"; };
 		40EB0CD42E05284100462DA9 /* SNLogoLauncher+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNLogoLauncher+Utils.swift"; sourceTree = "<group>"; };
 		40EB0CDC2E05421700462DA9 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		40EB0CDD2E05421700462DA9 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 				4094E94B2C50AE03004AEAB7 /* AccountVC.swift */,
 				40C0BE3C2C44FD2C00AE66AC /* CoursesVC.swift */,
 				40E2377B2E068A5200582F28 /* CourseProjectsVC.swift */,
-				40E2377F2E068B8D00582F28 /* BookmarksVC.swift */,
+				40E2377F2E068B8D00582F28 /* ChallengesVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -450,7 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40C0BE392C44FC3100AE66AC /* SNTabBarController.swift in Sources */,
-				40E237802E068B8D00582F28 /* BookmarksVC.swift in Sources */,
+				40E237802E068B8D00582F28 /* ChallengesVC.swift in Sources */,
 				40D47A7F2C48F168008B52CC /* SignInVC.swift in Sources */,
 				40C0BE552C45656F00AE66AC /* SNEmptyStateView.swift in Sources */,
 				40C0BE482C45058A00AE66AC /* UIViewController+Ext.swift in Sources */,

@@ -63,14 +63,7 @@ class CoursesVC: SNDataLoadingVC, UISearchBarDelegate, UISearchResultsUpdating
     func configTableView()
     {
         view.addSubview(tableView)
-        
-        tableView.frame = view.bounds
-        tableView.rowHeight = 80
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.removeExcessCells()
-        
-        tableView.register(PrerequisiteCell.self, forCellReuseIdentifier: PrerequisiteCell.reuseID)
+        dataSource.delegate = self        
     }
     
     //-------------------------------------//

@@ -1,4 +1,4 @@
-//  File: BookmarksVC.swift
+//  File: ChallengesVC.swift
 //  Project: SwiftNovice
 //  Created by: Noah Pope on 6/21/25.
 
@@ -8,7 +8,7 @@ import AVFoundation
 import SafariServices
 
 // HOMEVC
-class BookmarksVC: SNDataLoadingVC, UISearchBarDelegate, UISearchResultsUpdating
+class ChallengesVC: SNDataLoadingVC, UISearchBarDelegate, UISearchResultsUpdating
 {
     func updateSearchResults(for searchController: UISearchController) {
         //

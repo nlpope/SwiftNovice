@@ -6,7 +6,7 @@ import Foundation
 
 enum ProjectPersistenceActionType
 {
-    case complete, incomplete, bookmark, unbookmark
+    case complete, incomplete
 }
 
 enum PersistenceManager
@@ -97,7 +97,7 @@ enum PersistenceManager
                 case .incomplete:
                     courses.removeAll { $0.title == course.title }
                 }
-                completed(save(completedCourses: courses))
+                completed(saveProgress(forCourses: courses))
                 
             case .failure(let error):
                 completed(error)
@@ -171,17 +171,8 @@ enum PersistenceManager
         }
     }
     
-    
     //-------------------------------------//
     // MARK: - LOGIN PERSISTENCE
-    
-    static func retrieveLoggedInStatus() -> Bool
-    {
-        let loggedInStatus = defaults.bool(forKey: AccountKeys.isLoggedIn)
-        guard loggedInStatus else { return false }
-        return true
-    }
-    
     
     static func updateLoggedInStatus(loggedIn: Bool)
     {
@@ -191,5 +182,13 @@ enum PersistenceManager
         }
         defaults.set(true, forKey: AccountKeys.isLoggedIn)
         return
+    }
+    
+    
+    static func retrieveLoggedInStatus() -> Bool
+    {
+        let loggedInStatus = defaults.bool(forKey: AccountKeys.isLoggedIn)
+        guard loggedInStatus else { return false }
+        return true
     }
 }
