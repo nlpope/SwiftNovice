@@ -4,7 +4,7 @@
 
 import Foundation
 
-enum ProjectPersistenceActionType
+enum CoursePersistenceActionType
 {
     case complete, incomplete
 }
@@ -84,21 +84,16 @@ enum PersistenceManager
     //-------------------------------------//
     // MARK: - COURSE PERSISTENCE
     
-    static func updateCourseProgress(withCourse course: SNCourse, actionType: ProjectPersistenceActionType, completed: @escaping (SNError?) -> Void)
+    static func updateCompletedCourses(with course: SNCourse, actionType: CoursePersistenceActionType, completed: @escaping (SNError?) -> Void)
     {
         fetchCourseProgress { result in
             switch result {
             case .success(var courses):
-                switch actionType {
-                case .complete:
-                    courses.removeAll { $0.title == course.title }
-                    courses.append(course)
-                    
-                case .incomplete:
-                    courses.removeAll { $0.title == course.title }
+                handle(actionType, for: course, in: &courses) { error in
+                    if error != nil { completed(error); return }
                 }
-                completed(saveProgress(forCourses: courses))
-                
+                completed(saveAllProgress(for: courses))
+            /**--------------------------------------------------------------------------**/
             case .failure(let error):
                 completed(error)
             }
@@ -106,28 +101,21 @@ enum PersistenceManager
     }
     
     
-    static func updateWith(project: SNCourseProject, actionType: ProjectPersistenceActionType, completed: @escaping (SNError?) -> Void)
+    static func handle(_ actionType: CoursePersistenceActionType, for course: SNCourse, in courses:  inout [SNCourse], completed: @escaping (SNError?) -> Void)
     {
-        fetchProjectProgress { result in
-            switch result {
-            case .success(var projects):
-                switch actionType {
-                case .complete:
-                    projects.append(project)
-                    
-                case .incomplete:
-                    projects.removeAll { $0.title == project.title }
-                }
-                completed(save(completedProjects: projects))
-                
-            case .failure(let error):
-                completed(error)
-            }
+        switch actionType {
+        case .complete:
+            courses.removeAll { $0.title == course.title }
+            courses.append(course)
+        /**--------------------------------------------------------------------------**/
+        case .incomplete:
+            courses.removeAll { $0.title == course.title }
         }
     }
     
     
-    static func fetchCourseProgress(completed: @escaping (Result<[SNCourse], SNError>) -> Void) {
+    static func fetchCourseProgress(completed: @escaping (Result<[SNCourse], SNError>) -> Void)
+    {
         guard let completedCoursesData = defaults.object(forKey: AccountKeys.courseProgress) as? Data else {
             completed(.success([]))
             return
@@ -143,23 +131,7 @@ enum PersistenceManager
     }
     
     
-    static func fetchProjectProgress(completed: @escaping (Result<[SNCourseProject], SNError>) -> Void) {
-        guard let projectProgressData = defaults.object(forKey: AccountKeys.projectProgress) as? Data else {
-            completed(.success([]))
-            return
-        }
-        
-        do {
-            let decoder = JSONDecoder()
-            let projectProgress = try decoder.decode([SNCourseProject].self, from: projectProgressData)
-            completed(.success(projectProgress))
-        } catch {
-            completed(.failure(.failedToLoadProgress))
-        }
-    }
-    
-    
-    static func saveProgress(forCourses courses: [SNCourse]) -> SNError?
+    static func saveAllProgress(for courses: [SNCourse]) -> SNError?
     {
         do {
             let encoder = JSONEncoder()

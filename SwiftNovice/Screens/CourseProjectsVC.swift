@@ -80,7 +80,7 @@ class CourseProjectsVC: SNDataLoadingVC
     func saveProgressInPersistence(withProject project: SNCourseProject, toggleType: Bool)
     {
         showLoadingView()
-        let actionType: ProjectPersistenceActionType = toggleType ? .complete : .incomplete
+        let actionType: CoursePersistenceActionType = toggleType ? .complete : .incomplete
         
         PersistenceManager.updateWith(project: project, actionType: actionType) { [weak self] error in
             guard let self = self else { return }
