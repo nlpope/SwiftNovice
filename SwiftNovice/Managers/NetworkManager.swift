@@ -14,33 +14,33 @@ class NetworkManager
     private init() {}
     
     
-    func fetchCourses(completed: @escaping(Result<[SNCourse], SNError>) -> Void)
-    {
-        guard let url = URL(string: "\(baseUrl)getPrerequisites")
-        else { completed(.failure(.invalidURL)); return }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let _ = error { completed(.failure(.invalidURL)); return }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200
-            else { completed(.failure(.invalidResponse)); return }
-            
-            guard let data else {
-                completed(.failure(.invalidData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                var prerequisites = try decoder.decode([SNCourseProject].self, from: data)
-                completed(.success(prerequisites.sorted { $0.orderId < $1.orderId }))
-            } catch {
-                completed(.failure(.invalidData))
-            }
-        }
-        
-        task.resume()
-    }
+//    func fetchCourses(completed: @escaping(Result<[SNCourse], SNError>) -> Void)
+//    {
+//        guard let url = URL(string: "\(baseUrl)getPrerequisites")
+//        else { completed(.failure(.invalidURL)); return }
+//        
+//        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+//            if let _ = error { completed(.failure(.invalidURL)); return }
+//            
+//            guard let response = response as? HTTPURLResponse, response.statusCode == 200
+//            else { completed(.failure(.invalidResponse)); return }
+//            
+//            guard let data else {
+//                completed(.failure(.invalidData))
+//                return
+//            }
+//            
+//            do {
+//                let decoder = JSONDecoder()
+//                var prerequisites = try decoder.decode([SNCourseProject].self, from: data)
+//                completed(.success(prerequisites.sorted { $0.orderId < $1.orderId }))
+//            } catch {
+//                completed(.failure(.invalidData))
+//            }
+//        }
+//        
+//        task.resume()
+//    }
     
     
 //    func fetchProjects(completed: @escaping(Result<[SNCourseProject], SNError>) -> Void)
