@@ -213,9 +213,9 @@
 				40EB0CDC2E05421700462DA9 /* KeychainItemAccessibility.swift */,
 				40EB0CDD2E05421700462DA9 /* KeychainWrapper.swift */,
 				40E237792E0685DB00582F28 /* SNTableViewDiffableDataSource.swift */,
+				40C0BE2D2C43CA2900AE66AC /* LaunchScreen.storyboard */,
 				40C0BE2B2C43CA2900AE66AC /* Assets.xcassets */,
 				40EB0CE22E054C8600462DA9 /* launchscreen.mp4 */,
-				40C0BE2D2C43CA2900AE66AC /* LaunchScreen.storyboard */,
 				40C0BE282C43CA2200AE66AC /* SwiftNovice.xcdatamodeld */,
 			);
 			path = Support;
