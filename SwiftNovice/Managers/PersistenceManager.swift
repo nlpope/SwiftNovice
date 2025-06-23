@@ -29,7 +29,7 @@ enum PersistenceManager
         do {
             let encoder = JSONEncoder()
             let encodedStatus = try encoder.encode(status)
-            defaults.set(encodedStatus, forKey: AccountKeys.isVeryFirstVisitStatus)
+            defaults.set(encodedStatus, forKey: PersistenceKeys.isVeryFirstVisitStatus)
         } catch {
             print("failed ato save very first visit status")
         }
@@ -38,7 +38,7 @@ enum PersistenceManager
     
     static func fetchVeryFirstVisitStatus() -> Bool
     {
-        guard let visitStatusData = defaults.object(forKey: AccountKeys.isVeryFirstVisitStatus) as? Data
+        guard let visitStatusData = defaults.object(forKey: PersistenceKeys.isVeryFirstVisitStatus) as? Data
         else { return true }
         
         do {
@@ -59,7 +59,7 @@ enum PersistenceManager
         do {
             let encoder = JSONEncoder()
             let encodedStatus = try encoder.encode(status)
-            defaults.set(encodedStatus, forKey: AccountKeys.isFirstVisitPostDismissalStatus)
+            defaults.set(encodedStatus, forKey: PersistenceKeys.isFirstVisitPostDismissalStatus)
         } catch {
             print("failed ato save first visit post dismissal status")
         }
@@ -68,7 +68,7 @@ enum PersistenceManager
     
     static func fetchFirstVisitPostDismissalStatus() -> Bool
     {
-        guard let visitStatusData = defaults.object(forKey: AccountKeys.isFirstVisitPostDismissalStatus) as? Data
+        guard let visitStatusData = defaults.object(forKey: PersistenceKeys.isFirstVisitPostDismissalStatus) as? Data
         else { return true }
         
         do {
@@ -116,7 +116,7 @@ enum PersistenceManager
     
     static func fetchCourseProgress(completed: @escaping (Result<[SNCourse], SNError>) -> Void)
     {
-        guard let completedCoursesData = defaults.object(forKey: AccountKeys.courseProgress) as? Data else {
+        guard let completedCoursesData = defaults.object(forKey: PersistenceKeys.courseProgress) as? Data else {
             completed(.success([]))
             return
         }
@@ -136,7 +136,7 @@ enum PersistenceManager
         do {
             let encoder = JSONEncoder()
             let encodedCompletedCourses = try encoder.encode(courses)
-            defaults.setValue(encodedCompletedCourses, forKey: AccountKeys.courseProgress)
+            defaults.setValue(encodedCompletedCourses, forKey: PersistenceKeys.courseProgress)
             return nil
         } catch {
             return .failedToSaveProgress
@@ -149,17 +149,17 @@ enum PersistenceManager
     static func updateLoggedInStatus(loggedIn: Bool)
     {
         guard loggedIn else {
-            defaults.set(false, forKey: AccountKeys.isLoggedIn)
+            defaults.set(false, forKey: PersistenceKeys.isLoggedIn)
             return
         }
-        defaults.set(true, forKey: AccountKeys.isLoggedIn)
+        defaults.set(true, forKey: PersistenceKeys.isLoggedIn)
         return
     }
     
     
     static func retrieveLoggedInStatus() -> Bool
     {
-        let loggedInStatus = defaults.bool(forKey: AccountKeys.isLoggedIn)
+        let loggedInStatus = defaults.bool(forKey: PersistenceKeys.isLoggedIn)
         guard loggedInStatus else { return false }
         return true
     }

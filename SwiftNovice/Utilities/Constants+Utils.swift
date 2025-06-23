@@ -33,7 +33,7 @@ enum MessageKeys
     static let projectCompleteMessage = "Congratulations on completing this project. Keep going!"
 }
 
-enum AccountKeys
+enum PersistenceKeys
 {
     static let accountHolders = "accountHolders"
     static let isLoggedIn = "isLoggedIn"
