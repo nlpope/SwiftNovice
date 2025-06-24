@@ -6,9 +6,11 @@ import Foundation
 
 struct User: Comparable
 {
-    let username: String
-    let password: String
+    let userID = UUID()
+    var email: String
+    var username: String
+    var password: String
     
     
-    static func < (lhs: User, rhs: User) -> Bool { return lhs.username < rhs.username }
+    static func <(lhs: User, rhs: User) -> Bool { return lhs.username < rhs.username }
 }
