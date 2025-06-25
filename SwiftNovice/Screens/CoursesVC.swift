@@ -8,16 +8,13 @@ import AVFoundation
 
 // HOMEVC
 /** these are uncheckable; only checked autom. when everything in editable coursedetails is checked */
-class CoursesVC: SNDataLoadingVC, UISearchBarDelegate, UISearchResultsUpdating
+class CoursesVC: SNDataLoadingVC
 {
     var dataSource: SNTableViewDiffableDataSource!
     
     var courses = [SNCourse]()
     var filteredCourses = [SNCourse]()
     var completedCourses = [SNCourse]()
-    
-    var isSearching = false
-    
     
     var logoLauncher: SNLogoLauncher!
     
@@ -177,8 +174,23 @@ class CoursesVC: SNDataLoadingVC, UISearchBarDelegate, UISearchResultsUpdating
         self.present(destVC, animated: true)
     }
     
-    func updateSearchResults(for searchController: UISearchController)
+    
+    //-------------------------------------//
+    // MARK: - TABLEVIEW DELEGATE & DATASOURCE METHODS
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    { return courses.count }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SNCourseCell", for: indexPath) as! SNCourseCell
+        let course = courses[indexPath.row]
+        #warning("load if image is present || add a default image. see countryFacts project")
+        if let courseImageUrlString = course.avatarURL {
+            cell.avatarImageView.image = UIImage(named: "testing")
+        }
+        
         
     }
 }
@@ -186,13 +198,12 @@ class CoursesVC: SNDataLoadingVC, UISearchBarDelegate, UISearchResultsUpdating
 
 extension CoursesVC: UITableViewDataSource, UITableViewDelegate
 {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    { return courses.count }
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PrerequisiteCell.reuseID) as! PrerequisiteCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SNCourseCell.reuseID) as! SNCourseCell
         let course = courses[indexPath.row]
         
         cell.set(prerequisite: course)

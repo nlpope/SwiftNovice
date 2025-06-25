@@ -36,7 +36,7 @@ class CourseProjectsVC: SNDataLoadingVC
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        fetchProjectsFromServer()
+        fetchProjects()
         loadProgressFromPersistence()
     }
     
@@ -44,12 +44,14 @@ class CourseProjectsVC: SNDataLoadingVC
     func configNavigation()
     {
         let accountButton = UIBarButtonItem(title: "", image: SFSymbols.account, target: self, action: #selector(openAccountMenu))
+        let editButton = UIBarButtonItem(barButtonSystemItem: editModeOn ? .done : .edit, target: self, action: #selector(toggleEditMode))
         
         view.backgroundColor = .systemBackground
         title = "Projects\n"
-        navigationItem.rightBarButtonItem = accountButton
+        navigationItem.rightBarButtonItems = [editButton, accountButton]
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+
     
     
     func configTableView()
@@ -59,7 +61,7 @@ class CourseProjectsVC: SNDataLoadingVC
     }
     
     
-    func fetchProjectsFromServer()
+    func fetchProjects()
     {
         showLoadingView()
         NetworkManager.shared.fetchProjects { [weak self] result in
@@ -137,13 +139,21 @@ class CourseProjectsVC: SNDataLoadingVC
         }
         self.present(destVC, animated: true)
     }
+    
+    
+    //-------------------------------------//
+    // MARK: - EDIT MODE (MARK COMPLETE/INCOMPLETE)
+    
+    @objc func toggleEditMode() { editModeOn.toggle() }
+    
+    
+    
 }
 
 
 extension ProjectsVC: UITableViewDataSource, UITableViewDelegate
 {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    { return projects.count }
+   
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

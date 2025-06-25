@@ -1,12 +1,12 @@
-//  File: ProjectCell.swift
+//  File: SNCourseCell.swift
 //  Project: SwiftNovice
-//  Created by: Noah Pope on 7/26/24.
+//  Created by: Noah Pope on 7/21/24.
 
 import UIKit
 
-class ProjectCell: UITableViewCell
+class SNCourseCell: UITableViewCell
 {
-    static let reuseID = "ProjectCell"
+    static let reuseID = "SNCourseCell"
     let avatarImageView = SNAvatarImageView(frame: .zero)
     let contentNameLabel = SNTitleLabel(textAlignment: .left, fontSize: 26, lineBreakMode: .byTruncatingTail)
     
@@ -21,11 +21,11 @@ class ProjectCell: UITableViewCell
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    func set(project: SNCourseProject)
+    func set(prerequisite: SNCourseProject)
     {
-        contentNameLabel.text = project.projectName
+        contentNameLabel.text = prerequisite.courseName
         avatarImageView.image = Images.placeholder
-        avatarImageView.downloadImage(fromURL: project.avatarUrl)
+        avatarImageView.downloadImage(fromURL: prerequisite.avatarUrl)
     }
     
     

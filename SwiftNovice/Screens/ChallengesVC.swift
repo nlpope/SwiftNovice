@@ -70,7 +70,7 @@ class ChallengesVC: SNDataLoadingVC, UISearchBarDelegate, UISearchResultsUpdatin
         tableView.dataSource = self
         tableView.removeExcessCells()
         
-        tableView.register(PrerequisiteCell.self, forCellReuseIdentifier: PrerequisiteCell.reuseID)
+        tableView.register(SNCourseCell.self, forCellReuseIdentifier: SNCourseCell.reuseID)
     }
     
     //-------------------------------------//
@@ -227,7 +227,7 @@ extension CoursesVC: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PrerequisiteCell.reuseID) as! PrerequisiteCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SNCourseCell.reuseID) as! SNCourseCell
         let course = courses[indexPath.row]
         
         cell.set(prerequisite: course)

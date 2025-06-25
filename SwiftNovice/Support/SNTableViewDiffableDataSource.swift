@@ -7,9 +7,9 @@ import CoreSpotlight
 import MobileCoreServices
 
 /** this subclass is here only to make the 'commit editingStyle' override method work */
-class SNTableViewDiffableDataSource: UITableViewDiffableDataSource<Section, SNProject>
+class SNTableViewDiffableDataSource: UITableViewDiffableDataSource<Section, SNCourseProject>
 {
-    weak var delegate: CoursesVC!
+    weak var delegate: CourseProjectsVC!
     
     //-------------------------------------//
     // MARK: - TABLEVIEW DELEGATE METHODS 2/2

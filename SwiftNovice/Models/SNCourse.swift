@@ -6,7 +6,8 @@ import Foundation
 
 struct SNCourse: Codable, Hashable
 {
-    let title, instructor, avatarURL, bio: String
+    let title, instructor, bio: String
+    let avatarURL: String?
     let index: Int
     var courseProjects: [SNCourseProject]
     var completed: Bool
