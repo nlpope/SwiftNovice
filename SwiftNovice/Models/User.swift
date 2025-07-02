@@ -7,6 +7,7 @@ import Foundation
 struct User: Comparable
 {
     let userID = UUID()
+    var avatarURL: String
     var email: String
     var username: String
     var password: String
